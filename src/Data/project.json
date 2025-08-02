@@ -1,0 +1,200 @@
+[
+    {
+        "id": 1,
+        "title": "🎞️ Netflix_Clone",
+        "link": "https://netflix-clone-jade-beta.vercel.app/",
+        "description": "The Netflix Clone replicates the core features of the popular streaming platform, offering easy navigation and interactive tools.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/NetFlix_Clone",
+        "imageUrl": "./public/Netflix.avif",
+        "category": "Web"
+    },
+    {
+        "id": 2,
+        "title": "▶️ YouTube_Clone",
+        "link": "https://youtube-git-main-fakhir-ahmed-khans-projects.vercel.app/",
+        "description": "This YouTube Clone is a responsive web page that replicates the core features. Built with modern web technologies like React, JavaScript, and TailWind.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/YouTube-clone-in-React",
+        "imageUrl": "./public/YouTube.avif",
+        "category": "Web"
+    },
+    {
+        "id": 3,
+        "title": "✖️ Twitter_Clone",
+        "link": "https://x-clone-three-alpha.vercel.app/",
+        "description": "This X_Clone is a responsive web page that replicates the core features. Built with modern web technologies like React, JavaScript, and TailWind.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/X_Clone",
+        "imageUrl": "./public/X_Clone.avif",
+        "category": "Web"
+    },
+    {
+        "id": 4,
+        "title": "📝 Circum Finder",
+        "link": "https://pi-program.vercel.app/",
+        "description": "A straightforward tool that calculates the circumference of a circle based on user input of the radius or diameter.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/PI-Program",
+        "imageUrl": "./public/Circum-Finder.avif",
+        "category": "Tool"
+    },
+    {
+        "id": 5,
+        "title": "🧾 Unit Converter",
+        "link": "https://temperature-converter-by-using-html-css-and-jave-script.vercel.app/",
+        "description": "Convert between various units for temperature and speed, such as Celsius, Fahrenheit, km/h, and mph.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/Temperature-Converter-by-using-HTML--CSS-and-JaveScript",
+        "imageUrl": "./public/UnitConverter.avif",
+        "category": "Tool"
+    },
+    {
+        "id": 6,
+        "title": "⛅ Weather App",
+        "link": "https://weather-app-cyan-one-55.vercel.app/",
+        "description": "Provides real-time weather updates for any global location, including temperature, humidity, and wind speed.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/Weather-App",
+        "imageUrl": "./public/Weather.avif",
+        "category": "Tool"
+    },
+    {
+        "id": 7,
+        "title": "🗣️ Text-to-Speech",
+        "link": "https://text-to-speech-ruby-phi.vercel.app",
+        "description": "Converts written text into natural-sounding audio instantly, supporting multiple languages and voices.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/text-to-speech",
+        "imageUrl": "./public/Text-to-Speech.avif",
+        "category": "Tool"
+    },
+    {
+        "id": 8,
+        "title": "🛒 Amazon Clone",
+        "link": "https://github.com/FakhirAhmedKhan/retry-amazon-clone",
+        "description": "A simple web app made with JavaScript. It lets users view products, add them to a cart, and see the total.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/retry-amazon-clone",
+        "imageUrl": "./public/ammzon.avif",
+        "category": "Web"
+    },
+    {
+        "id": 9,
+        "title": "🔢 Calculator",
+        "link": "https://calculator-alpha-one-55.vercel.app/",
+        "description": "Enables users to perform basic arithmetic operations such as addition, subtraction, and multiplication.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/Calculator-by-using-htmlc-css-or-js",
+        "imageUrl": "./public/Calculator.avif",
+        "category": "Tool"
+    },
+    {
+        "id": 10,
+        "title": "📝 Task_Tracker",
+        "link": "https://to-do-list-neon-six.vercel.app/",
+        "description": "A simple and easy-to-use task manager that helps you organize your daily tasks. You can add and delete tasks.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/ToDOList",
+        "imageUrl": "./public/TaskTracker.avif",
+        "category": "Tool"
+    },
+    {
+        "id": 11,
+        "title": "🐍 Python Basic Programs",
+        "link": "https://github.com/FakhirAhmedKhan/Python_Basic_Program-",
+        "description": "A collection of beginner-level Python programs designed to build a foundation in programming concepts.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/Python_Basic_Program-",
+        "imageUrl": "./public/python.avif",
+        "category": "Python"
+    },
+    {
+        "id": 12,
+        "title": "🐍 Basic Python Programs Part 2",
+        "link": "https://github.com/FakhirAhmedKhan/Basic_Python_Program_Part_2",
+        "description": "The second part of the beginner-level Python series focuses on more practice with functions, loops, and user input.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/Basic_Python_Program_Part_2",
+        "imageUrl": "./public/python.avif",
+        "category": "Python"
+    },
+    {
+        "id": 13,
+        "title": "🐍 Grading System in Python",
+        "link": "https://github.com/FakhirAhmedKhan/Grading_System_in_python",
+        "description": "A simple Python program that calculates student grades based on their marks using if/else statements.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/Grading_System_in_python",
+        "imageUrl": "./public/python.avif",
+        "category": "Python"
+    },
+    {
+        "id": 14,
+        "title": "🐍 Game in Python",
+        "link": "https://github.com/FakhirAhmedKhan/word-guessing-game-in-py",
+        "description": "A fun terminal game where players guess letters to find the hidden word.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/word-guessing-game-in-py",
+        "imageUrl": "./public/python.avif",
+        "category": "Python"
+    },
+    {
+        "id": 15,
+        "title": "🐍 Quiz in Python",
+        "link": "https://github.com/FakhirAhmedKhan/HTML-or-CSS-Quiz-by-using-python",
+        "description": "A simple quiz app that tests knowledge of HTML, CSS, and JS. It runs in the terminal and shows the final score.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/HTML-or-CSS-Quiz-by-using-python",
+        "imageUrl": "./public/python.avif",
+        "category": "Python"
+    },
+    {
+        "id": 16,
+        "title": "⚛️ /First React/",
+        "link": "https://github.com/FakhirAhmedKhan/First-React-Code/tree/main/First%20React",
+        "description": "My first steps into React. Setting up a new project, understanding components and state.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/First-React-Code",
+        "imageUrl": "./public/react.avif",
+        "category": "React"
+    },
+    {
+        "id": 17,
+        "title": "🎮 Rock, Paper, Scissors Game",
+        "link": "https://rock-three-umber.vercel.app/",
+        "description": "The classic game allows players to test their luck against the computer. With instant results on choices, it's fun.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/rock",
+        "imageUrl": "./public/Rock.avif",
+        "category": "Game"
+    },
+    {
+        "id": 18,
+        "title": "🔳 QR Code Generator",
+        "link": "https://qr-generator-lilac-beta.vercel.app/",
+        "description": "A simple tool that creates QR codes from data. Users enter data, and the app generates a scannable QR code.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/QR-Generator",
+        "imageUrl": "./public/qr.avif",
+        "category": "Tool"
+    },
+    {
+        "id": 19,
+        "title": "⚛️ Calculator-in-React",
+        "link": "https://calculator-in-react-ten.vercel.app/",
+        "description": "A simple app built with React that performs basic math operations. It uses components and state to update results.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/Calculator-in-React",
+        "imageUrl": "./public/jspic.avif",
+        "category": "React"
+    },
+    {
+        "id": 20,
+        "title": "💻Basic JavaScript Program",
+        "link": "https://github.com/FakhirAhmedKhan/Basic-JavaScrip-Program",
+        "description": "A collection of beginner-level JavaScript programs to build a foundation in programming concepts.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/Basic-JavaScrip-Program",
+        "imageUrl": "./public/jspic.avif",
+        "category": "JavaScript"
+    },
+    {
+        "id": 21,
+        "title": "💻 Basic JavaScript Program part 2",
+        "link": "https://github.com/FakhirAhmedKhan/Basic-Javascript-part-2",
+        "description": "The second part of the beginner-level JavaScript series, focusing on more practice with functions and loops.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/Basic-Javascript-part-2",
+        "imageUrl": "./public/jspic.avif",
+        "category": "JavaScript"
+    },
+    {
+        "id": 22,
+        "title": "💻 Quiz in JavaScript",
+        "link": "https://github.com/FakhirAhmedKhan/Quiz-JavaScript",
+        "description": "A simple quiz app that tests knowledge of HTML, CSS, and JS. It runs in the terminal and shows the final score.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/Quiz-JavaScript",
+        "imageUrl": "./public/jspic.avif",
+        "category": "JavaScript"
+    }
+]
