@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion as Motion } from 'framer-motion'
 import renderIcon from '../utility/renderIcon'
 
 export default function ProjectSection ({ projectData }) {
@@ -18,10 +19,23 @@ export default function ProjectSection ({ projectData }) {
 
   return (
     <section id='projects' className='py-20'>
-      <h2 className='text-4xl font-bold text-center mb-12 tracking-tight'>
+      <Motion.h2
+        className='text-4xl font-bold text-center mb-12 tracking-tight'
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
         My Creations
-      </h2>
-      <div className='flex justify-center flex-wrap gap-2 md:gap-4 mb-12'>
+      </Motion.h2>
+
+      <Motion.div
+        className='flex justify-center flex-wrap gap-2 md:gap-4 mb-12'
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.6 }}
+        viewport={{ once: true }}
+      >
         {categories.map(cat => (
           <button
             key={cat}
@@ -35,12 +49,17 @@ export default function ProjectSection ({ projectData }) {
             {cat}
           </button>
         ))}
-      </div>
+      </Motion.div>
+
       <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
-        {displayedProjects.map(project => (
-          <div
+        {displayedProjects.map((project, index) => (
+          <Motion.div
             key={project.id}
             className='group flex flex-col overflow-hidden rounded-xl border border-white/10 bg-white/20 dark:bg-slate-800/50 backdrop-blur-lg shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2'
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            viewport={{ once: true }}
           >
             <img
               src={project.imageUrl}
@@ -71,18 +90,25 @@ export default function ProjectSection ({ projectData }) {
                 </a>
               </div>
             </div>
-          </div>
+          </Motion.div>
         ))}
       </div>
+
       {filteredProjects.length > projectsToShow && (
-        <div className='text-center mt-12'>
+        <Motion.div
+          className='text-center mt-12'
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          viewport={{ once: true }}
+        >
           <button
             onClick={() => setShowAll(!showAll)}
             className='px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-full hover:scale-105 transition-transform duration-300'
           >
             {showAll ? 'Show Less' : 'Show More'}
           </button>
-        </div>
+        </Motion.div>
       )}
     </section>
   )

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion as Motion, AnimatePresence } from 'framer-motion'
 import renderIcon from '../utility/renderIcon'
 
 export default function HeaderSection () {
@@ -15,7 +16,12 @@ export default function HeaderSection () {
   const navItems = ['home', 'projects', 'skills', 'education', 'contact']
 
   return (
-    <header className='fixed top-0 left-0 right-0 z-50 backdrop-blur-lg bg-white/30 dark:bg-black/30 border-b border-white/10 transition-all duration-300'>
+    <Motion.header
+      initial={{ y: -40, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className='fixed top-0 left-0 right-0 z-50 backdrop-blur-lg bg-white/30 dark:bg-black/30 border-b border-white/10 transition-all duration-300'
+    >
       <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='flex items-center justify-between h-16'>
           {/* Brand */}
@@ -47,20 +53,29 @@ export default function HeaderSection () {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className='md:hidden px-4 pt-2 pb-4 space-y-2'>
-          {navItems.map(item => (
-            <button
-              key={item}
-              onClick={() => scrollToSection(item)}
-              className='block w-full text-left capitalize py-2 px-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors'
-            >
-              {item}
-            </button>
-          ))}
-        </div>
-      )}
-    </header>
+      {/* Animated Mobile Menu */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <Motion.div
+            key='mobile-menu'
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+            className='md:hidden px-4 pt-2 pb-4 space-y-2'
+          >
+            {navItems.map(item => (
+              <button
+                key={item}
+                onClick={() => scrollToSection(item)}
+                className='block w-full text-left capitalize py-2 px-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors'
+              >
+                {item}
+              </button>
+            ))}
+          </Motion.div>
+        )}
+      </AnimatePresence>
+    </Motion.header>
   )
 }
