@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion as Motion } from 'framer-motion'
 import renderIcon from '../utility/renderIcon'
+import projects from '../Data/project.json'
 
 export default function ProjectSection ({ projectData }) {
   const [filter, setFilter] = useState('All')
@@ -11,7 +12,7 @@ export default function ProjectSection ({ projectData }) {
     filter === 'All'
       ? projectData
       : projectData.filter(p => p.category === filter)
-  const displayedProjects = showAll
+  const Projects = showAll
     ? filteredProjects
     : filteredProjects.slice(0, projectsToShow)
 
@@ -52,7 +53,7 @@ export default function ProjectSection ({ projectData }) {
       </Motion.div>
 
       <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
-        {displayedProjects.map((project, index) => (
+        {projects.map((project, index) => (
           <Motion.div
             key={project.id}
             className='group flex flex-col overflow-hidden rounded-xl border border-white/10 bg-white/20 dark:bg-slate-800/50 backdrop-blur-lg shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2'
