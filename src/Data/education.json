@@ -1,9 +1,15 @@
 [
     {
+        "year": "2026- Up_Coming",
+        "title": "Higher-Education",
+        "institution": "International-Schooling",
+        "description": "Studied advanced subjects in secondary education (Grade 11–12) while also beginning to explore programming and technology."
+    },
+    {
         "year": "2025- Present",
         "title": "Higher-Education",
         "institution": "International-Schooling",
-        "description": "Focusing on AI, web development, and software engineering principles."
+        "description": "Studied advanced subjects in Higher education (Grade 10–11) while also beginning to explore programming and technology."
     },
     {
         "year": "2024",
@@ -12,9 +18,15 @@
         "description": "Completed an intensive 6-month program covering the MERN stack."
     },
     {
-        "year": "2024",
+        "year": "2023",
         "title": "Started Self-Learning Journey",
         "institution": "Online Resources",
         "description": "Began learning HTML, CSS, and JavaScript through various online courses and tutorials."
+    },
+    {
+        "year": "2022",
+        "title": "Secondery-Education",
+        "institution": "VISION_SCHOOL",
+        "description": "Studied advanced subjects in secondary education (Grade 9–10) while also beginning to explore programming and technology."
     }
 ]
