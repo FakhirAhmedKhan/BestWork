@@ -34,7 +34,7 @@ export default function ContactSection () {
   return (
     <Motion.section
       id='contact'
-      className='py-16 px-4'
+      className='py-16 px-4 '
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -46,7 +46,7 @@ export default function ContactSection () {
 
       <Motion.form
         onSubmit={handleSubmit}
-        className='max-w-xl mx-auto space-y-6 bg-slate-100 dark:bg-slate-800 p-6 rounded-lg shadow'
+        className='max-w-xl mx-auto space-y-6  p-6 rounded-lg shadow'
         noValidate
         initial={{ scale: 0.95, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}

@@ -1,6 +1,33 @@
 [
     {
+        "id": 3,
+        "title": "💻 CVGenerator",
+        "link": "https://cv-generator-second-try.vercel.app/",
+        "description": "A CV generator app that creates ATS-friendly resumes can significantly improve a job seeker's chances of getting noticed by employers.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/CVGenerator",
+        "imageUrl": "/BestWork/CVGenerator.avif",
+        "category": "Tool"
+    },
+    {
+        "id": 2,
+        "title": "💻 Landing-Page--For-ATS-Calculator",
+        "link": "https://fakhirahmedkhan.github.io/Landing-Page--For-ATS-Calculator/",
+        "description": "A simple Landing page for my ATS tools with good UI/UX.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/Landing-Page--For-ATS-Calculator",
+        "imageUrl": "/BestWork/Landing-page.avif",
+        "category": "Web"
+    },
+    {
         "id": 1,
+        "title": "💻 ATS-Calculator",
+        "link": "https://fakhirahmedkhan.github.io/ATS-Calculator/",
+        "description": "An ATS (Applicant Tracking System) calculator is a tool that assesses your resume's compatibility with ATS software used by employers to screen job applications",
+        "codeLink": "https://github.com/FakhirAhmedKhan/ATS-Calculator",
+        "imageUrl": "/BestWork/ATS-Calculator.avif",
+        "category": "Tool"
+    },
+    {
+        "id": 24,
         "title": "🎞️ Netflix_Clone",
         "link": "https://netflix-clone-jade-beta.vercel.app/",
         "description": "The Netflix Clone replicates the core features of the popular streaming platform, offering easy navigation and interactive tools.",
@@ -9,7 +36,7 @@
         "category": "Web"
     },
     {
-        "id": 2,
+        "id": 23,
         "title": "▶️ YouTube_Clone",
         "link": "https://youtube-git-main-fakhir-ahmed-khans-projects.vercel.app/",
         "description": "This YouTube Clone is a responsive web page that replicates the core features. Built with modern web technologies like React, JavaScript, and TailWind.",
@@ -18,7 +45,7 @@
         "category": "Web"
     },
     {
-        "id": 3,
+        "id": 26,
         "title": "✖️ Twitter_Clone",
         "link": "https://x-clone-three-alpha.vercel.app/",
         "description": "This X_Clone is a responsive web page that replicates the core features. Built with modern web technologies like React, JavaScript, and TailWind.",
@@ -95,16 +122,16 @@
         "link": "https://github.com/FakhirAhmedKhan/Python_Basic_Program-",
         "description": "A collection of beginner-level Python programs designed to build a foundation in programming concepts.",
         "codeLink": "https://github.com/FakhirAhmedKhan/Python_Basic_Program-",
-        "imageUrl": "/BestWork/python.avif",
+        "imageUrl": "/BestWork/jspic.avif",
         "category": "Python"
     },
     {
         "id": 12,
-        "title": "🐍 Basic Python Programs Part 2",
+        "title": "🐍 Basic Python Programs Part 3",
         "link": "https://github.com/FakhirAhmedKhan/Basic_Python_Program_Part_2",
         "description": "The second part of the beginner-level Python series focuses on more practice with functions, loops, and user input.",
         "codeLink": "https://github.com/FakhirAhmedKhan/Basic_Python_Program_Part_2",
-        "imageUrl": "/BestWork/python.avif",
+        "imageUrl": "/BestWork/jspic.avif",
         "category": "Python"
     },
     {
@@ -113,7 +140,7 @@
         "link": "https://github.com/FakhirAhmedKhan/Grading_System_in_python",
         "description": "A simple Python program that calculates student grades based on their marks using if/else statements.",
         "codeLink": "https://github.com/FakhirAhmedKhan/Grading_System_in_python",
-        "imageUrl": "/BestWork/python.avif",
+        "imageUrl": "/BestWork/jspic.avif",
         "category": "Python"
     },
     {
@@ -122,7 +149,7 @@
         "link": "https://github.com/FakhirAhmedKhan/word-guessing-game-in-py",
         "description": "A fun terminal game where players guess letters to find the hidden word.",
         "codeLink": "https://github.com/FakhirAhmedKhan/word-guessing-game-in-py",
-        "imageUrl": "/BestWork/python.avif",
+        "imageUrl": "/BestWork/jspic.avif",
         "category": "Python"
     },
     {
@@ -131,7 +158,7 @@
         "link": "https://github.com/FakhirAhmedKhan/HTML-or-CSS-Quiz-by-using-python",
         "description": "A simple quiz app that tests knowledge of HTML, CSS, and JS. It runs in the terminal and shows the final score.",
         "codeLink": "https://github.com/FakhirAhmedKhan/HTML-or-CSS-Quiz-by-using-python",
-        "imageUrl": "/BestWork/python.avif",
+        "imageUrl": "/BestWork/jspic.avif",
         "category": "Python"
     },
     {
@@ -140,7 +167,7 @@
         "link": "https://github.com/FakhirAhmedKhan/First-React-Code/tree/main/First%20React",
         "description": "My first steps into React. Setting up a new project, understanding components and state.",
         "codeLink": "https://github.com/FakhirAhmedKhan/First-React-Code",
-        "imageUrl": "/BestWork/react.avif",
+        "imageUrl": "/BestWork/jspic.avif",
         "category": "React"
     },
     {
@@ -185,6 +212,15 @@
         "link": "https://github.com/FakhirAhmedKhan/Basic-Javascript-part-2",
         "description": "The second part of the beginner-level JavaScript series, focusing on more practice with functions and loops.",
         "codeLink": "https://github.com/FakhirAhmedKhan/Basic-Javascript-part-2",
+        "imageUrl": "/BestWork/jspic.avif",
+        "category": "JavaScript"
+    },
+    {
+        "id": 25,
+        "title": "💻 Basic JavaScript Program part 3",
+        "link": "https://github.com/FakhirAhmedKhan/JavaScript-Basic-Program-Part-4",
+        "description": "The second part of the beginner-level JavaScript series, focusing on more practice.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/JavaScript-Basic-Program-Part-4",
         "imageUrl": "/BestWork/jspic.avif",
         "category": "JavaScript"
     },

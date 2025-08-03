@@ -1,81 +1,64 @@
-import { useState } from 'react'
-import { motion as Motion, AnimatePresence } from 'framer-motion'
-import renderIcon from '../utility/renderIcon'
+import { motion as Motion } from 'framer-motion'
+import education from '../Data/education.json'
 
-export default function HeaderSection () {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-
-  const scrollToSection = id => {
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-    setIsMenuOpen(false)
-  }
-
-  const navItems = ['home', 'projects', 'skills', 'education', 'contact']
+export default function EducationSection () {
+  if (!education?.length) return null
 
   return (
-    <Motion.header
-      initial={{ y: -40, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className='fixed top-0 left-0 right-0 z-50 backdrop-blur-lg bg-white/30 dark:bg-black/30 border-b border-white/10 transition-all duration-300'
-    >
-      <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-        <div className='flex items-center justify-between h-16'>
-          {/* Brand */}
-          <div className='text-2xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500'>
-            Simple.Dev
-          </div>
+    <section id='education' className='py-20'>
+      <Motion.h2
+        className='text-4xl font-bold text-center mb-16 tracking-tight'
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+        My Journey
+      </Motion.h2>
 
-          {/* Desktop Navigation */}
-          <nav className='hidden md:flex items-center space-x-8'>
-            {navItems.map(item => (
-              <button
-                key={item}
-                onClick={() => scrollToSection(item)}
-                className='capitalize text-lg font-medium text-slate-600 dark:text-slate-300 hover:text-purple-500 dark:hover:text-pink-400 transition-colors'
+      <div className='max-w-3xl mx-auto relative'>
+        {/* Vertical Timeline Line */}
+        <div className='absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-purple-500 to-pink-500'></div>
+
+        {education.map((item, index) => {
+          const isLeft = index % 2 === 0
+          return (
+            <Motion.div
+              key={index}
+              className={`relative mb-12 flex w-full items-center ${
+                isLeft ? 'justify-start' : 'justify-end'
+              }`}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              viewport={{ once: true }}
+            >
+              {/* Timeline Card */}
+              <div
+                className={`w-full sm:w-1/2 px-4 ${
+                  isLeft ? 'text-right sm:pr-8' : 'text-left sm:pl-8'
+                }`}
               >
-                {item}
-              </button>
-            ))}
-          </nav>
+                <div className='p-6 rounded-xl border border-white/10 bg-white/20 dark:bg-slate-800/50 backdrop-blur-md shadow-xl'>
+                  <p className='text-sm text-purple-500 dark:text-pink-400 mb-1'>
+                    {item.year}
+                  </p>
+                  <h3 className='text-xl font-bold mb-1'>{item.title}</h3>
+                  <p className='text-md font-semibold text-slate-700 dark:text-slate-300'>
+                    {item.institution}
+                  </p>
+                  <p className='text-sm text-slate-600 dark:text-slate-400 mt-1'>
+                    {item.description}
+                  </p>
+                </div>
+              </div>
 
-          {/* Mobile Toggle Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className='md:hidden ml-4 p-2'
-            aria-label='Toggle menu'
-          >
-            {renderIcon('MenuIcon', 'w-6 h-6')}
-          </button>
-        </div>
+              {/* Timeline Dot */}
+              <div className='hidden sm:block absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-white dark:bg-slate-900 rounded-full border-2 border-purple-500'></div>
+            </Motion.div>
+          )
+        })}
       </div>
-
-      {/* Animated Mobile Menu */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <Motion.div
-            key='mobile-menu'
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-            className='md:hidden px-4 pt-2 pb-4 space-y-2'
-          >
-            {navItems.map(item => (
-              <button
-                key={item}
-                onClick={() => scrollToSection(item)}
-                className='block w-full text-left capitalize py-2 px-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors'
-              >
-                {item}
-              </button>
-            ))}
-          </Motion.div>
-        )}
-      </AnimatePresence>
-    </Motion.header>
+    </section>
   )
 }
