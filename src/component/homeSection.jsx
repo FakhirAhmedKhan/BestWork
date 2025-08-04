@@ -1,6 +1,30 @@
 import { motion as Motion } from 'framer-motion'
 import renderIcon from '../utility/renderIcon'
 
+const socialLinks = [
+  {
+    href: 'https://github.com/FakhirAhmedKhan',
+    label: 'GitHub',
+    icon: 'GithubIcon'
+  },
+  {
+    href: 'https://www.linkedin.com/in/fakhir-ahmed-3b5537316/',
+    label: 'LinkedIn',
+    icon: 'LinkedinIcon'
+  },
+  {
+    href: 'https://x.com/FakhirAhme41220',
+    label: 'Twitter',
+    icon: 'TwitterIcon'
+  }
+]
+
+const fadeInProps = (delay = 0) => ({
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { delay, duration: 0.8 }
+})
+
 export default function HomeSection () {
   return (
     <section
@@ -15,9 +39,7 @@ export default function HomeSection () {
       >
         <Motion.h1
           className='text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter'
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
+          {...fadeInProps(0.2)}
         >
           <span className='block'>Hello, I'm</span>
           <span className='block bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-600'>
@@ -27,9 +49,7 @@ export default function HomeSection () {
 
         <Motion.p
           className='max-w-2xl mx-auto text-lg md:text-xl text-slate-600 dark:text-slate-400'
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
+          {...fadeInProps(0.4)}
         >
           A passionate web developer intern on a mission to build beautiful,
           functional, and futuristic web experiences. Welcome to my digital
@@ -42,36 +62,19 @@ export default function HomeSection () {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.8 }}
         >
-          <a
-            href='https://github.com/FakhirAhmedKhan'
-            target='_blank'
-            rel='noopener noreferrer'
-            aria-label='GitHub'
-            title='GitHub'
-            className='text-slate-500 dark:text-slate-400 hover:text-purple-500 dark:hover:text-pink-400 transition-colors'
-          >
-            {renderIcon('GithubIcon')}
-          </a>
-          <a
-            href='https://www.linkedin.com/in/fakhir-ahmed-3b5537316/'
-            target='_blank'
-            rel='noopener noreferrer'
-            aria-label='LinkedIn'
-            title='LinkedIn'
-            className='text-slate-500 dark:text-slate-400 hover:text-purple-500 dark:hover:text-pink-400 transition-colors'
-          >
-            {renderIcon('LinkedinIcon')}
-          </a>
-          <a
-            href='https://x.com/FakhirAhme41220'
-            target='_blank'
-            rel='noopener noreferrer'
-            aria-label='Twitter'
-            title='Twitter'
-            className='text-slate-500 dark:text-slate-400 hover:text-purple-500 dark:hover:text-pink-400 transition-colors'
-          >
-            {renderIcon('TwitterIcon')}
-          </a>
+          {socialLinks.map(({ href, label, icon }) => (
+            <a
+              key={label}
+              href={href}
+              target='_blank'
+              rel='noopener noreferrer'
+              aria-label={label}
+              title={label}
+              className='text-slate-500 dark:text-slate-400 hover:text-purple-500 dark:hover:text-pink-400 transition-colors'
+            >
+              {renderIcon(icon)}
+            </a>
+          ))}
         </Motion.div>
       </Motion.div>
     </section>

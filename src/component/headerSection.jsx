@@ -1,19 +1,29 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { motion as Motion, AnimatePresence } from 'framer-motion'
 import renderIcon from '../utility/renderIcon'
+
+const navItems = ['home', 'projects', 'skills', 'education', 'contact']
+
+const NavButton = ({ item, onClick, isMobile }) => (
+  <button
+    onClick={() => onClick(item)}
+    className={`capitalize font-medium transition-colors ${
+      isMobile
+        ? 'block w-full text-left py-2 px-3 text-base text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-md'
+        : 'text-lg text-slate-600 dark:text-slate-300 hover:text-purple-500 dark:hover:text-pink-400'
+    }`}
+  >
+    {item}
+  </button>
+)
 
 export default function HeaderSection () {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const scrollToSection = id => {
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
+  const scrollToSection = useCallback(id => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
     setIsMenuOpen(false)
-  }
-
-  const navItems = ['home', 'projects', 'skills', 'education', 'contact']
+  }, [])
 
   return (
     <Motion.header
@@ -24,27 +34,18 @@ export default function HeaderSection () {
     >
       <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='flex items-center justify-between h-16'>
-          {/* Brand */}
           <div className='text-2xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500'>
             Simple.Dev
           </div>
 
-          {/* Desktop Navigation */}
           <nav className='hidden md:flex items-center space-x-8'>
             {navItems.map(item => (
-              <button
-                key={item}
-                onClick={() => scrollToSection(item)}
-                className='capitalize text-lg font-medium text-slate-600 dark:text-slate-300 hover:text-purple-500 dark:hover:text-pink-400 transition-colors'
-              >
-                {item}
-              </button>
+              <NavButton key={item} item={item} onClick={scrollToSection} />
             ))}
           </nav>
 
-          {/* Mobile Toggle Button */}
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={() => setIsMenuOpen(open => !open)}
             className='md:hidden ml-4 p-2'
             aria-label='Toggle menu'
           >
@@ -53,7 +54,6 @@ export default function HeaderSection () {
         </div>
       </div>
 
-      {/* Animated Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <Motion.div
@@ -65,13 +65,12 @@ export default function HeaderSection () {
             className='md:hidden px-4 pt-2 pb-4 space-y-2'
           >
             {navItems.map(item => (
-              <button
+              <NavButton
                 key={item}
-                onClick={() => scrollToSection(item)}
-                className='block w-full text-left capitalize py-2 px-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors'
-              >
-                {item}
-              </button>
+                item={item}
+                onClick={scrollToSection}
+                isMobile
+              />
             ))}
           </Motion.div>
         )}

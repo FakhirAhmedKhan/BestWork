@@ -232,5 +232,50 @@
         "codeLink": "https://github.com/FakhirAhmedKhan/Quiz-JavaScript",
         "imageUrl": "/BestWork/jspic.avif",
         "category": "JavaScript"
+    },
+    {
+        "id": 27,
+        "title": "📝 Electron-Learning-Resource",
+        "link": "https://github.com/FakhirAhmedKhan/Electron-Learning-Resource/blob/main/README.md",
+        "description": "A simple Electron learning resource designed for users with basic knowledge of HTML, CSS, and JavaScript or Electron concepts.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/Electron-Learning-Resource/blob/main/README.md",
+        "imageUrl": "/BestWork/jspic.avif",
+        "category": "Doc"
+    },
+    {
+        "id": 28,
+        "title": "📝 React_Hooks_For_Dev",
+        "link": "https://github.com/FakhirAhmedKhan/React_Hooks_For_Dev",
+        "description": "A simple React_Hooks_For_Dev learning resource designed for users with basic knowledge of React.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/React_Hooks_For_Dev",
+        "imageUrl": "/BestWork/jspic.avif",
+        "category": "Doc"
+    },
+    {
+        "id": 29,
+        "title": "📝MySQL-Learning-Guide-",
+        "link": "https://github.com/FakhirAhmedKhan/MySQL-Learning-Guide-",
+        "description": "A simple MySQL learning resource designed for users with basic knowledge of MySQL.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/MySQL-Learning-Guide-",
+        "imageUrl": "/BestWork/jspic.avif",
+        "category": "Doc"
+    },
+    {
+        "id": 30,
+        "title": "📝 HTML-CSS-Cheat-Sheet",
+        "link": "https://github.com/FakhirAhmedKhan/HTML-CSS-Cheat-Sheet",
+        "description": "A simple HTML/CSS learning resource designed for users with basic knowledge of HTML/CSS.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/HTML-CSS-Cheat-Sheet",
+        "imageUrl": "/BestWork/jspic.avif",
+        "category": "Doc"
+    },
+    {
+        "id": 31,
+        "title": "📝 JavaScript-Cheat-Sheet",
+        "link": "https://github.com/FakhirAhmedKhan/JavaScript-Cheat-Sheet",
+        "description": "A simple JavaScript learning resource designed for users with basic knowledge of JavaScript.",
+        "codeLink": "https://github.com/FakhirAhmedKhan/JavaScript-Cheat-Sheet",
+        "imageUrl": "/BestWork/jspic.avif",
+        "category": "Doc"
     }
 ]
