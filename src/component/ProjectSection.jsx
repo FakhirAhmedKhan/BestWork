@@ -1,26 +1,26 @@
-import { useState, useMemo, useCallback } from 'react'
-import { motion as Motion } from 'framer-motion'
-import renderIcon from '../utility/renderIcon'
+import { useState, useMemo, useCallback } from "react";
+import { motion as Motion } from "framer-motion";
+import { Github } from "lucide-react";
 
-const categoriesFrom = data => ['All', ...new Set(data.map(p => p.category))]
-
+//category filter button
 const FilterButton = ({ label, active, onClick }) => (
   <button
     onClick={() => onClick(label)}
-    className={`px-4 py-2 text-sm md:text-base rounded-full transition-all duration-300 ${
+    className={`rounded-full px-4 py-2 text-sm transition-all duration-300 md:text-base ${
       active
-        ? 'bg-purple-600 text-white shadow-lg'
-        : 'bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm'
+        ? "bg-purple-600 text-white shadow-lg"
+        : "bg-white/50 backdrop-blur-sm dark:bg-slate-800/50"
     }`}
+    aria-pressed={active}
   >
     {label}
   </button>
-)
+);
 
+// Project card component
 const ProjectCard = ({ project, index }) => (
   <Motion.div
-    key={project.id}
-    className='group flex flex-col overflow-hidden rounded-xl border border-white/10 bg-white/20 dark:bg-slate-800/50 backdrop-blur-lg shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2'
+    className="group flex flex-col overflow-hidden rounded-xl border border-white/10 bg-white/20 shadow-lg backdrop-blur-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:bg-slate-800/50"
     initial={{ opacity: 0, y: 50 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -29,58 +29,60 @@ const ProjectCard = ({ project, index }) => (
     <img
       src={project.imageUrl}
       alt={project.title}
-      className='w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110'
+      className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-110"
     />
-    <div className='p-6 flex flex-col flex-grow'>
-      <h3 className='text-xl font-bold mb-2'>{project.title}</h3>
-      <p className='text-slate-600 dark:text-slate-400 text-sm flex-grow mb-4'>
+    <div className="flex flex-grow flex-col p-6">
+      <h3 className="mb-2 text-xl font-bold">{project.title}</h3>
+      <p className="mb-4 flex-grow text-sm text-slate-600 dark:text-slate-400">
         {project.description}
       </p>
-      <div className='mt-auto flex justify-between items-center'>
+      <div className="mt-auto flex items-center justify-between">
         <a
           href={project.link}
-          target='_blank'
-          rel='noopener noreferrer'
-          className='flex items-center gap-2 text-sm font-semibold text-purple-600 dark:text-pink-400 hover:underline'
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 text-sm font-semibold text-purple-600 hover:underline dark:text-pink-400"
         >
           Live Demo
         </a>
         <a
           href={project.codeLink}
-          target='_blank'
-          rel='noopener noreferrer'
-          className='text-slate-500 dark:text-slate-400 hover:text-purple-500 dark:hover:text-pink-400 transition-colors'
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-slate-500 transition-colors hover:text-purple-500 dark:text-slate-400 dark:hover:text-pink-400"
         >
-          {renderIcon('GithubIcon', 'w-6 h-6')}
+          <Github className="h-6 w-6" />
         </a>
       </div>
     </div>
   </Motion.div>
-)
+);
 
-export default function ProjectSection ({ projectData }) {
-  const [filter, setFilter] = useState('All')
-  const [showAll, setShowAll] = useState(false)
+export default function ProjectSection({ projectData }) {
+  const categories = useMemo(
+    () => [...new Set(projectData.map((p) => p.category))],
+    [projectData],
+  );
 
-  const categories = useMemo(() => categoriesFrom(projectData), [projectData])
+  const [filter, setFilter] = useState(projectData[0]?.category || "");
+  const [showAll, setShowAll] = useState(false);
 
-  const handleFilterChange = useCallback(cat => {
-    setFilter(cat)
-    setShowAll(false)
-  }, [])
+  const handleFilterChange = useCallback((cat) => {
+    setFilter(cat);
+    setShowAll(false);
+  }, []);
 
-  const filtered = useMemo(() => {
-    return filter === 'All'
-      ? projectData
-      : projectData.filter(p => p.category === filter)
-  }, [filter, projectData])
+  const filtered = useMemo(
+    () => projectData.filter((p) => p.category === filter),
+    [filter, projectData],
+  );
 
-  const visibleProjects = showAll ? filtered : filtered.slice(0, 3)
+  const visibleProjects = showAll ? filtered : filtered.slice(0, 3);
 
   return (
-    <section id='projects' className='py-20'>
+    <section id="projects" className="py-20">
       <Motion.h2
-        className='text-4xl font-bold text-center mb-12 tracking-tight'
+        className="mb-12 text-center text-4xl font-bold tracking-tight"
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -90,13 +92,13 @@ export default function ProjectSection ({ projectData }) {
       </Motion.h2>
 
       <Motion.div
-        className='flex justify-center flex-wrap gap-2 md:gap-4 mb-12'
+        className="mb-12 flex flex-wrap justify-center gap-2 md:gap-4"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.6 }}
         viewport={{ once: true }}
       >
-        {categories.map(cat => (
+        {categories.map((cat) => (
           <FilterButton
             key={cat}
             label={cat}
@@ -106,7 +108,7 @@ export default function ProjectSection ({ projectData }) {
         ))}
       </Motion.div>
 
-      <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {visibleProjects.map((project, index) => (
           <ProjectCard key={project.id} project={project} index={index} />
         ))}
@@ -114,20 +116,20 @@ export default function ProjectSection ({ projectData }) {
 
       {filtered.length > 3 && (
         <Motion.div
-          className='text-center mt-12'
+          className="mt-12 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
           viewport={{ once: true }}
         >
           <button
-            onClick={() => setShowAll(!showAll)}
-            className='px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-full hover:scale-105 transition-transform duration-300'
+            onClick={() => setShowAll((prev) => !prev)}
+            className="rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-3 font-bold text-white transition-transform duration-300 hover:scale-105"
           >
-            {showAll ? 'Show Less' : 'Show More'}
+            {showAll ? "Show Less" : "Show More"}
           </button>
         </Motion.div>
       )}
     </section>
-  )
+  );
 }

@@ -1,127 +1,92 @@
-import { useState, useRef } from 'react'
-import { motion as Motion } from 'framer-motion'
+import { useState } from "react";
+import { Send, CheckCircle } from "lucide-react";
 
-export default function ContactSection () {
-  const [formData, setFormData] = useState({ email: '', message: '' })
-  const [status, setStatus] = useState('')
-  const emailRef = useRef(null)
+export default function Footer() {
+  const [email, setEmail] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleChange = e => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+  const handleSubmit = (e) => {
+    if (e) e.preventDefault();
+    if (!email || !email.includes("@")) return;
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    const { email, message } = formData
+    setIsLoading(true);
 
-    if (!email || !message) {
-      setStatus('❌ Please fill out all fields.')
-      if (!email) emailRef.current.focus()
-      return
-    }
+    // Simulate API call
+    setTimeout(() => {
+      setIsLoading(false);
+      setIsSubmitted(true);
+      setEmail("");
 
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      setStatus('❌ Please enter a valid email address.')
-      emailRef.current.focus()
-      return
-    }
-
-    console.log('Form submitted:', formData)
-    setStatus('✅ Thank you! I will get back to you soon.')
-    setFormData({ email: '', message: '' })
-  }
+      // Reset success message after 3 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 3000);
+    }, 1000);
+  };
 
   return (
-    <Motion.section
-      id='contact'
-      className='py-16 px-4 '
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
+    <footer
+      id="contact"
+      className="flex min-h-screen flex-col items-center justify-center px-6 py-12"
     >
-      <h2 className='text-4xl font-bold text-center mb-12 tracking-tight'>
-        Get In Touch
-      </h2>
-
-      <Motion.form
-        onSubmit={handleSubmit}
-        className='max-w-xl mx-auto space-y-6  p-6 rounded-lg shadow'
-        noValidate
-        initial={{ scale: 0.95, opacity: 0 }}
-        whileInView={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.4, ease: 'easeOut' }}
-        viewport={{ once: true }}
-      >
-        <div>
-          <label
-            htmlFor='email'
-            className='block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300'
-          >
-            Email
-          </label>
-          <input
-            type='email'
-            id='email'
-            name='email'
-            ref={emailRef}
-            value={formData.email}
-            onChange={handleChange}
-            className='w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded bg-white dark:bg-slate-900 text-slate-900 dark:text-white'
-            required
-          />
+      <div className="w-full max-w-md space-y-8">
+        {/* Title */}
+        <div className="text-center">
+          <h2 className="mb-12 text-4xl font-bold text-white md:text-5xl">
+            Get In Touch
+          </h2>
         </div>
 
-        <div>
-          <label
-            htmlFor='message'
-            className='block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300'
-          >
-            Message
-          </label>
-          <textarea
-            id='message'
-            name='message'
-            value={formData.message}
-            onChange={handleChange}
-            rows='4'
-            className='w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded bg-white dark:bg-slate-900 text-slate-900 dark:text-white resize-none'
-            required
-          />
-        </div>
+        {/* Email Input Section */}
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="space-y-2">
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Your email address"
+              className="bg-opacity-60 border-opacity-50 w-full rounded-lg border border-gray-600 bg-gray-800 px-4 py-4 text-lg text-white placeholder-gray-300 focus:border-transparent focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  handleSubmit(e);
+                }
+              }}
+              required
+            />
+          </div>
 
-        <button
-          type='submit'
-          className='w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition'
-        >
-          Send Message
-        </button>
+          {/* Submit Button */}
+          {isSubmitted ? (
+            <div className="flex items-center justify-center gap-2 py-4 text-lg font-medium text-green-300">
+              <CheckCircle className="h-6 w-6" />
+              Message sent successfully!
+            </div>
+          ) : (
+            <button
+              type="submit"
+              disabled={isLoading || !email}
+              className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-200 hover:bg-blue-700 hover:shadow-xl disabled:bg-blue-500 disabled:opacity-50"
+            >
+              {isLoading ? (
+                <div className="h-6 w-6 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
+              ) : (
+                <>
+                  <Send className="h-5 w-5" />
+                  Send Message
+                </>
+              )}
+            </button>
+          )}
+        </form>
+      </div>
 
-        {status && (
-          <motion.p
-            className='text-center text-sm text-slate-700 dark:text-slate-300 mt-4'
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          >
-            {status}
-          </motion.p>
-        )}
-      </Motion.form>
-
-      <Motion.footer
-        className='py-8 text-center text-sm text-slate-500 dark:text-slate-400'
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
-        viewport={{ once: true }}
-      >
-        <p>
-          &copy; {new Date().getFullYear()} Fakhir Ahmed Khan. All rights
-          reserved.
-        </p>
-        <p>Designed and built with ❤️ using React & Tailwind CSS.</p>
-      </Motion.footer>
-    </Motion.section>
-  )
+      <p className="text-opacity-80 mt-16 space-y-2 text-center text-sm text-white">
+        © 2025 Fakhir Ahmed Khan. All rights reserved. Designed and built with
+        💖 using React & Tailwind CSS.
+      </p>
+    </footer>
+  );
 }

@@ -1,82 +1,61 @@
-import { motion as Motion } from 'framer-motion'
-import renderIcon from '../utility/renderIcon'
-
-const socialLinks = [
-  {
-    href: 'https://github.com/FakhirAhmedKhan',
-    label: 'GitHub',
-    icon: 'GithubIcon'
-  },
-  {
-    href: 'https://www.linkedin.com/in/fakhir-ahmed-3b5537316/',
-    label: 'LinkedIn',
-    icon: 'LinkedinIcon'
-  },
-  {
-    href: 'https://x.com/FakhirAhme41220',
-    label: 'Twitter',
-    icon: 'TwitterIcon'
-  }
-]
+/* eslint-disable no-unused-vars */
+import { motion as Motion } from "framer-motion";
+import { Github, Linkedin, Twitter } from "lucide-react";
 
 const fadeInProps = (delay = 0) => ({
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  transition: { delay, duration: 0.8 }
-})
+  transition: { delay, duration: 0.8 },
+});
 
-export default function HomeSection () {
+const Icons = [
+  { name: "https://github.com/FakhirAhmedKhan", icon: Github },
+  {
+    name: "https://linkedin.com/in/fakhir-ahmed-3b5537316",
+    icon: Linkedin,
+  },
+  {
+    name: "https://twitter.com/FakhirAhme41220",
+    icon: Twitter,
+  },
+];
+
+export default function HomeSection() {
   return (
     <section
-      id='home'
-      className='min-h-screen flex items-center justify-center text-center px-4'
+      id="home"
+      className="flex min-h-screen items-center justify-center px-4 text-center"
     >
-      <Motion.div
-        className='space-y-6'
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-      >
-        <Motion.h1
-          className='text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter'
-          {...fadeInProps(0.2)}
-        >
-          <span className='block'>Hello, I'm</span>
-          <span className='block bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-600'>
+      <Motion.div className="space-y-6" {...fadeInProps(0.2)}>
+        <h1 className="text-5xl font-extrabold tracking-tighter md:text-7xl lg:text-8xl">
+          <span className="block">Hello, I'm</span>
+          <span className="block bg-gradient-to-r from-purple-500 to-pink-600 bg-clip-text text-transparent">
             Fakhir Ahmed Khan
           </span>
-        </Motion.h1>
+        </h1>
 
-        <Motion.p
-          className='max-w-2xl mx-auto text-lg md:text-xl text-slate-600 dark:text-slate-400'
-          {...fadeInProps(0.4)}
-        >
+        <p className="mx-auto max-w-2xl text-lg text-slate-600 md:text-xl dark:text-slate-400">
           A passionate web developer intern on a mission to build beautiful,
           functional, and futuristic web experiences. Welcome to my digital
           playground.
-        </Motion.p>
+        </p>
 
-        <Motion.div
-          className='flex justify-center space-x-6'
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-        >
-          {socialLinks.map(({ href, label, icon }) => (
+        <div className="flex justify-center space-x-6">
+          {Icons.map(({ name, label, icon: Icon }) => (
             <a
-              key={label}
-              href={href}
-              target='_blank'
-              rel='noopener noreferrer'
+              key={name}
+              href={name}
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label={label}
               title={label}
-              className='text-slate-500 dark:text-slate-400 hover:text-purple-500 dark:hover:text-pink-400 transition-colors'
+              className="text-slate-500 transition-colors hover:text-purple-500 dark:text-slate-400 dark:hover:text-pink-400"
             >
-              {renderIcon(icon)}
+              <Icon size={24} />
             </a>
           ))}
-        </Motion.div>
+        </div>
       </Motion.div>
     </section>
-  )
+  );
 }
