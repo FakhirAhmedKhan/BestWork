@@ -3,27 +3,22 @@ import { Menu } from "lucide-react";
 
 const navItems = ["home", "projects", "skills", "education", "contact"];
 
-// Nav BTN Text
+const navBtnBase = "font-medium capitalize transition-colors";
+const navBtnDesktop =
+  "text-lg text-slate-600 hover:text-purple-500 dark:text-slate-300 dark:hover:text-pink-400";
+const navBtnMobile =
+  "block w-full rounded-md px-3 py-2 text-left text-base text-slate-600 hover:bg-slate-200 dark:text-slate-300 dark:hover:bg-slate-700";
 const NavButton = ({ item, onClick, isMobile }) => (
   <button
     onClick={() => onClick(item)}
-    className={`font-medium capitalize transition-colors ${
-      isMobile
-        ? // Is Open
-          "block w-full rounded-md px-3 py-2 text-left text-base text-slate-600 hover:bg-slate-200 dark:text-slate-300 dark:hover:bg-slate-700"
-        : // Is Not Open
-          "text-lg text-slate-600 hover:text-purple-500 dark:text-slate-300 dark:hover:text-pink-400"
-    }`}
+    className={`${navBtnBase} ${isMobile ? navBtnMobile : navBtnDesktop}`}
   >
     {item}
   </button>
 );
 
-// Header
 export default function HeaderSection() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  // Scroolling Funcation
   const scrollToSection = useCallback((id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setIsMenuOpen(false);
@@ -35,15 +30,11 @@ export default function HeaderSection() {
         <div className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-2xl font-bold tracking-tighter text-transparent">
           Simple.Dev
         </div>
-
-        {/* Desktop Nav */}
         <nav className="hidden items-center space-x-8 md:flex">
           {navItems.map((item) => (
             <NavButton key={item} item={item} onClick={scrollToSection} />
           ))}
         </nav>
-
-        {/* Mobile Toggle */}
         <button
           onClick={() => setIsMenuOpen((prev) => !prev)}
           className="ml-4 p-2 md:hidden"
@@ -52,8 +43,6 @@ export default function HeaderSection() {
           <Menu className="h-6 w-6" />
         </button>
       </div>
-
-      {/* Mobile Nav */}
       {isMenuOpen && (
         <div className="space-y-2 px-4 pt-2 pb-4 md:hidden">
           {navItems.map((item) => (

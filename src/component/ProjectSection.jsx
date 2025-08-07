@@ -2,35 +2,33 @@ import { useState, useMemo, useCallback } from "react";
 import { motion as Motion } from "framer-motion";
 import { Github } from "lucide-react";
 
-//category filter button
+const filterBtnBase =
+  "rounded-full px-4 py-2 text-sm transition-all duration-300 md:text-base";
+const filterBtnActive = "bg-purple-600 text-white shadow-lg";
+const filterBtnInactive = "bg-white/50 backdrop-blur-sm dark:bg-slate-800/50";
 const FilterButton = ({ label, active, onClick }) => (
   <button
     onClick={() => onClick(label)}
-    className={`rounded-full px-4 py-2 text-sm transition-all duration-300 md:text-base ${
-      active
-        ? "bg-purple-600 text-white shadow-lg"
-        : "bg-white/50 backdrop-blur-sm dark:bg-slate-800/50"
-    }`}
+    className={`${filterBtnBase} ${active ? filterBtnActive : filterBtnInactive}`}
     aria-pressed={active}
   >
     {label}
   </button>
 );
 
-// Project card component
+const cardBase =
+  "group flex flex-col overflow-hidden rounded-xl border border-white/10 bg-white/20 shadow-lg backdrop-blur-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:bg-slate-800/50";
+const imgBase =
+  "h-48 w-full object-cover transition-transform duration-500 group-hover:scale-110";
 const ProjectCard = ({ project, index }) => (
   <Motion.div
-    className="group flex flex-col overflow-hidden rounded-xl border border-white/10 bg-white/20 shadow-lg backdrop-blur-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:bg-slate-800/50"
+    className={cardBase}
     initial={{ opacity: 0, y: 50 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6, delay: index * 0.1 }}
     viewport={{ once: true }}
   >
-    <img
-      src={project.imageUrl}
-      alt={project.title}
-      className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-110"
-    />
+    <img src={project.imageUrl} alt={project.title} className={imgBase} />
     <div className="flex flex-grow flex-col p-6">
       <h3 className="mb-2 text-xl font-bold">{project.title}</h3>
       <p className="mb-4 flex-grow text-sm text-slate-600 dark:text-slate-400">
@@ -63,20 +61,16 @@ export default function ProjectSection({ projectData }) {
     () => [...new Set(projectData.map((p) => p.category))],
     [projectData],
   );
-
   const [filter, setFilter] = useState(projectData[0]?.category || "");
   const [showAll, setShowAll] = useState(false);
-
   const handleFilterChange = useCallback((cat) => {
     setFilter(cat);
     setShowAll(false);
   }, []);
-
   const filtered = useMemo(
     () => projectData.filter((p) => p.category === filter),
     [filter, projectData],
   );
-
   const visibleProjects = showAll ? filtered : filtered.slice(0, 3);
 
   return (
@@ -90,7 +84,6 @@ export default function ProjectSection({ projectData }) {
       >
         My Creations
       </Motion.h2>
-
       <Motion.div
         className="mb-12 flex flex-wrap justify-center gap-2 md:gap-4"
         initial={{ opacity: 0 }}
@@ -107,13 +100,11 @@ export default function ProjectSection({ projectData }) {
           />
         ))}
       </Motion.div>
-
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {visibleProjects.map((project, index) => (
           <ProjectCard key={project.id} project={project} index={index} />
         ))}
       </div>
-
       {filtered.length > 3 && (
         <Motion.div
           className="mt-12 text-center"

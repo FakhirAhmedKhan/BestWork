@@ -10,14 +10,8 @@ const fadeInProps = (delay = 0) => ({
 
 const Icons = [
   { name: "https://github.com/FakhirAhmedKhan", icon: Github },
-  {
-    name: "https://linkedin.com/in/fakhir-ahmed-3b5537316",
-    icon: Linkedin,
-  },
-  {
-    name: "https://twitter.com/FakhirAhme41220",
-    icon: Twitter,
-  },
+  { name: "https://linkedin.com/in/fakhir-ahmed-3b5537316", icon: Linkedin },
+  { name: "https://twitter.com/FakhirAhme41220", icon: Twitter },
 ];
 
 export default function HomeSection() {
@@ -33,22 +27,18 @@ export default function HomeSection() {
             Fakhir Ahmed Khan
           </span>
         </h1>
-
         <p className="mx-auto max-w-2xl text-lg text-slate-600 md:text-xl dark:text-slate-400">
           A passionate web developer intern on a mission to build beautiful,
           functional, and futuristic web experiences. Welcome to my digital
           playground.
         </p>
-
         <div className="flex justify-center space-x-6">
-          {Icons.map(({ name, label, icon: Icon }) => (
+          {Icons.map(({ name, icon: Icon }) => (
             <a
               key={name}
               href={name}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={label}
-              title={label}
               className="text-slate-500 transition-colors hover:text-purple-500 dark:text-slate-400 dark:hover:text-pink-400"
             >
               <Icon size={24} />

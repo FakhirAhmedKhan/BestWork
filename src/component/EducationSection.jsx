@@ -6,12 +6,9 @@ const TimelineItem = ({ item, index }) => {
   const align = isLeft
     ? "justify-start text-right sm:pr-8"
     : "justify-end text-left sm:pl-8";
-
   return (
     <Motion.div
-      className={`relative mb-12 flex w-full items-center ${
-        isLeft ? "justify-start" : "justify-end"
-      }`}
+      className={`relative mb-12 flex w-full items-center ${isLeft ? "justify-start" : "justify-end"}`}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
@@ -38,7 +35,6 @@ const TimelineItem = ({ item, index }) => {
 
 export default function EducationSection() {
   if (!education?.length) return null;
-
   return (
     <section id="education" className="py-20">
       <Motion.h2
@@ -50,7 +46,6 @@ export default function EducationSection() {
       >
         My Journey
       </Motion.h2>
-
       <div className="relative mx-auto max-w-3xl">
         <div className="absolute left-1/2 h-full w-0.5 -translate-x-1/2 bg-gradient-to-b from-purple-500 to-pink-500"></div>
         {education.map((item, i) => (
