@@ -1,23 +1,22 @@
 import { useState, lazy, Suspense } from "react";
-import HeaderSection from "./components/headerSection";
-import HomeSection from "./components/homeSection";
+import HeaderSection from "./components/Header.jsx";
+import HomeSection from "./components/Home.jsx";
 import ChatBot from "./ChatBot/ChatBot";
+import Footer from "./components/Footer";
 import trainingData from "./Data/data.js";
 import projects from "./Data/project.json";
 import skills from "./Data/skills.js";
 import education from "./Data/education.json";
 
-// Lazy load sections that aren't immediately visible
-const ProjectSection = lazy(() => import("./components/ProjectSection"));
-const SkillsSection = lazy(() => import("./components/SkillsSection"));
-const EducationSection = lazy(() => import("./components/EduSection.jsx"));
+const ProjectSection = lazy(() => import("./components/Project.jsx"));
+const SkillsSection = lazy(() => import("./components/Skill.jsx"));
+const Education = lazy(() => import("./components/Edu.jsx"));
 
 export default function App() {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
 
   return (
     <div className="bg-slate-100 font-sans text-slate-800 transition-colors duration-500 dark:bg-[#0a0a1a] dark:text-slate-200">
-      {/* Background Gradient */}
       <div
         className="fixed inset-0 z-0 opacity-20 dark:opacity-30"
         aria-hidden="true"
@@ -25,7 +24,6 @@ export default function App() {
         <div className="animate-gradient-x absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600" />
       </div>
 
-      {/* Page Content */}
       <div className="relative z-10">
         <main className="container mx-auto px-4 pt-24 sm:px-6 lg:px-8">
           <HeaderSection />
@@ -50,8 +48,9 @@ export default function App() {
               <div className="py-8 text-center">Loading education...</div>
             }
           >
-            <EducationSection educationData={education} />
+            <Education educationData={education} />
           </Suspense>
+          <Footer />
         </main>
 
         {/* Chatbot */}

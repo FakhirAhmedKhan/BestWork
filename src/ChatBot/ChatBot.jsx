@@ -5,8 +5,6 @@ import { Bot } from "lucide-react";
 
 export default function ChatBot({ show, onClose, trainingData }) {
   const chatBodyRef = useRef();
-
-  // Preload the Q&A as hidden context for the bot
   const formattedTrainingText = useMemo(
     () =>
       trainingData
@@ -57,7 +55,6 @@ export default function ChatBot({ show, onClose, trainingData }) {
     }
   }, []);
 
-  // Smooth scroll on new messages
   useEffect(() => {
     if (chatBodyRef.current) {
       chatBodyRef.current.scrollTo({

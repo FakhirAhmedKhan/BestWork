@@ -1,12 +1,12 @@
 import { paragraph, h3 } from "../UI/styles";
-import { fadeIn } from "../UI/motionConfig";
+import { fadeInUp } from "../UI/motionConfig";
 
-export default function TimelineItem({ item, index }) {
+export default function EduCart({ item, index }) {
   const isLeft = index % 2 === 0;
   return (
     <div
       className={`relative mb-12 flex w-full items-center ${isLeft ? "justify-start" : "justify-end"}`}
-      variants={fadeIn}
+      {...fadeInUp(0.3)}
     >
       <div
         className={`w-full px-4 sm:w-1/2 ${isLeft ? "text-right sm:pr-8" : "text-left sm:pl-8"}`}
@@ -15,7 +15,7 @@ export default function TimelineItem({ item, index }) {
           <p className="mb-1 text-sm font-medium text-purple-500 dark:text-pink-400">
             {item.year}
           </p>
-          <h3 className={`${h3} mb-1`}>{item.title}</h3>
+          <h3 className={h3}>{item.title}</h3>
           <p className={paragraph}></p>
           {item.description && <p className={paragraph}>{item.description}</p>}
         </div>

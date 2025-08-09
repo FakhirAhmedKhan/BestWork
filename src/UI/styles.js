@@ -7,7 +7,7 @@ export const buttonBase =
   "flex items-center justify-center gap-2 rounded-lg px-6 py-4 font-semibold transition-all duration-200";
 export const inputBase =
   "w-full rounded-lg border border-gray-600 bg-gray-800 bg-opacity-60 px-4 py-4 text-lg text-white placeholder-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none";
-export const base = "font-medium capitalize transition-colors";
+export const base = "font-medium transition-colors";
 export const desktop =
   "text-lg text-slate-600 hover:text-purple-500 dark:text-slate-300 dark:hover:text-pink-400";
 export const mobile =
@@ -29,3 +29,5 @@ export const bubbleBase =
 export const h3 = "mb-2 text-xl font-bold";
 export const ProjectCardStyle =
   "group flex flex-col overflow-hidden rounded-xl border border-white/10 bg-white/20 shadow-lg backdrop-blur-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:bg-slate-800/50";
+export const footerStyle =
+  "flex min-h-screen flex-col items-center justify-center px-6 py-12";

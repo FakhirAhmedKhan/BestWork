@@ -1,56 +1,9 @@
 import { useState, useMemo, useCallback } from "react";
 import { motion as Motion } from "framer-motion";
-import FilterButton from "../components/FilterButton";
+import FilterButton from "./FilterButton";
+import ProjectCard from "../components/ProjectCard";
 import { fadeInUp } from "../UI/motionConfig";
-import {
-  anchorTag,
-  paragraph,
-  btn,
-  sectionTitle,
-  h3,
-  ProjectCardStyle,
-} from "../UI/styles";
-import { Github } from "lucide-react";
-
-function ProjectCard({ project, index }) {
-  return (
-    <Motion.section
-      className={ProjectCardStyle}
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      viewport={{ once: true }}
-    >
-      <img
-        src={project.imageUrl}
-        alt={project.title}
-        className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-110"
-      />
-      <div className="flex flex-grow flex-col p-6">
-        <h3 className={h3}>{project.title}</h3>
-        <p className={paragraph}>{project.description}</p>
-        <div className="mt-auto flex items-center justify-between">
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={anchorTag}
-          >
-            Live Demo
-          </a>
-          <a
-            href={project.codeLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={anchorTag}
-          >
-            <Github className="h-6 w-6" />
-          </a>
-        </div>
-      </div>
-    </Motion.section>
-  );
-}
+import { btn, sectionTitle } from "../UI/styles";
 
 export default function ProjectSection({ projectData }) {
   const categories = useMemo(
@@ -74,7 +27,7 @@ export default function ProjectSection({ projectData }) {
   const visibleProjects = showAll ? filtered : filtered.slice(0, 3);
 
   return (
-    <section id="projects" className="py-20">
+    <section id="Works" className="py-20">
       <Motion.h2 {...fadeInUp()} className={sectionTitle}>
         My Creations
       </Motion.h2>
