@@ -37,7 +37,7 @@ export default function HeaderSection() {
       </div>
 
       {isMenuOpen && (
-        <div variants={fadeInUp} className={base}>
+        <div className={base}>
           {navItems.map((item) => (
             <NavButton
               key={item}

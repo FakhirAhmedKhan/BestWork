@@ -1,5 +1,5 @@
 import { motion as Motion } from "framer-motion";
-import { fadeInUp, scaleIn } from "../UI/motionConfig";
+import { fadeInUp } from "../UI/motionConfig";
 import { sectionTitle, cardBase } from "../UI/styles";
 import BubbleText from "./BubbleText";
 
@@ -21,7 +21,7 @@ export default function SkillsSection({ skills }) {
               custom={i}
               initial="hidden"
               whileInView="visible"
-              variants={scaleIn(i)}
+              {...fadeInUp(0.2)}
               viewport={{ once: true }}
             >
               <skill.icon className="h-10 w-10 text-indigo-300" />

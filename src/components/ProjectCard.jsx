@@ -5,7 +5,7 @@ import { fadeInUp } from "../UI/motionConfig";
 import { anchorTag, paragraph, h3, ProjectCardStyle } from "../UI/styles";
 export default function ProjectCard({ project, index }) {
   return (
-    <Motion.section className={ProjectCardStyle} variants={fadeInUp}>
+    <Motion.section className={ProjectCardStyle} {...fadeInUp(0.2)}>
       <img
         src={project.imageUrl}
         alt={project.title}
