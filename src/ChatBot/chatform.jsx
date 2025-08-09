@@ -1,23 +1,18 @@
 import { useState, useCallback } from "react";
 
-const ChatForm = ({ chatHistory, setChatHistory, generateBotResponse }) => {
+export default function ChatForm({
+  chatHistory,
+  setChatHistory,
+  generateBotResponse,
+  disabled,
+}) {
   const [input, setInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-
-  const fetchReply = (userInput) => {
-    const matched = trainingData.find((item) =>
-      userInput.toLowerCase().includes(item.question.toLowerCase()),
-    );
-    return matched
-      ? matched.answer
-      : "Sorry, I don't have an answer for that yet!";
-  };
 
   const handleFormSubmit = useCallback(
     async (e) => {
       e.preventDefault();
       const userMessage = input.trim();
-      if (!userMessage || isLoading) return;
+      if (!userMessage || disabled) return;
 
       const updatedHistory = [
         ...chatHistory,
@@ -25,33 +20,34 @@ const ChatForm = ({ chatHistory, setChatHistory, generateBotResponse }) => {
       ];
       setChatHistory(updatedHistory);
       setInput("");
-      setIsLoading(true);
-      try {
-        await generateBotResponse(updatedHistory);
-      } finally {
-        setIsLoading(false);
-      }
+
+      await generateBotResponse(updatedHistory);
     },
-    [input, isLoading, chatHistory, setChatHistory, generateBotResponse],
+    [input, disabled, chatHistory, setChatHistory, generateBotResponse],
   );
 
   return (
     <form
       onSubmit={handleFormSubmit}
       autoComplete="off"
-      className="mt-3 mb-3 flex items-center gap-2"
+      className="flex items-center gap-2 border-t border-white/10 bg-white/5 p-2"
     >
       <input
         type="text"
-        placeholder="Message..."
+        placeholder="Type a message..."
         value={input}
         onChange={(e) => setInput(e.target.value)}
-        required
-        disabled={isLoading}
-        className="flex-1 rounded-md border border-gray-300 px-4 py-2 text-black transition-all duration-200 focus:ring-2 focus:ring-blue-500 focus:outline-none disabled:opacity-50"
+        disabled={disabled}
+        className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-black focus:ring-2 focus:ring-blue-500 focus:outline-none disabled:opacity-50"
+        aria-label="Type your message"
       />
+      <button
+        type="submit"
+        disabled={disabled}
+        className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:opacity-50"
+      >
+        Send
+      </button>
     </form>
   );
-};
-
-export default ChatForm;
+}

@@ -1,19 +1,11 @@
 import { motion as Motion } from "framer-motion";
+import { fadeInUp, scaleIn } from "../components/motionConfig";
+import { sectionTitle, cardBase } from "../components/styles";
 
-export default function SkillsSection({ skills }) {
-  const itemVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: (i) => ({
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.4, delay: i * 0.1 },
-    }),
-  };
-
+function BubbleText({ text }) {
   const bubbleBase =
     "inline-block cursor-pointer rounded px-0.5 transition-all duration-300 hover:scale-150 hover:bg-indigo-500/10 hover:text-indigo-100 hover:drop-shadow-[0_0_12px_rgba(199,210,254,0.9)]";
-
-  const BubbleText = ({ text }) => (
+  return (
     <Motion.h3
       className="mb-10 text-center text-base font-medium text-indigo-300"
       initial="hidden"
@@ -33,20 +25,13 @@ export default function SkillsSection({ skills }) {
       ))}
     </Motion.h3>
   );
+}
 
-  const cardBase =
-    "flex flex-col items-center justify-center rounded-xl border border-white/10 bg-white/20 p-4 shadow-lg backdrop-blur-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-purple-500/20 dark:bg-slate-800/50";
-
+export default function SkillsSection({ skills }) {
   return (
     <section id="skills" className="px-4 py-16 text-white">
       <div className="container mx-auto max-w-7xl text-center">
-        <Motion.h2
-          className="mb-6 text-3xl font-bold tracking-tight sm:text-4xl"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
+        <Motion.h2 {...fadeInUp()} className={sectionTitle}>
           Skills & Toolkit
         </Motion.h2>
 
@@ -56,11 +41,11 @@ export default function SkillsSection({ skills }) {
           {skills.map((skill, i) => (
             <Motion.div
               key={skill.name}
-              className={cardBase}
+              className={`${cardBase} bg-white/20 p-4 dark:bg-slate-800/50`}
               custom={i}
               initial="hidden"
               whileInView="visible"
-              variants={itemVariants}
+              variants={scaleIn(i)}
               viewport={{ once: true }}
             >
               <skill.icon className="h-10 w-10 text-indigo-300" />

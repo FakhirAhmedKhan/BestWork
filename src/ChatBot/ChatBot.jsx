@@ -1,32 +1,36 @@
-// components/ChatBot.jsx
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
-import ChatMessage from "./chatMessage";
-import ChatForm from "./chatform";
+import ChatMessage from "./ChatMessage";
+import ChatForm from "./ChatForm";
 import { Bot } from "lucide-react";
 
 export default function ChatBot({ show, onClose, trainingData }) {
   const chatBodyRef = useRef();
 
-  const formattedTrainingText = useMemo(() => {
-    return trainingData
-      .map(
-        (item, i) => `Q${i + 1}: ${item.question}\nA${i + 1}: ${item.answer}`,
-      )
-      .join("\n\n");
-  }, [trainingData]);
+  // Preload the Q&A as hidden context for the bot
+  const formattedTrainingText = useMemo(
+    () =>
+      trainingData
+        .map(
+          (item, i) => `Q${i + 1}: ${item.question}\nA${i + 1}: ${item.answer}`,
+        )
+        .join("\n\n"),
+    [trainingData],
+  );
 
   const [chatHistory, setChatHistory] = useState([
     { role: "user", text: formattedTrainingText, hideInChat: true },
   ]);
   const [error, setError] = useState(null);
+  const [isBotTyping, setIsBotTyping] = useState(false);
 
   const generateBotResponse = useCallback(async (history) => {
-    const formattedHistory = history.map(({ role, text }) => ({
-      role,
-      parts: [{ text }],
-    }));
-
+    setIsBotTyping(true);
     try {
+      const formattedHistory = history.map(({ role, text }) => ({
+        role,
+        parts: [{ text }],
+      }));
+
       const response = await fetch(import.meta.env.VITE_API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -48,19 +52,29 @@ export default function ChatBot({ show, onClose, trainingData }) {
     } catch (err) {
       setError(err.message || "Bot failed to respond. Please try again.");
       console.error("Error generating bot response:", err);
+    } finally {
+      setIsBotTyping(false);
     }
   }, []);
 
+  // Smooth scroll on new messages
   useEffect(() => {
-    requestAnimationFrame(() => {
-      chatBodyRef.current?.scrollTo(0, chatBodyRef.current.scrollHeight);
-    });
-  }, [chatHistory]);
+    if (chatBodyRef.current) {
+      chatBodyRef.current.scrollTo({
+        top: chatBodyRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  }, [chatHistory, isBotTyping]);
 
   if (!show) return null;
 
   return (
-    <div className="fixed right-5 bottom-2 flex w-[250px] max-w-md flex-col overflow-x-hidden overflow-y-auto rounded-lg border border-white/20 bg-white/10 shadow-2xl backdrop-blur-md">
+    <div
+      className="fixed right-5 bottom-2 flex w-[300px] max-w-md flex-col rounded-lg border border-white/20 bg-white/10 shadow-2xl backdrop-blur-md"
+      role="dialog"
+      aria-label="ChatBot window"
+    >
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-2 text-white">
         <div className="flex items-center gap-2">
@@ -68,9 +82,9 @@ export default function ChatBot({ show, onClose, trainingData }) {
           <h2 className="text-lg font-semibold">ChatBot</h2>
         </div>
         <button
-          // aria-label="Close ChatBot"
-          className="material-symbols-outlined text-white"
+          aria-label="Close ChatBot"
           onClick={onClose}
+          className="material-symbols-outlined text-white"
         >
           keyboard_arrow_down
         </button>
@@ -79,9 +93,8 @@ export default function ChatBot({ show, onClose, trainingData }) {
       {/* Chat Body */}
       <div
         ref={chatBodyRef}
-        className="hide-scrollbar flex h-[300px] max-h-[80vh] flex-col gap-2 overflow-y-auto p-4"
+        className="hide-scrollbar flex h-[300px] flex-col gap-2 overflow-y-auto p-4"
       >
-        {/* Greeting */}
         <ChatMessage
           message={{
             role: "model",
@@ -89,27 +102,30 @@ export default function ChatBot({ show, onClose, trainingData }) {
           }}
         />
 
-        {/* Messages */}
         {chatHistory
           .filter((msg) => !msg.hideInChat)
           .map((message, index) => (
             <ChatMessage key={index} message={message} />
           ))}
 
-        {/* Error */}
+        {isBotTyping && (
+          <div className="text-sm text-gray-400">Bot is typing...</div>
+        )}
+
         {error && (
           <div className="rounded bg-red-100 p-2 text-sm text-red-600">
             {error}
           </div>
         )}
-
-        {/* Input */}
-        <ChatForm
-          setChatHistory={setChatHistory}
-          generateBotResponse={generateBotResponse}
-          chatHistory={chatHistory}
-        />
       </div>
+
+      {/* Input */}
+      <ChatForm
+        chatHistory={chatHistory}
+        setChatHistory={setChatHistory}
+        generateBotResponse={generateBotResponse}
+        disabled={isBotTyping}
+      />
     </div>
   );
 }
