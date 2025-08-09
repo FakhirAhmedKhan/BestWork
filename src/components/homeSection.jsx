@@ -1,26 +1,7 @@
 import { motion as Motion } from "framer-motion";
-import { Github, Linkedin, Twitter } from "lucide-react";
-
-const fadeIn = (delay = 0) => ({
-  initial: { opacity: 0, y: 20 },
-  whileInView: { opacity: 1, y: 0 },
-  transition: { delay, duration: 0.8 },
-  viewport: { once: true },
-});
-
-const socialLinks = [
-  { url: "https://github.com/FakhirAhmedKhan", icon: Github, label: "GitHub" },
-  {
-    url: "https://linkedin.com/in/fakhir-ahmed-3b5537316",
-    icon: Linkedin,
-    label: "LinkedIn",
-  },
-  {
-    url: "https://twitter.com/FakhirAhme41220",
-    icon: Twitter,
-    label: "Twitter",
-  },
-];
+import { fadeIn } from "../UI/motionConfig";
+import { socialLinks } from "../Data/socialLinks";
+import { HeadingH1, anchorTag, paragraph } from "../UI/styles";
 
 export default function HomeSection() {
   return (
@@ -29,17 +10,16 @@ export default function HomeSection() {
       className="flex min-h-screen items-center justify-center px-4 text-center"
     >
       <Motion.div className="space-y-6" {...fadeIn(0.2)}>
-        <h1 className="text-5xl font-extrabold tracking-tighter md:text-7xl lg:text-8xl">
+        <h1 className={HeadingH1}>
           <span className="block">Hello, I'm</span>
           <span className="block bg-gradient-to-r from-purple-500 to-pink-600 bg-clip-text text-transparent">
             Fakhir Ahmed Khan
           </span>
         </h1>
 
-        <p className="mx-auto max-w-2xl text-lg text-slate-600 md:text-xl dark:text-slate-400">
+        <p className={paragraph}>
           A passionate web developer intern on a mission to build beautiful,
-          functional, and futuristic web experiences. Welcome to my digital
-          playground.
+          functional, and futuristic web experiences. Welcome to my playground.
         </p>
 
         <div className="flex justify-center space-x-6">
@@ -50,7 +30,7 @@ export default function HomeSection() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="text-slate-500 transition-colors hover:text-purple-500 dark:text-slate-400 dark:hover:text-pink-400"
+              className={anchorTag}
             >
               <Icon size={28} />
             </a>

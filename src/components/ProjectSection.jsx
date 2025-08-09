@@ -1,13 +1,21 @@
 import { useState, useMemo, useCallback } from "react";
 import { motion as Motion } from "framer-motion";
 import FilterButton from "../components/FilterButton";
-import { fadeInUp } from "../components/motionConfig";
+import { fadeInUp } from "../UI/motionConfig";
+import {
+  anchorTag,
+  paragraph,
+  btn,
+  sectionTitle,
+  h3,
+  ProjectCardStyle,
+} from "../UI/styles";
 import { Github } from "lucide-react";
 
 function ProjectCard({ project, index }) {
   return (
-    <Motion.div
-      className="group flex flex-col overflow-hidden rounded-xl border border-white/10 bg-white/20 shadow-lg backdrop-blur-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:bg-slate-800/50"
+    <Motion.section
+      className={ProjectCardStyle}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -19,16 +27,14 @@ function ProjectCard({ project, index }) {
         className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-110"
       />
       <div className="flex flex-grow flex-col p-6">
-        <h3 className="mb-2 text-xl font-bold">{project.title}</h3>
-        <p className="mb-4 flex-grow text-sm text-slate-600 dark:text-slate-400">
-          {project.description}
-        </p>
+        <h3 className={h3}>{project.title}</h3>
+        <p className={paragraph}>{project.description}</p>
         <div className="mt-auto flex items-center justify-between">
           <a
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-sm font-semibold text-purple-600 hover:underline dark:text-pink-400"
+            className={anchorTag}
           >
             Live Demo
           </a>
@@ -36,13 +42,13 @@ function ProjectCard({ project, index }) {
             href={project.codeLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-slate-500 transition-colors hover:text-purple-500 dark:text-slate-400 dark:hover:text-pink-400"
+            className={anchorTag}
           >
             <Github className="h-6 w-6" />
           </a>
         </div>
       </div>
-    </Motion.div>
+    </Motion.section>
   );
 }
 
@@ -69,10 +75,7 @@ export default function ProjectSection({ projectData }) {
 
   return (
     <section id="projects" className="py-20">
-      <Motion.h2
-        {...fadeInUp()}
-        className="mb-12 text-center text-4xl font-bold tracking-tight"
-      >
+      <Motion.h2 {...fadeInUp()} className={sectionTitle}>
         My Creations
       </Motion.h2>
 
@@ -98,10 +101,7 @@ export default function ProjectSection({ projectData }) {
 
       {filtered.length > 3 && (
         <Motion.div {...fadeInUp(0.3)} className="mt-12 text-center">
-          <button
-            onClick={() => setShowAll((prev) => !prev)}
-            className="rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-3 font-bold text-white transition-transform hover:scale-105"
-          >
+          <button onClick={() => setShowAll((prev) => !prev)} className={btn}>
             {showAll ? "Show Less" : "Show More"}
           </button>
         </Motion.div>

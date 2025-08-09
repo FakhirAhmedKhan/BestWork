@@ -1,13 +1,11 @@
 import { motion as Motion } from "framer-motion";
-import { fadeInUp, scaleIn } from "../components/motionConfig";
-import { sectionTitle, cardBase } from "../components/styles";
+import { fadeInUp, scaleIn } from "../UI/motionConfig";
+import { sectionTitle, cardBase, bubbleBase, h3 } from "../UI/styles";
 
 function BubbleText({ text }) {
-  const bubbleBase =
-    "inline-block cursor-pointer rounded px-0.5 transition-all duration-300 hover:scale-150 hover:bg-indigo-500/10 hover:text-indigo-100 hover:drop-shadow-[0_0_12px_rgba(199,210,254,0.9)]";
   return (
     <Motion.h3
-      className="mb-10 text-center text-base font-medium text-indigo-300"
+      className={`${h3} text-indigo-300`}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
@@ -15,9 +13,7 @@ function BubbleText({ text }) {
       {text.split("").map((char, idx) => (
         <Motion.span
           key={idx}
-          initial={{ opacity: 0, y: 10, scale: 0.8 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.3, delay: idx * 0.04 }}
+          variants={fadeInUp(idx * 0.05)}
           className={bubbleBase}
         >
           {char === " " ? "\u00A0" : char}

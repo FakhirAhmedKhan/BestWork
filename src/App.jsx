@@ -1,7 +1,6 @@
 import { useState, lazy, Suspense } from "react";
 import HeaderSection from "./components/headerSection";
 import HomeSection from "./components/homeSection";
-import ContactSection from "./components/ContactSection";
 import ChatBot from "./ChatBot/ChatBot";
 import trainingData from "./Data/data.js";
 import projects from "./Data/project.json";
@@ -11,7 +10,7 @@ import education from "./Data/education.json";
 // Lazy load sections that aren't immediately visible
 const ProjectSection = lazy(() => import("./components/ProjectSection"));
 const SkillsSection = lazy(() => import("./components/SkillsSection"));
-const EducationSection = lazy(() => import("./components/EducationSection"));
+const EducationSection = lazy(() => import("./components/EduSection.jsx"));
 
 export default function App() {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
@@ -53,8 +52,6 @@ export default function App() {
           >
             <EducationSection educationData={education} />
           </Suspense>
-
-          <ContactSection />
         </main>
 
         {/* Chatbot */}
@@ -68,7 +65,7 @@ export default function App() {
         <button
           aria-label="Toggle ChatBot"
           aria-expanded={isChatbotOpen}
-          className="fixed right-5 bottom-5 z-[1100] cursor-pointer rounded-full bg-gradient-to-r from-blue-500 to-purple-500 p-[14px] text-white shadow-lg transition-transform duration-300 ease-in-out hover:scale-110"
+          className="fixed right-5 bottom-5 z-[1100] cursor-pointer rounded-full p-[14px] text-white transition-transform duration-300 ease-in-out hover:scale-110"
           onClick={() => setIsChatbotOpen((prev) => !prev)}
         >
           <span className="text-[1.6em]">🤖</span>

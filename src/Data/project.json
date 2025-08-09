@@ -3,7 +3,7 @@
         "id": 3,
         "title": "💻 CVGenerator",
         "link": "https://cv-generator-second-try.vercel.app/",
-        "description": "A CV generator app that creates ATS-friendly resumes can significantly improve a job seeker's chances of getting noticed by employers.",
+        "description": "A CV generator app that creates ATS-friendly resumes.",
         "codeLink": "https://github.com/FakhirAhmedKhan/CVGenerator",
         "imageUrl": "/BestWork/CVGenerator.avif",
         "category": "Tool"
@@ -21,7 +21,7 @@
         "id": 1,
         "title": "💻 ATS-Calculator",
         "link": "https://fakhirahmedkhan.github.io/ATS-Calculator/",
-        "description": "An ATS (Applicant Tracking System) calculator is a tool that assesses your resume's compatibility with ATS software used by employers to screen job applications",
+        "description": "An ATS (Applicant Tracking System) calculator is a tool that assesses your resume's",
         "codeLink": "https://github.com/FakhirAhmedKhan/ATS-Calculator",
         "imageUrl": "/BestWork/ATS-Calculator.avif",
         "category": "Tool"
@@ -30,7 +30,7 @@
         "id": 24,
         "title": "🎞️ Netflix_Clone",
         "link": "https://netflix-clone-jade-beta.vercel.app/",
-        "description": "The Netflix Clone replicates the core features of the popular streaming platform, offering easy navigation and interactive tools.",
+        "description": "The Netflix Clone replicates the core features of the popular streaming platform.",
         "codeLink": "https://github.com/FakhirAhmedKhan/NetFlix_Clone",
         "imageUrl": "/BestWork/Netflix.avif",
         "category": "Web"
@@ -39,7 +39,7 @@
         "id": 23,
         "title": "▶️ YouTube_Clone",
         "link": "https://youtube-git-main-fakhir-ahmed-khans-projects.vercel.app/",
-        "description": "This YouTube Clone is a responsive web page that replicates the core features. Built with modern web technologies like React, JavaScript, and TailWind.",
+        "description": "This YouTube Clone is a responsive web page that replicates the core features.",
         "codeLink": "https://github.com/FakhirAhmedKhan/YouTube-clone-in-React",
         "imageUrl": "/BestWork/YouTube.avif",
         "category": "Web"
@@ -48,7 +48,7 @@
         "id": 26,
         "title": "✖️ Twitter_Clone",
         "link": "https://x-clone-three-alpha.vercel.app/",
-        "description": "This X_Clone is a responsive web page that replicates the core features. Built with modern web technologies like React, JavaScript, and TailWind.",
+        "description": "This X_Clone is a responsive web page that replicates the core features.",
         "codeLink": "https://github.com/FakhirAhmedKhan/X_Clone",
         "imageUrl": "/BestWork/X_Clone.avif",
         "category": "Web"
@@ -57,7 +57,7 @@
         "id": 4,
         "title": "📝 Circum Finder",
         "link": "https://pi-program.vercel.app/",
-        "description": "A straightforward tool that calculates the circumference of a circle based on user input of the radius or diameter.",
+        "description": "A Circum Finder tool that calculates the circumference of a circle.",
         "codeLink": "https://github.com/FakhirAhmedKhan/PI-Program",
         "imageUrl": "/BestWork/Circum-Finder.avif",
         "category": "Tool"
@@ -84,7 +84,7 @@
         "id": 7,
         "title": "🗣️ Text-to-Speech",
         "link": "https://text-to-speech-ruby-phi.vercel.app",
-        "description": "Converts written text into natural-sounding audio instantly, supporting multiple languages and voices.",
+        "description": "Converts written text into natural-sounding audio instantly.",
         "codeLink": "https://github.com/FakhirAhmedKhan/text-to-speech",
         "imageUrl": "/BestWork/Text-to-Speech.avif",
         "category": "Tool"
@@ -93,7 +93,7 @@
         "id": 8,
         "title": "🛒 Amazon Clone",
         "link": "https://github.com/FakhirAhmedKhan/retry-amazon-clone",
-        "description": "A simple web app made with JavaScript. It lets users view products, add them to a cart, and see the total.",
+        "description": "A simple web app made with JavaScript. It lets users view products.",
         "codeLink": "https://github.com/FakhirAhmedKhan/retry-amazon-clone",
         "imageUrl": "/BestWork/ammzon.avif",
         "category": "Web"
@@ -111,7 +111,7 @@
         "id": 10,
         "title": "📝 Task_Tracker",
         "link": "https://to-do-list-neon-six.vercel.app/",
-        "description": "A simple and easy-to-use task manager that helps you organize your daily tasks. You can add and delete tasks.",
+        "description": "A simple and easy-to-use task manager that helps you organize your daily tasks.",
         "codeLink": "https://github.com/FakhirAhmedKhan/ToDOList",
         "imageUrl": "/BestWork/TaskTracker.avif",
         "category": "Tool"
@@ -129,7 +129,7 @@
         "id": 12,
         "title": "🐍 Basic Python Programs Part 3",
         "link": "https://github.com/FakhirAhmedKhan/Basic_Python_Program_Part_2",
-        "description": "The second part of the beginner-level Python series focuses on more practice with functions, loops, and user input.",
+        "description": "The second part of the beginner-level Python series focuses on more practice with functions.",
         "codeLink": "https://github.com/FakhirAhmedKhan/Basic_Python_Program_Part_2",
         "imageUrl": "/BestWork/jspic.avif",
         "category": "Python"
@@ -174,7 +174,7 @@
         "id": 17,
         "title": "🎮 Rock, Paper, Scissors Game",
         "link": "https://rock-three-umber.vercel.app/",
-        "description": "The classic game allows players to test their luck against the computer. With instant results on choices, it's fun.",
+        "description": "The classic game allows players to test their luck against the computer.",
         "codeLink": "https://github.com/FakhirAhmedKhan/rock",
         "imageUrl": "/BestWork/Rock.avif",
         "category": "Game"
@@ -210,7 +210,7 @@
         "id": 21,
         "title": "💻 Basic JavaScript Program part 2",
         "link": "https://github.com/FakhirAhmedKhan/Basic-Javascript-part-2",
-        "description": "The second part of the beginner-level JavaScript series, focusing on more practice with functions and loops.",
+        "description": "The second part of the beginner-level JavaScript series, focusing on more practice.",
         "codeLink": "https://github.com/FakhirAhmedKhan/Basic-Javascript-part-2",
         "imageUrl": "/BestWork/jspic.avif",
         "category": "JavaScript"
