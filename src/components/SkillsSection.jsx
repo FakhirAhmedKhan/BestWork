@@ -41,7 +41,7 @@ export default function SkillsSection({ skills }) {
           {skills.map((skill, i) => (
             <Motion.div
               key={skill.name}
-              className={`${cardBase} bg-white/20 p-4 dark:bg-slate-800/50`}
+              className={`${cardBase} p-12 dark:bg-slate-800/50`}
               custom={i}
               initial="hidden"
               whileInView="visible"

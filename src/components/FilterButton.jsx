@@ -1,4 +1,3 @@
-// components/ui/FilterButton.jsx
 export default function FilterButton({ label, active, onClick }) {
   return (
     <button
