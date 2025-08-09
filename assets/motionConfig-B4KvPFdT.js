@@ -1,1 +1,0 @@
-const a=(i=0)=>({initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{delay:i,duration:.6}}),t=i=>({hidden:{opacity:0,scale:.8},visible:{opacity:1,scale:1,transition:{duration:.4,delay:i*.1}}});export{a as f,t as s};
