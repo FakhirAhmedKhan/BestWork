@@ -1,20 +1,21 @@
 import { motion as Motion } from "framer-motion";
 import { fadeInUp } from "../UI/motionConfig.js";
 import { socialLinks } from "../Data/socialLinks";
-import { HeadingH1, anchorTag, paragraph } from "../UI/styles";
+import {
+  HeadingH1,
+  anchorTag,
+  paragraph,
+  homeStyle,
+  FakhirAhmedKhan,
+} from "../UI/styles";
 
 export default function HomeSection() {
   return (
-    <section
-      id="🏠"
-      className="flex min-h-screen items-center justify-center px-4 text-center"
-    >
+    <section id="🏠" className={homeStyle}>
       <Motion.div className="space-y-6" {...fadeInUp(0.2)}>
         <h1 className={HeadingH1}>
           <span className="block">Hello, I'm</span>
-          <span className="block bg-gradient-to-r from-purple-500 to-pink-600 bg-clip-text text-transparent">
-            Fakhir Ahmed Khan
-          </span>
+          <span className={FakhirAhmedKhan}>Fakhir Ahmed Khan</span>
         </h1>
 
         <p className={paragraph}>

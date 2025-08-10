@@ -3,7 +3,7 @@ import ChatMessage from "./ChatMessage";
 import ChatForm from "./ChatForm";
 import { Bot } from "lucide-react";
 
-export default function ChatBot({ show, onClose, trainingData }) {
+export default function ChatBot({ show, trainingData }) {
   const chatBodyRef = useRef();
   const formattedTrainingText = useMemo(
     () =>
@@ -77,13 +77,6 @@ export default function ChatBot({ show, onClose, trainingData }) {
           <Bot className="h-6 w-6 text-blue-500" />
           <h2 className="text-lg font-semibold">ChatBot</h2>
         </div>
-        <button
-          aria-label="Close ChatBot"
-          onClick={onClose}
-          className="material-symbols-outlined text-white"
-        >
-          keyboard_arrow_down
-        </button>
       </div>
       <div
         ref={chatBodyRef}

@@ -1,16 +1,18 @@
 import { Github } from "lucide-react";
 import { motion as Motion } from "framer-motion";
 import { fadeInUp } from "../UI/motionConfig";
+import {
+  anchorTag,
+  paragraph,
+  h3,
+  ProjectCardStyle,
+  imgStyle,
+} from "../UI/styles";
 
-import { anchorTag, paragraph, h3, ProjectCardStyle } from "../UI/styles";
 export default function ProjectCard({ project }) {
   return (
     <Motion.section className={ProjectCardStyle} {...fadeInUp(0.2)}>
-      <img
-        src={project.imageUrl}
-        alt={project.title}
-        className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-110"
-      />
+      <img src={project.imageUrl} alt={project.title} className={imgStyle} />
       <div className="flex flex-grow flex-col p-6">
         <h3 className={h3}>{project.title}</h3>
         <p className={paragraph}>{project.description}</p>

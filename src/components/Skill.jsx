@@ -1,6 +1,6 @@
 import { motion as Motion } from "framer-motion";
 import { fadeInUp } from "../UI/motionConfig";
-import { sectionTitle, cardBase } from "../UI/styles";
+import { sectionTitle } from "../UI/styles";
 import BubbleText from "./BubbleText";
 
 export default function SkillsSection({ skills }) {
@@ -17,7 +17,7 @@ export default function SkillsSection({ skills }) {
           {skills.map((skill, i) => (
             <Motion.div
               key={skill.name}
-              className={`${cardBase} p-12 dark:bg-slate-800/50`}
+              className="p-10 hover:scale-105"
               custom={i}
               initial="hidden"
               whileInView="visible"

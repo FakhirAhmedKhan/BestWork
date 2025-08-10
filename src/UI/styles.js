@@ -7,7 +7,8 @@ export const buttonBase =
   "flex items-center justify-center gap-2 rounded-lg px-6 py-4 font-semibold transition-all duration-200";
 export const inputBase =
   "w-full rounded-lg border border-gray-600 bg-gray-800 bg-opacity-60 px-4 py-4 text-lg text-white placeholder-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none";
-export const base = "font-medium transition-colors";
+export const base =
+  "font-medium transition-colors hover:bg-gray-100 rounded-full bg-transparent px-4 py-2 text-sm text-gray-900 transition-all duration-300 md:text-base";
 export const desktop =
   "text-lg text-slate-600 hover:text-purple-500 dark:text-slate-300 dark:hover:text-pink-400";
 export const mobile =
@@ -41,3 +42,19 @@ export const MainBGColorTertiary =
   "animate-gradient-x absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600";
 export const BotToggleButton =
   "fixed right-5 bottom-5 z-[1100] cursor-pointer rounded-full p-[14px] text-white transition-transform duration-300 ease-in-out hover:scale-110";
+export const EduCartStyle =
+  "rounded-xl border border-white/10 bg-white/20 p-6 shadow-xl backdrop-blur-md dark:bg-slate-800/50";
+export const EduCartLineStyle =
+  "absolute left-1/2 h-1/4 w-0.5 -translate-x-1/2 bg-gradient-to-b from-purple-500 to-pink-500";
+export const EduCartRoundStyle =
+  "absolute left-1/2 hidden h-4 w-4 -translate-x-1/2 rounded-full border-2 border-purple-500 bg-white sm:block dark:bg-slate-900";
+export const homeStyle =
+  "flex min-h-screen items-center justify-center px-4 text-center";
+export const FakhirAhmedKhan =
+  "block bg-gradient-to-r from-purple-500 to-pink-600 bg-clip-text text-transparent";
+export const imgStyle =
+  "h-48 w-full object-cover transition-transform duration-500 group-hover:scale-110";
+export const successStyle =
+  "flex items-center justify-center gap-2 py-4 text-lg font-medium text-green-300";
+export const projectFilterStyle =
+  "mb-12 flex flex-wrap justify-center gap-2 md:gap-4";
