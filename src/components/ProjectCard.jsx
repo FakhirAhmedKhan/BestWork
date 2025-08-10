@@ -3,7 +3,7 @@ import { motion as Motion } from "framer-motion";
 import { fadeInUp } from "../UI/motionConfig";
 
 import { anchorTag, paragraph, h3, ProjectCardStyle } from "../UI/styles";
-export default function ProjectCard({ project, index }) {
+export default function ProjectCard({ project }) {
   return (
     <Motion.section className={ProjectCardStyle} {...fadeInUp(0.2)}>
       <img

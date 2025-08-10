@@ -1,8 +1,8 @@
 import { useState, useCallback } from "react";
 import NavButton from "./NavButton";
 import { Menu, X } from "lucide-react";
-const navItems = ["Home", "Works", "Skills", "Email-ME", "My-Journey"];
-import { base, header, LogoText } from "../UI/styles.js";
+const navItems = ["🏠", "👨🏻‍💻", "🛠️", "🚊", "📧"];
+import { header, LogoText, isMenuOpenStyle } from "../UI/styles.js";
 
 export default function HeaderSection() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,10 +14,12 @@ export default function HeaderSection() {
 
   return (
     <header className={header}>
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-        <span className={LogoText}>Simple.Dev</span>
+      <div className="container mx-auto flex h-16 items-center justify-between px-5 sm:px-6 lg:px-8">
+        <span className={LogoText}>
+          <a href="/">Simple.Dev</a>
+        </span>
 
-        <nav className="hidden items-center space-x-8 md:flex">
+        <nav className="text-bold hidden h-full items-center space-x-8 md:flex">
           {navItems.map((item) => (
             <NavButton key={item} item={item} onClick={scrollToSection} />
           ))}
@@ -37,7 +39,7 @@ export default function HeaderSection() {
       </div>
 
       {isMenuOpen && (
-        <div className={base}>
+        <div className={isMenuOpenStyle}>
           {navItems.map((item) => (
             <NavButton
               key={item}

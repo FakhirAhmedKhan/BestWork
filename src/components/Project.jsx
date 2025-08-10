@@ -27,7 +27,7 @@ export default function ProjectSection({ projectData }) {
   const visibleProjects = showAll ? filtered : filtered.slice(0, 3);
 
   return (
-    <section id="Works" className="py-20">
+    <section id="👨🏻‍💻" className="py-20">
       <Motion.h2 {...fadeInUp()} className={sectionTitle}>
         My Creations
       </Motion.h2>

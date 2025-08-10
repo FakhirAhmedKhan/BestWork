@@ -7,7 +7,7 @@ import { sectionTitle } from "../UI/styles";
 export default function Education() {
   if (!education?.length) return null;
   return (
-    <section id="My-Journey" className="py-20">
+    <section id="🚊" className="py-20">
       <Motion.h2 className={sectionTitle} {...fadeInUp(0.3)}>
         My Journey
       </Motion.h2>

@@ -31,3 +31,13 @@ export const ProjectCardStyle =
   "group flex flex-col overflow-hidden rounded-xl border border-white/10 bg-white/20 shadow-lg backdrop-blur-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:bg-slate-800/50";
 export const footerStyle =
   "flex min-h-screen flex-col items-center justify-center px-6 py-12";
+export const isMenuOpenStyle =
+  "top-16 left-0 flex w-full flex-row gap-2 rounded-b-xl border-t border-white/10 bg-white/90 p-4 shadow-2xl backdrop-blur-md md:hidden dark:bg-slate-900/90";
+export const MainBGColor =
+  "bg-slate-100 font-sans text-slate-800 transition-colors duration-500 dark:bg-[#0a0a1a] dark:text-slate-200";
+export const MainBGColorSecondary =
+  "fixed inset-0 z-0 opacity-20 dark:opacity-30";
+export const MainBGColorTertiary =
+  "animate-gradient-x absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600";
+export const BotToggleButton =
+  "fixed right-5 bottom-5 z-[1100] cursor-pointer rounded-full p-[14px] text-white transition-transform duration-300 ease-in-out hover:scale-110";

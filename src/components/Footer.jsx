@@ -17,7 +17,7 @@ export default function Footer() {
     }, 1000);
   };
   return (
-    <footer id="Email-ME" className={footerStyle}>
+    <footer id="📧" className={footerStyle}>
       <div className="w-full max-w-md space-y-8">
         <div className="text-center">
           <h2 className={sectionTitle}>Get In Touch</h2>
@@ -31,6 +31,8 @@ export default function Footer() {
             placeholder="Your email address"
             className={inputBase}
             required
+            id="footer-email"
+            name="footer-email"
           />
 
           {status === "success" && (

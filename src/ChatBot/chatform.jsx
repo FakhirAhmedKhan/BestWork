@@ -41,13 +41,6 @@ export default function ChatForm({
         className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-black focus:ring-2 focus:ring-blue-500 focus:outline-none disabled:opacity-50"
         aria-label="Type your message"
       />
-      <button
-        type="submit"
-        disabled={disabled}
-        className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:opacity-50"
-      >
-        Send
-      </button>
     </form>
   );
 }

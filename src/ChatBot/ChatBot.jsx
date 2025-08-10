@@ -72,7 +72,6 @@ export default function ChatBot({ show, onClose, trainingData }) {
       role="dialog"
       aria-label="ChatBot window"
     >
-      {/* Header */}
       <div className="flex items-center justify-between px-4 py-2 text-white">
         <div className="flex items-center gap-2">
           <Bot className="h-6 w-6 text-blue-500" />
@@ -86,8 +85,6 @@ export default function ChatBot({ show, onClose, trainingData }) {
           keyboard_arrow_down
         </button>
       </div>
-
-      {/* Chat Body */}
       <div
         ref={chatBodyRef}
         className="hide-scrollbar flex h-[300px] flex-col gap-2 overflow-y-auto p-4"
@@ -115,8 +112,6 @@ export default function ChatBot({ show, onClose, trainingData }) {
           </div>
         )}
       </div>
-
-      {/* Input */}
       <ChatForm
         chatHistory={chatHistory}
         setChatHistory={setChatHistory}

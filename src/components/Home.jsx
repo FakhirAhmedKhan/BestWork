@@ -6,7 +6,7 @@ import { HeadingH1, anchorTag, paragraph } from "../UI/styles";
 export default function HomeSection() {
   return (
     <section
-      id="Home"
+      id="🏠"
       className="flex min-h-screen items-center justify-center px-4 text-center"
     >
       <Motion.div className="space-y-6" {...fadeInUp(0.2)}>

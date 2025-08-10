@@ -5,7 +5,7 @@ import BubbleText from "./BubbleText";
 
 export default function SkillsSection({ skills }) {
   return (
-    <section id="Skills" className="px-4 py-16 text-white">
+    <section id="🛠️" className="px-4 py-16 text-white">
       <div className="container mx-auto max-w-7xl text-center">
         <Motion.h2 {...fadeInUp()} className={sectionTitle}>
           Skills & Toolkit
