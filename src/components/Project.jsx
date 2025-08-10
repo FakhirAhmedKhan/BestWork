@@ -3,7 +3,7 @@ import { motion as Motion } from "framer-motion";
 import FilterButton from "./FilterButton";
 import ProjectCard from "../components/ProjectCard";
 import { fadeInUp } from "../UI/motionConfig";
-import { sectionTitle, projectFilterStyle } from "../UI/styles";
+import { SectionTitle, ProjectFilterStyle } from "../UI/styles";
 
 export default function ProjectSection({ projectData }) {
   const categories = useMemo(
@@ -24,11 +24,11 @@ export default function ProjectSection({ projectData }) {
 
   return (
     <section id="👨🏻‍💻" className="py-20">
-      <Motion.h2 {...fadeInUp()} className={sectionTitle}>
+      <Motion.h2 {...fadeInUp()} className={SectionTitle}>
         My Creations
       </Motion.h2>
 
-      <Motion.div {...fadeInUp(0.2)} className={projectFilterStyle}>
+      <Motion.div {...fadeInUp(0.2)} className={ProjectFilterStyle}>
         {categories.map((cat) => (
           <FilterButton
             key={cat}

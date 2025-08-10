@@ -1,9 +1,9 @@
 import {
-  inputBase,
-  paragraph,
-  sectionTitle,
-  footerStyle,
-  successStyle,
+  InputBase,
+  Paragraph,
+  SectionTitle,
+  FooterStyle,
+  SuccessStyle,
 } from "../UI/styles";
 import { CheckCircle } from "lucide-react";
 import { useState } from "react";
@@ -23,10 +23,10 @@ export default function Footer() {
     }, 1000);
   };
   return (
-    <footer id="📧" className={footerStyle}>
+    <footer id="📧" className={FooterStyle}>
       <div className="w-full max-w-md space-y-8">
         <div className="text-center">
-          <h2 className={sectionTitle}>Get In Touch</h2>
+          <h2 className={SectionTitle}>Get In Touch</h2>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -35,14 +35,14 @@ export default function Footer() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Your email address"
-            className={inputBase}
+            className={InputBase}
             required
             id="footer-email"
             name="footer-email"
           />
 
           {status === "success" && (
-            <div className={successStyle}>
+            <div className={SuccessStyle}>
               <CheckCircle className="h-6 w-6" />
               Message sent successfully!
             </div>
@@ -50,7 +50,7 @@ export default function Footer() {
         </form>
       </div>
 
-      <p className={`${paragraph} mt-8 text-center text-sm text-gray-400`}>
+      <p className={`${Paragraph} mt-8 text-center text-sm text-gray-400`}>
         © 2025 Fakhir Ahmed Khan. All rights reserved. Designed & built with 💖
         using React & Tailwind CSS.
       </p>

@@ -1,4 +1,4 @@
-import { paragraph, h3, EduCartRoundStyle, EduCartStyle } from "../UI/styles";
+import { Paragraph, H3, EduCartRoundStyle, EduCartStyle } from "../UI/styles";
 import { fadeInUp } from "../UI/motionConfig";
 import { motion } from "framer-motion";
 
@@ -17,10 +17,10 @@ export default function EduCart({ item, index }) {
         }`}
       >
         <div className={EduCartStyle}>
-          <p className={paragraph}>{item.year}</p>
-          <h3 className={h3}>{item.title}</h3>
-          <p className={paragraph}></p>
-          {item.description && <p className={paragraph}>{item.description}</p>}
+          <p className={Paragraph}>{item.year}</p>
+          <h3 className={H3}>{item.title}</h3>
+          <p className={Paragraph}></p>
+          {item.description && <p className={Paragraph}>{item.description}</p>}
         </div>
       </div>
       <div className={EduCartRoundStyle}></div>

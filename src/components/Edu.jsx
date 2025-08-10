@@ -2,13 +2,13 @@ import { motion as Motion } from "framer-motion";
 import education from "../Data/education.json";
 import EduCart from "./EduCart";
 import { fadeInUp } from "../UI/motionConfig";
-import { sectionTitle, EduCartLineStyle } from "../UI/styles";
+import { SectionTitle, EduCartLineStyle } from "../UI/styles";
 
 export default function Education() {
   if (!education?.length) return null;
   return (
     <section id="🚊" className="py-20">
-      <Motion.h2 className={sectionTitle} {...fadeInUp(0.3)}>
+      <Motion.h2 className={SectionTitle} {...fadeInUp(0.3)}>
         My Journey
       </Motion.h2>
 

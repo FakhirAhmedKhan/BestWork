@@ -1,13 +1,13 @@
 import { motion as Motion } from "framer-motion";
 import { fadeInUp } from "../UI/motionConfig";
-import { sectionTitle } from "../UI/styles";
+import { SectionTitle } from "../UI/styles";
 import BubbleText from "./BubbleText";
 
 export default function SkillsSection({ skills }) {
   return (
     <section id="🛠️" className="px-4 py-16 text-white">
       <div className="container mx-auto max-w-7xl text-center">
-        <Motion.h2 {...fadeInUp()} className={sectionTitle}>
+        <Motion.h2 {...fadeInUp()} className={SectionTitle}>
           Skills & Toolkit
         </Motion.h2>
 

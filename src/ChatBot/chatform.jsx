@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { inputBase } from "../UI/styles";
+import { InputBase } from "../UI/styles";
 
 export default function ChatForm({
   chatHistory,
@@ -32,7 +32,7 @@ export default function ChatForm({
         value={input}
         onChange={(e) => setInput(e.target.value)}
         disabled={disabled}
-        className={inputBase}
+        className={InputBase}
         aria-label="Type your message"
       />
     </form>

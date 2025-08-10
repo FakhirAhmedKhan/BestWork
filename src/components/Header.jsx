@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import NavButton from "./NavButton";
 import { Menu, X } from "lucide-react";
 const navItems = ["🏠", "👨🏻‍💻", "🛠️", "🚊", "📧"];
-import { header, LogoText, isMenuOpenStyle } from "../UI/styles.js";
+import { Header, LogoText, IsMenuOpenStyle } from "../UI/styles.js";
 
 export default function HeaderSection() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,7 +13,7 @@ export default function HeaderSection() {
   }, []);
 
   return (
-    <header className={header}>
+    <header className={Header}>
       <div className="container mx-auto flex h-16 items-center justify-between px-5 sm:px-6 lg:px-8">
         <span className={LogoText}>
           <a href="/">Simple.Dev</a>
@@ -39,7 +39,7 @@ export default function HeaderSection() {
       </div>
 
       {isMenuOpen && (
-        <div className={isMenuOpenStyle}>
+        <div className={IsMenuOpenStyle}>
           {navItems.map((item) => (
             <NavButton
               key={item}

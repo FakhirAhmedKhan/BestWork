@@ -3,22 +3,22 @@ import { fadeInUp } from "../UI/motionConfig.js";
 import { socialLinks } from "../Data/socialLinks";
 import {
   HeadingH1,
-  anchorTag,
-  paragraph,
-  homeStyle,
+  AnchorTag,
+  Paragraph,
+  HomeStyle,
   FakhirAhmedKhan,
 } from "../UI/styles";
 
 export default function HomeSection() {
   return (
-    <section id="🏠" className={homeStyle}>
+    <section id="🏠" className={HomeStyle}>
       <Motion.div className="space-y-6" {...fadeInUp(0.2)}>
         <h1 className={HeadingH1}>
           <span className="block">Hello, I'm</span>
           <span className={FakhirAhmedKhan}>Fakhir Ahmed Khan</span>
         </h1>
 
-        <p className={paragraph}>
+        <p className={Paragraph}>
           A passionate web developer intern on a mission to build beautiful,
           functional, and futuristic web experiences. Welcome to my playground.
         </p>
@@ -31,7 +31,7 @@ export default function HomeSection() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className={anchorTag}
+              className={AnchorTag}
             >
               <Icon size={28} />
             </a>
