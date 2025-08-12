@@ -1,6 +1,10 @@
 import { motion as Motion } from "framer-motion";
-import { fadeInUp } from "../UI/motionConfig";
-import { SectionTitle, SkillDivStyle, sectionSkills } from "../UI/styles";
+import {
+  SectionTitle,
+  SkillDivStyle,
+  sectionSkills,
+  fadeInUp,
+} from "../UI/styles";
 import BubbleText from "./BubbleText";
 
 export default function SkillsSection({ skills }) {

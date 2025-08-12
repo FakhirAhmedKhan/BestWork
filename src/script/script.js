@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, useEffect } from "react";
+import { useState, useMemo, useEffect } from "react";
 
 export function useProjectFilter(projectData) {
   const categories = useMemo(
@@ -23,22 +23,19 @@ export function useFooterForm() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("idle");
 
-  const handleSubmit = useCallback(
-    async (e) => {
-      e.preventDefault();
-      if (!email.includes("@")) return setStatus("error");
-      setStatus("loading");
-      await new Promise((r) => setTimeout(r, 1000));
-      setStatus("success");
-      setEmail("");
-    },
-    [email],
-  );
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!email.includes("@")) return setStatus("error");
+    setStatus("loading");
+    await new Promise((r) => setTimeout(r, 1000));
+    setStatus("success");
+    setEmail("");
+  };
 
   useEffect(() => {
     if (status === "success") {
-      const timer = setTimeout(() => setStatus("idle"), 3000);
-      return () => clearTimeout(timer);
+      const t = setTimeout(() => setStatus("idle"), 3000);
+      return () => clearTimeout(t);
     }
   }, [status]);
 
@@ -47,10 +44,11 @@ export function useFooterForm() {
 
 export function useHeaderMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const scrollToSection = useCallback((id) => {
+
+  const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setIsMenuOpen(false);
-  }, []);
+  };
 
   return { isMenuOpen, setIsMenuOpen, scrollToSection };
 }

@@ -1,7 +1,7 @@
 import { motion as Motion } from "framer-motion";
-import { fadeInUp } from "../UI/motionConfig.js";
 import { socialLinks } from "../Data/socialLinks.js";
 import {
+  fadeInUp,
   HeadingH1,
   AnchorTag,
   Paragraph,

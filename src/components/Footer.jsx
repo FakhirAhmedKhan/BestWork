@@ -13,29 +13,26 @@ export default function Footer() {
 
   return (
     <footer id="📧" className={FooterStyle}>
-      <div className="w-full max-w-md space-y-8">
-        <h2 className={SectionTitle}>Get In Touch</h2>
+      <h2 className={SectionTitle}>Get In Touch</h2>
 
-        <form onSubmit={handleSubmit}>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Your email address"
-            className={InputBase}
-            required
-            id="footer-email"
-            name="footer-email"
-          />
+      <form onSubmit={handleSubmit}>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Your email address"
+          className={InputBase}
+          id="footer-email"
+          name="footer-email"
+        />
 
-          {status === "success" && (
-            <div className={SuccessStyle}>
-              <CheckCircle className="h-6 w-6" />
-              Message sent successfully!
-            </div>
-          )}
-        </form>
-      </div>
+        {status === "success" && (
+          <div className={SuccessStyle}>
+            <CheckCircle className="h-6 w-6" />
+            Message sent successfully!
+          </div>
+        )}
+      </form>
 
       <p className={`${Paragraph} mt-8 text-center text-sm text-gray-400`}>
         Built with 💖 using React & Tailwind CSS.

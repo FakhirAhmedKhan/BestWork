@@ -1,7 +1,7 @@
 import { Github } from "lucide-react";
 import { motion as Motion } from "framer-motion";
-import { fadeInUp } from "../UI/motionConfig";
 import {
+  fadeInUp,
   AnchorTag,
   Paragraph,
   H3,

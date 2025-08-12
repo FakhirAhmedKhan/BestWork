@@ -1,7 +1,7 @@
 import { motion as Motion } from "framer-motion";
 import ProjectCard from "../components/ProjectCard";
-import { fadeInUp } from "../UI/motionConfig";
 import {
+  fadeInUp,
   SectionTitle,
   ProjectFilterStyle,
   styles,
