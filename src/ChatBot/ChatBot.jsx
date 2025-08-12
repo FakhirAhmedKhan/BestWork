@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import ChatMessage from "./ChatMessage";
 import ChatForm from "./ChatForm";
 import { Bot } from "lucide-react";
+import { ChatBotStyle } from "../UI/styles";
 
 export default function ChatBot({ show, trainingData }) {
   const chatBodyRef = useRef();
@@ -67,11 +68,7 @@ export default function ChatBot({ show, trainingData }) {
   if (!show) return null;
 
   return (
-    <div
-      className="fixed right-5 bottom-2 flex w-[300px] max-w-md flex-col rounded-lg border border-white/20 bg-white/10 shadow-2xl backdrop-blur-md"
-      role="dialog"
-      aria-label="ChatBot window"
-    >
+    <section className={ChatBotStyle}>
       <div className="flex items-center justify-between px-4 py-2 text-white">
         <div className="flex items-center gap-2">
           <Bot className="h-6 w-6 text-blue-500" />
@@ -111,6 +108,6 @@ export default function ChatBot({ show, trainingData }) {
         generateBotResponse={generateBotResponse}
         disabled={isBotTyping}
       />
-    </div>
+    </section>
   );
 }

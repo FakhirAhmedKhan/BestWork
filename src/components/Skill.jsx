@@ -1,33 +1,28 @@
 import { motion as Motion } from "framer-motion";
 import { fadeInUp } from "../UI/motionConfig";
-import { SectionTitle } from "../UI/styles";
+import { SectionTitle, SkillDivStyle, sectionSkills } from "../UI/styles";
 import BubbleText from "./BubbleText";
 
 export default function SkillsSection({ skills }) {
   return (
-    <section id="🛠️" className="px-4 py-16 text-white">
-      <div className="container mx-auto max-w-7xl text-center">
-        <Motion.h2 {...fadeInUp()} className={SectionTitle}>
-          Skills & Toolkit
-        </Motion.h2>
+    <section id="🛠️" className={sectionSkills}>
+      <Motion.h2 {...fadeInUp()} className={SectionTitle}>
+        Skills & Toolkit
+      </Motion.h2>
 
-        <BubbleText text="I'm still learning and exploring these tools as a beginner." />
+      <BubbleText text="I'm still learning and exploring these tools as a beginner." />
 
-        <div className="mx-auto grid max-w-2xl grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4">
-          {skills.map((skill, i) => (
-            <Motion.div
-              key={skill.name}
-              className="p-10 hover:scale-105"
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
-              {...fadeInUp(0.2)}
-              viewport={{ once: true }}
-            >
-              <skill.icon className="h-10 w-10 text-indigo-300" />
-            </Motion.div>
-          ))}
-        </div>
+      <div className={SkillDivStyle}>
+        {skills.map((skill, i) => (
+          <Motion.div
+            key={skill.name}
+            className="p-10 hover:scale-105"
+            custom={i}
+            {...fadeInUp(0.2)}
+          >
+            <skill.icon className="h-10 w-10 text-indigo-300" />
+          </Motion.div>
+        ))}
       </div>
     </section>
   );

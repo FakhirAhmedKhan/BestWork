@@ -11,8 +11,8 @@ export default function BubbleText({ text }) {
       viewport={{ once: true }}
     >
       {text.split("").map((char, idx) => (
-        <Motion.span key={idx} {...fadeInUp(0.3)} className={BubbleBase}>
-          {char === " " ? "\u00A0" : char}
+        <Motion.span key={idx} {...fadeInUp(0.3)}>
+          {char === " " ? "\u00A0" : <span className={BubbleBase}>{char}</span>}
         </Motion.span>
       ))}
     </Motion.h3>

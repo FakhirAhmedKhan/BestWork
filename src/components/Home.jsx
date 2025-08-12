@@ -1,12 +1,13 @@
 import { motion as Motion } from "framer-motion";
 import { fadeInUp } from "../UI/motionConfig.js";
-import { socialLinks } from "../Data/socialLinks";
+import { socialLinks } from "../Data/socialLinks.js";
 import {
   HeadingH1,
   AnchorTag,
   Paragraph,
   HomeStyle,
   FakhirAhmedKhan,
+  socialLinksDiv,
 } from "../UI/styles";
 
 export default function HomeSection() {
@@ -23,16 +24,9 @@ export default function HomeSection() {
           functional, and futuristic web experiences. Welcome to my playground.
         </p>
 
-        <div className="flex justify-center space-x-6">
+        <div className={socialLinksDiv}>
           {socialLinks.map(({ url, icon: Icon, label }) => (
-            <a
-              key={label}
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              className={AnchorTag}
-            >
+            <a key={label} href={url} target="_blank" className={AnchorTag}>
               <Icon size={28} />
             </a>
           ))}

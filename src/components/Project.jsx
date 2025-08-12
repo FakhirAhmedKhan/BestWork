@@ -1,48 +1,47 @@
-import { useState, useMemo, useCallback } from "react";
 import { motion as Motion } from "framer-motion";
-import FilterButton from "./FilterButton";
 import ProjectCard from "../components/ProjectCard";
 import { fadeInUp } from "../UI/motionConfig";
-import { SectionTitle, ProjectFilterStyle } from "../UI/styles";
+import {
+  SectionTitle,
+  ProjectFilterStyle,
+  styles,
+  projectDivStyle,
+} from "../UI/styles";
+import { useProjectFilter } from "../script/script";
+import projectData from "../Data/project.json";
 
-export default function ProjectSection({ projectData }) {
-  const categories = useMemo(
-    () => [...new Set(projectData.map((p) => p.category))],
-    [projectData],
-  );
-
-  const [filter, setFilter] = useState(categories[0] || "");
-
-  const handleFilterChange = useCallback((cat) => {
-    setFilter(cat);
-  }, []);
-
-  const filtered = useMemo(
-    () => projectData.filter((p) => p.category === filter),
-    [filter, projectData],
-  );
+export default function ProjectSection() {
+  const { categories, activeCategory, filteredProjects, setActiveCategory } =
+    useProjectFilter(projectData);
 
   return (
-    <section id="👨🏻‍💻" className="py-20">
+    <section id="👨🏻‍💻">
       <Motion.h2 {...fadeInUp()} className={SectionTitle}>
         My Creations
       </Motion.h2>
 
       <Motion.div {...fadeInUp(0.2)} className={ProjectFilterStyle}>
-        {categories.map((cat) => (
-          <FilterButton
-            key={cat}
-            label={cat}
-            active={filter === cat}
-            onClick={handleFilterChange}
-          />
-        ))}
+        {categories.map((cat) => {
+          const active = activeCategory === cat;
+          const buttonClass = `${styles.base} ${active ? styles.active : styles.inactive}`;
+          return (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={buttonClass}
+            >
+              {cat}
+            </button>
+          );
+        })}
       </Motion.div>
 
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((project, index) => (
-          <ProjectCard key={project.id} project={project} index={index} />
-        ))}
+      <div className={projectDivStyle}>
+        {(Array.isArray(filteredProjects) ? filteredProjects : []).map(
+          (project) => (
+            <ProjectCard key={project.id || project.title} project={project} />
+          ),
+        )}
       </div>
     </section>
   );

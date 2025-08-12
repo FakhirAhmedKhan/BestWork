@@ -17,20 +17,10 @@ export default function ProjectCard({ project }) {
         <h3 className={H3}>{project.title}</h3>
         <p className={Paragraph}>{project.description}</p>
         <div className="mt-auto flex items-center justify-between">
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={AnchorTag}
-          >
+          <a href={project.link} target="_blank" className={AnchorTag}>
             Live Demo
           </a>
-          <a
-            href={project.codeLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={AnchorTag}
-          >
+          <a href={project.codeLink} target="_blank" className={AnchorTag}>
             <Github className="h-6 w-6" />
           </a>
         </div>

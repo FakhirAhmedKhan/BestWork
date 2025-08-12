@@ -1,16 +1,17 @@
-import { useState, useCallback } from "react";
-import NavButton from "./NavButton";
 import { Menu, X } from "lucide-react";
 const navItems = ["🏠", "👨🏻‍💻", "🛠️", "🚊", "📧"];
-import { Header, LogoText, IsMenuOpenStyle } from "../UI/styles.js";
+import {
+  Header,
+  LogoText,
+  IsMenuOpenStyle,
+  MobileNav,
+  DesktopNav,
+} from "../UI/styles.js";
+
+import { useHeaderMenu } from "../script/script.js";
 
 export default function HeaderSection() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const scrollToSection = useCallback((id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    setIsMenuOpen(false);
-  }, []);
+  const { isMenuOpen, setIsMenuOpen, scrollToSection } = useHeaderMenu();
 
   return (
     <header className={Header}>
@@ -21,7 +22,13 @@ export default function HeaderSection() {
 
         <nav className="text-bold hidden h-full items-center space-x-8 md:flex">
           {navItems.map((item) => (
-            <NavButton key={item} item={item} onClick={scrollToSection} />
+            <button
+              key={item}
+              onClick={() => scrollToSection(item)}
+              className={DesktopNav}
+            >
+              {item}
+            </button>
           ))}
         </nav>
 
@@ -41,12 +48,13 @@ export default function HeaderSection() {
       {isMenuOpen && (
         <div className={IsMenuOpenStyle}>
           {navItems.map((item) => (
-            <NavButton
+            <button
               key={item}
-              item={item}
-              onClick={scrollToSection}
-              isMobile
-            />
+              onClick={() => scrollToSection(item)}
+              className={MobileNav}
+            >
+              {item}
+            </button>
           ))}
         </div>
       )}

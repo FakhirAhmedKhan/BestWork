@@ -53,6 +53,7 @@ export default function App() {
           </Suspense>
           <Footer />
         </main>
+
         <ChatBot
           show={isChatbotOpen}
           onClose={() => setIsChatbotOpen(false)}
