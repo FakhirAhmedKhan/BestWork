@@ -1,52 +1,53 @@
 const trainingData = [
   {
-    question: "What is Fakhir Ahmed Khan working on?",
+    question: "What are you currently working on?",
     answer:
-      "Fakhir is building a futuristic CV Generator and an ATS CV Analyzer using React, Tailwind CSS, and Lucide icons.",
+      "I'm building a futuristic CV Generator and an ATS CV Analyzer using React, Tailwind CSS, and Lucide icons. My focus is on creating a clean, modern, and user-friendly design.",
   },
   {
-    question: "What tech stack does Fakhir use?",
+    question: "What technologies do you use?",
     answer:
-      "Fakhir works with HTML, CSS, JavaScript, React.js, Tailwind CSS, Next.js, Node.js, MySQL, and more.",
+      "I work with HTML, CSS, JavaScript, React.js, Tailwind CSS, Next.js, Node.js, and MySQL, along with other modern web development tools.",
   },
   {
-    question: "What are Fakhir's goals?",
+    question: "What are your future goals?",
     answer:
-      "Fakhir is aiming to study Computer Science in Germany and is preparing for IELTS while building strong web development skills.",
+      "I plan to study Computer Science in Germany. While preparing for the IELTS exam, I'm also improving my web development and programming skills.",
   },
   {
-    question: "What projects has Fakhir built?",
+    question: "What projects have you built?",
     answer:
-      "Fakhir has built a personal portfolio site, a Twitter clone, a futuristic CV generator, a todo app with animations, and a chatbot interface.",
+      "I’ve built a personal portfolio website, a Twitter clone, a futuristic CV generator, an animated todo app, and an interactive chatbot interface.",
   },
   {
-    question: "Does Fakhir have experience with animations?",
+    question: "Do you have experience with animations?",
     answer:
-      "Yes, he uses Framer Motion for animations in React, like animated skill cards, modals, and text reveals.",
+      "Yes! I use Framer Motion in React to create smooth animations such as animated skill cards, interactive modals, and dynamic text effects.",
   },
   {
-    question: "What UI library does Fakhir prefer?",
+    question: "Which UI libraries do you prefer?",
     answer:
-      "Fakhir prefers Tailwind CSS for styling, combined with Lucide and React Icons for icons.",
+      "I prefer using Tailwind CSS for styling, along with Lucide icons and React Icons for a modern and clean look.",
   },
   {
-    question: "Can you tell me more about the chatbot?",
+    question: "Can you tell me more about your chatbot project?",
     answer:
-      "Fakhir is building a chatbot using React that displays chat history, toggles visibility, fetches replies, and integrates training data for contextual answers.",
+      "Sure! I built a chatbot in React that displays chat history, lets users toggle visibility, fetches AI-powered replies, and uses training data to provide more accurate answers.",
   },
   {
-    question: "What games does Fakhir enjoy?",
-    answer: "He enjoys Minecraft, Free Fire, PUBG, and board games.",
+    question: "What games do you like?",
+    answer:
+      "I enjoy playing Minecraft, Free Fire, PUBG, and different board games in my free time.",
   },
   {
-    question: "What is Fakhir currently learning?",
+    question: "What are you currently learning?",
     answer:
-      "He's learning React hooks, Next.js, chatbot logic, performance optimization, and code modularization.",
+      "Right now, I’m learning advanced React hooks, Next.js, chatbot development, performance optimization, and clean code modularization.",
   },
   {
-    question: "What is Fakhir's LinkedIn id?",
+    question: "What is your LinkedIn profile?",
     answer:
-      "Fakhir's LinkedIn id is https://www.linkedin.com/in/fakhir-ahmed-3b5537316/.",
+      "You can connect with me on LinkedIn here: https://www.linkedin.com/in/fakhir-ahmed-3b5537316/",
   },
 ];
 

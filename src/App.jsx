@@ -1,7 +1,7 @@
 import { useState, lazy, Suspense } from "react";
 import HeaderSection from "./components/Header.jsx";
 import HomeSection from "./components/Home.jsx";
-import ChatBot from "./ChatBot/ChatBot";
+import ChatBot from "./components/ChatBot";
 import Footer from "./components/Footer";
 import trainingData from "./Data/data.js";
 import projects from "./Data/project.json";

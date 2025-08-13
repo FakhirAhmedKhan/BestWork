@@ -1,10 +1,11 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 
-export function useProjectFilter(projectData) {
+export function useProjectFilter(projects) {
   const categories = useMemo(
-    () => [...new Set(projectData.map((p) => p.category))],
-    [projectData],
+    () => [...new Set(projects.map((p) => p.category))],
+    [projects],
   );
+
   const [activeCategory, setActiveCategory] = useState(categories[0] || "");
 
   useEffect(() => {
@@ -12,11 +13,11 @@ export function useProjectFilter(projectData) {
   }, [categories]);
 
   const filteredProjects = useMemo(
-    () => projectData.filter((p) => p.category === activeCategory),
-    [activeCategory, projectData],
+    () => projects.filter((p) => p.category === activeCategory),
+    [projects, activeCategory],
   );
 
-  return { categories, activeCategory, filteredProjects, setActiveCategory };
+  return { categories, activeCategory, setActiveCategory, filteredProjects };
 }
 
 export function useFooterForm() {
@@ -51,4 +52,87 @@ export function useHeaderMenu() {
   };
 
   return { isMenuOpen, setIsMenuOpen, scrollToSection };
+}
+
+export function useChatBot(trainingData) {
+  const chatBodyRef = useRef();
+  const safeTrainingData = Array.isArray(trainingData) ? trainingData : [];
+
+  const trainingText = useMemo(
+    () =>
+      safeTrainingData
+        .map(
+          ({ question, answer }, i) =>
+            `Q${i + 1}: ${question}\nA${i + 1}: ${answer}`,
+        )
+        .join("\n\n"),
+    [safeTrainingData],
+  );
+
+  const [chatHistory, setChatHistory] = useState([
+    { role: "user", text: trainingText, hideInChat: true },
+  ]);
+  const [input, setInput] = useState("");
+  const [error, setError] = useState(null);
+  const [isBotTyping, setIsBotTyping] = useState(false);
+
+  const generateBotResponse = useCallback(async (history) => {
+    setIsBotTyping(true);
+    try {
+      const res = await fetch(import.meta.env.VITE_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: history.map(({ role, text }) => ({
+            role,
+            parts: [{ text }],
+          })),
+        }),
+      });
+
+      const text = (
+        await res.json()
+      )?.candidates?.[0]?.content?.parts?.[0]?.text
+        ?.replace(/<[^>]+>/g, "")
+        .trim();
+      if (!res.ok || !text) throw new Error("Bot response failed");
+
+      setChatHistory((prev) => [...prev, { role: "model", text }]);
+      setError(null);
+    } catch (err) {
+      setError(err.message || "Bot failed to respond.");
+    } finally {
+      setIsBotTyping(false);
+    }
+  }, []);
+
+  const handleFormSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      if (!input.trim() || isBotTyping) return;
+
+      const updated = [...chatHistory, { role: "user", text: input.trim() }];
+      setChatHistory(updated);
+      setInput("");
+      await generateBotResponse(updated);
+    },
+    [input, chatHistory, isBotTyping, generateBotResponse],
+  );
+
+  useEffect(() => {
+    chatBodyRef.current?.scrollTo({
+      top: chatBodyRef.current.scrollHeight,
+      behavior: "smooth",
+    });
+  }, [chatHistory, isBotTyping]);
+
+  return {
+    chatBodyRef,
+    chatHistory,
+    input,
+    setInput,
+    error,
+    isBotTyping,
+    handleFormSubmit,
+  };
 }
