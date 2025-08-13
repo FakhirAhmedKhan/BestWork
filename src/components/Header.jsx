@@ -9,22 +9,10 @@ import {
   DivNav,
 } from "../UI/styles.js";
 import { useHeaderMenu } from "../script/script.js";
-
-const navItems = ["🏠", "👨🏻‍💻", "🛠️", "🚊", "📧"];
+import { NavButtons } from "../components/BubbleText.jsx";
 
 export default function HeaderSection() {
-  const { isMenuOpen, setIsMenuOpen, scrollToSection } = useHeaderMenu();
-
-  const NavButtons = ({ style }) =>
-    navItems.map((item) => (
-      <button
-        key={item}
-        onClick={() => scrollToSection(item)}
-        className={style}
-      >
-        {item}
-      </button>
-    ));
+  const { isMenuOpen, setIsMenuOpen } = useHeaderMenu();
 
   return (
     <header className={Header}>
@@ -33,14 +21,13 @@ export default function HeaderSection() {
           <a href="#">Simple.Dev</a>
         </span>
 
-        <nav className={DivNav}>
+        <span className={DivNav}>
           <NavButtons style={DesktopNav} />
-        </nav>
+        </span>
 
         <button
           onClick={() => setIsMenuOpen((p) => !p)}
           className="ml-4 p-2 md:hidden"
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         >
           {isMenuOpen ? (
             <X className="h-6 w-6" />

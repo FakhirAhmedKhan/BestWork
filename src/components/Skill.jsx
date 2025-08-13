@@ -10,7 +10,7 @@ import BubbleText from "./BubbleText";
 export default function SkillsSection({ skills }) {
   return (
     <section id="🛠️" className={sectionSkills}>
-      <Motion.h2 {...fadeInUp()} className={SectionTitle}>
+      <Motion.h2 {...fadeInUp(0.3)} className={SectionTitle}>
         Skills & Toolkit
       </Motion.h2>
 

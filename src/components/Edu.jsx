@@ -1,20 +1,41 @@
 import { motion as Motion } from "framer-motion";
 import education from "../Data/education.json";
-import EduCart from "./EduCart";
-import { SectionTitle, EduCartLineStyle, fadeInUp } from "../UI/styles";
+import {
+  SectionTitle,
+  EduCartStyle,
+  Paragraph,
+  H3,
+  fadeInUp,
+} from "../UI/styles";
 
 export default function Education() {
-  if (!education?.length) return null;
   return (
     <section id="🚊">
       <Motion.h2 className={SectionTitle} {...fadeInUp(0.3)}>
         My Journey
       </Motion.h2>
 
-      <div className={EduCartLineStyle}></div>
-      {education.map((item, index) => (
-        <EduCart key={index} item={item} index={index} />
-      ))}
+      {education.map((item, index) => {
+        const isLeft = index % 2 === 0;
+
+        return (
+          <Motion.div
+            key={index}
+            className={`relative mb-12 flex w-full items-center ${
+              isLeft ? "justify-start" : "justify-end"
+            }`}
+            {...fadeInUp(0.3)}
+          >
+            <div className={EduCartStyle}>
+              <p className={Paragraph}>{item.year}</p>
+              <h3 className={H3}>{item.title}</h3>
+              {item.description && (
+                <p className={Paragraph}>{item.description}</p>
+              )}
+            </div>
+          </Motion.div>
+        );
+      })}
     </section>
   );
 }

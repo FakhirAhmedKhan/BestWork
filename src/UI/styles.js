@@ -38,8 +38,6 @@ export const ProjectCardStyle = `group ${CardBase}`;
 export const EduCartStyle =
   "rounded-2xl border border-white/10 bg-white/40 p-6 shadow-xl backdrop-blur-md dark:bg-neutral-900/60";
 export const ImgStyle = `h-48 w-full object-cover rounded-xl ${HoverZoom}`;
-export const EduCartLineStyle =
-  "absolute left-1/2 w-0.5 -translate-x-1/2 bg-gradient-to-b from-fuchsia-500 to-pink-500 h-[80rem] lg:h-[64.5rem]";
 export const Header =
   "fixed top-0 right-0 left-0 z-50 border-b border-white/10 bg-white/40 backdrop-blur-lg shadow-sm transition-all duration-300 dark:bg-neutral-900/70";
 export const DesktopNav =

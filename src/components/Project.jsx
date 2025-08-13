@@ -16,7 +16,7 @@ export default function ProjectSection() {
 
   return (
     <section id="👨🏻‍💻">
-      <Motion.h2 {...fadeInUp()} className={SectionTitle}>
+      <Motion.h2 {...fadeInUp(0.3)} className={SectionTitle}>
         My Creations
       </Motion.h2>
 

@@ -13,9 +13,8 @@ export default function Footer() {
 
   return (
     <footer id="📧" className={FooterStyle}>
-      <h2 className={SectionTitle}>Get In Touch</h2>
-
       <form onSubmit={handleSubmit}>
+        <h2 className={SectionTitle}>Get In Touch</h2>
         <input
           type="email"
           value={email}
@@ -29,7 +28,6 @@ export default function Footer() {
         {status === "success" && (
           <div className={SuccessStyle}>
             <CheckCircle className="h-6 w-6" />
-            Message sent successfully!
           </div>
         )}
       </form>

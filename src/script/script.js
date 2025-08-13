@@ -73,15 +73,12 @@ export function useChatBot(trainingData) {
     { role: "user", text: trainingText, hideInChat: true },
   ]);
   const [input, setInput] = useState("");
-  const [error, setError] = useState(null);
-  const [isBotTyping, setIsBotTyping] = useState(false);
 
   const generateBotResponse = useCallback(async (history) => {
-    setIsBotTyping(true);
-    try {
+    if (history.length === 0) return;
+    {
       const res = await fetch(import.meta.env.VITE_API_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           contents: history.map(({ role, text }) => ({
             role,
@@ -95,28 +92,21 @@ export function useChatBot(trainingData) {
       )?.candidates?.[0]?.content?.parts?.[0]?.text
         ?.replace(/<[^>]+>/g, "")
         .trim();
-      if (!res.ok || !text) throw new Error("Bot response failed");
 
       setChatHistory((prev) => [...prev, { role: "model", text }]);
-      setError(null);
-    } catch (err) {
-      setError(err.message || "Bot failed to respond.");
-    } finally {
-      setIsBotTyping(false);
     }
   }, []);
 
   const handleFormSubmit = useCallback(
     async (e) => {
       e.preventDefault();
-      if (!input.trim() || isBotTyping) return;
 
       const updated = [...chatHistory, { role: "user", text: input.trim() }];
       setChatHistory(updated);
       setInput("");
       await generateBotResponse(updated);
     },
-    [input, chatHistory, isBotTyping, generateBotResponse],
+    [input, chatHistory, generateBotResponse],
   );
 
   useEffect(() => {
@@ -124,15 +114,13 @@ export function useChatBot(trainingData) {
       top: chatBodyRef.current.scrollHeight,
       behavior: "smooth",
     });
-  }, [chatHistory, isBotTyping]);
+  }, [chatHistory]);
 
   return {
     chatBodyRef,
     chatHistory,
     input,
     setInput,
-    error,
-    isBotTyping,
     handleFormSubmit,
   };
 }
