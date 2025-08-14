@@ -32,7 +32,7 @@ export const GradientButton =
 export const TransparentButton =
   "font-medium rounded-full px-5 py-2 text-sm text-neutral-800 dark:text-neutral-200 transition-all duration-300 hover:bg-neutral-100/70 dark:hover:bg-neutral-800/70 md:text-base";
 export const BotToggleButton =
-  "rounded-full fixed right-5 bottom-5 z-[1100] cursor-pointer p-[14px] text-white bg-gradient-to-r from-fuchsia-600 to-pink-600 shadow-lg transition-transform duration-300 ease-in-out hover:scale-110";
+  "rounded-full fixed right-5 bottom-5 z-[1100] cursor-pointer p-[14px] text-white transition-transform duration-300 ease-in-out hover:scale-140";
 export const CardBase = `flex flex-col overflow-hidden rounded-2xl border border-white/10 shadow-lg backdrop-blur-lg ${HoverLift} bg-white/40 dark:bg-neutral-900/60`;
 export const ProjectCardStyle = `group ${CardBase}`;
 export const EduCartStyle =
@@ -86,3 +86,9 @@ export const fadeInUp = (delay = 0) => ({
 export const HeaderDiv =
   "container mx-auto flex h-16 items-center justify-between px-5 sm:px-6 lg:px-8";
 export const DivNav = "hidden h-full items-center space-x-8 md:flex font-bold";
+export const refStyle =
+  "hide-scrollbar flex h-[300px] flex-col gap-2 overflow-y-auto p-4";
+export const botSpanStyle =
+  "flex items-center justify-between px-4 py-2 text-lg font-bold text-white";
+export const UserMessageStyle =
+  "flex items-center justify-between text-lg font-bold text-black flex-shrink-0";

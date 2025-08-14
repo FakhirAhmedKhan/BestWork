@@ -1,4 +1,10 @@
-import { ChatBotStyle, InputBase } from "../UI/styles";
+import {
+  ChatBotStyle,
+  InputBase,
+  refStyle,
+  botSpanStyle,
+  UserMessageStyle,
+} from "../UI/styles";
 import { useChatBot } from "../script/script.js";
 
 export default function ChatBot({ show, trainingData }) {
@@ -9,12 +15,9 @@ export default function ChatBot({ show, trainingData }) {
 
   return (
     <section className={ChatBotStyle}>
-      <div
-        ref={chatBodyRef}
-        className="hide-scrollbar flex h-[300px] flex-col gap-2 overflow-y-auto p-4"
-      >
+      <div ref={chatBodyRef} className={refStyle}>
         <div className="flex items-end justify-start gap-2">
-          <span className="flex items-center justify-between px-4 py-2 text-lg font-bold text-white">
+          <span className={botSpanStyle}>
             🤖 Hi there! Welcome to my portfolio, how may I assist you today?
           </span>
         </div>
@@ -29,17 +32,13 @@ export default function ChatBot({ show, trainingData }) {
               }`}
             >
               {message.role !== "user" && (
-                <span className="flex-shrink-0">
-                  <h2 className="flex items-center justify-between text-lg font-bold text-black">
-                    🤖
-                  </h2>
-                </span>
+                <h2 className={UserMessageStyle}>🤖</h2>
               )}
               <div>{message.text}</div>
             </div>
           ))}
       </div>
-      <form onSubmit={handleFormSubmit} className="flex">
+      <form onSubmit={handleFormSubmit}>
         <input
           type="text"
           placeholder="Type a message..."
