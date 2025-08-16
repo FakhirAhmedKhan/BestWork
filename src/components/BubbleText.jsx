@@ -23,6 +23,7 @@ export const NavButtons = ({ style }) => {
           key={item}
           onClick={() => scrollToSection(item)}
           className={style}
+          name={item}
         >
           {item}
         </button>
