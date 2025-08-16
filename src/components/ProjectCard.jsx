@@ -20,7 +20,13 @@ export default function ProjectCard({ project }) {
           <a href={project.link} target="_blank" className={AnchorTag}>
             Live Demo
           </a>
-          <a href={project.codeLink} target="_blank" className={AnchorTag}>
+          <a
+            href={project.codeLink}
+            target="_blank"
+            className={AnchorTag}
+            aria-label={project.title}
+            name={project.title}
+          >
             <Github className="h-6 w-6" />
           </a>
         </div>

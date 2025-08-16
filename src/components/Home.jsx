@@ -26,7 +26,14 @@ export default function HomeSection() {
 
         <div className={socialLinksDiv}>
           {socialLinks.map(({ url, icon: Icon, label }) => (
-            <a key={label} href={url} target="_blank" className={AnchorTag}>
+            <a
+              key={label}
+              href={url}
+              target="_blank"
+              className={AnchorTag}
+              aria-label={label}
+              name={label}
+            >
               <Icon size={28} />
             </a>
           ))}
