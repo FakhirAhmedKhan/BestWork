@@ -1,6 +1,5 @@
 import { BubbleBase, H3, fadeInUp } from "../UI/styles";
 import { motion as Motion } from "framer-motion";
-import { useHeaderMenu } from "../script/script.js";
 
 export default function BubbleText({ text }) {
   return (
@@ -13,8 +12,7 @@ export default function BubbleText({ text }) {
     </Motion.h3>
   );
 }
-export const NavButtons = ({ style }) => {
-  const { scrollToSection } = useHeaderMenu();
+export const NavButtons = ({ style, scrollToSection }) => {
   const navItems = ["🏠", "👨🏻‍💻", "🛠️", "🚊", "📧"];
   return (
     <>

@@ -43,9 +43,9 @@ export const Header =
 export const DesktopNav =
   "p-7 font-bold text-xl text-neutral-700 hover:text-fuchsia-500 dark:text-neutral-300 dark:hover:text-pink-400 transition-colors";
 export const MobileNav =
-  "block w-full rounded-md px-3 py-2 text-left text-base text-neutral-700 hover:bg-neutral-200 dark:text-neutral-300 dark:hover:bg-neutral-800";
+  "block w-full rounded-md px-3 py-2 text-left text-base text-neutral-700 hover:bg-neutral-200/20 dark:hover:bg-neutral-800/20";
 export const IsMenuOpenStyle =
-  "top-16 left-0 flex w-full flex-row gap-2 rounded-b-xl border-t border-white/10 bg-white/30 p-4 shadow-2xl backdrop-blur-md md:hidden";
+  "top-16 left-0 flex w-full flex-row gap-2 rounded-b-xl border-t border-white/5 bg-transparent p-4 shadow-2xl backdrop-blur-md md:hidden";
 export const HomeStyle =
   "flex min-h-screen items-center justify-center px-4 text-center space-y-6";
 export const MainBGColor =
