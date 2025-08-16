@@ -30,9 +30,9 @@ export default function HeaderSection() {
           className="ml-4 p-2 md:hidden"
         >
           {isMenuOpen ? (
-            <X className="h-6 w-6" />
+            <X className="h-6 w-6" name="Close Menu" />
           ) : (
-            <Menu className="h-6 w-6" />
+            <Menu className="h-6 w-6" name="Open Menu" />
           )}
         </button>
       </div>
