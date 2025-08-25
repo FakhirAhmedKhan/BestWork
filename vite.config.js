@@ -7,6 +7,6 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   build: {
     minify: "esbuild",
-    target: "es2017",
+    target: "es2025",
   },
 });
