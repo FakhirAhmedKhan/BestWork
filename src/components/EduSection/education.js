@@ -1,4 +1,4 @@
-[
+export const educationData = [
     {
         "year": "2026-Up-Coming",
         "title": "Higher-Education",

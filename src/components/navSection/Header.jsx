@@ -1,6 +1,6 @@
 import { Menu, X } from "lucide-react";
-import { useHeaderMenu } from "../script/script.js";
-import { NavButtons } from "../components/BubbleText.jsx";
+import useHeaderMenu from "./nav.js";
+import NavButtons from "./NavButtons.jsx";
 import {
   Header,
   LogoText,
@@ -9,7 +9,7 @@ import {
   DesktopNav,
   HeaderDiv,
   DivNav,
-} from "../UI/styles.js";
+} from "../../UI/styles.js";
 
 export default function HeaderSection() {
   const { isMenuOpen, setIsMenuOpen, scrollToSection } = useHeaderMenu();
@@ -21,12 +21,10 @@ export default function HeaderSection() {
           <a href="#">Simple.Dev</a>
         </span>
 
-        {/* Desktop Nav */}
         <span className={DivNav}>
           <NavButtons style={DesktopNav} scrollToSection={scrollToSection} />
         </span>
 
-        {/* Mobile Menu Toggle */}
         <button
           onClick={() => setIsMenuOpen((prev) => !prev)}
           className="ml-4 p-2 md:hidden"
@@ -39,14 +37,13 @@ export default function HeaderSection() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {isMenuOpen && (
         <div className={IsMenuOpenStyle}>
           <NavButtons
             style={MobileNav}
             scrollToSection={(id) => {
-              scrollToSection(id); // scrolls to section
-              setIsMenuOpen(false); // auto-close menu
+              scrollToSection(id);
+              setIsMenuOpen(false);
             }}
           />
         </div>

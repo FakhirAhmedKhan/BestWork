@@ -92,3 +92,5 @@ export const botSpanStyle =
   "flex items-center justify-between px-4 py-2 text-lg font-bold text-white";
 export const UserMessageStyle =
   "flex items-center justify-between text-lg font-bold text-black flex-shrink-0";
+export const FooterMessageStyle =
+  "mx-auto max-w-2xl text-lg text-neutral-700 md:text-xl dark:text-neutral-400  mt-8 text-center text-sm text-gray-400";

@@ -1,14 +1,13 @@
 import { motion as Motion } from "framer-motion";
-import ProjectCard from "../components/ProjectCard";
+import ProjectCard from "./ProjectCard";
 import {
   fadeInUp,
   SectionTitle,
   ProjectFilterStyle,
   styles,
   projectDivStyle,
-} from "../UI/styles";
-import { useProjectFilter } from "../script/script";
-import projectData from "../Data/project.json";
+} from "../../UI/styles";
+import { useProjectFilter, projects as projectData } from "./projectValue";
 
 export default function ProjectSection() {
   const { categories, activeCategory, filteredProjects, setActiveCategory } =
@@ -37,10 +36,10 @@ export default function ProjectSection() {
       </Motion.div>
 
       <div className={projectDivStyle}>
-        {(Array.isArray(filteredProjects) ? filteredProjects : []).map(
+        {(Array.isArray(filteredProjects) ? filteredProjects : [0]).map(
           (project) => (
             <ProjectCard key={project.id || project.title} project={project} />
-          ),
+          )
         )}
       </div>
     </section>

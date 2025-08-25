@@ -1,12 +1,12 @@
 import { motion as Motion } from "framer-motion";
-import education from "../Data/education.json";
+import {educationData} from "./education";
 import {
   SectionTitle,
   EduCartStyle,
   Paragraph,
   H3,
   fadeInUp,
-} from "../UI/styles";
+} from "../../UI/styles";
 
 export default function Education() {
   return (
@@ -15,9 +15,8 @@ export default function Education() {
         My Journey
       </Motion.h2>
 
-      {education.map((item, index) => {
+      {educationData.map((item, index) => {
         const isLeft = index % 2 === 0;
-
         return (
           <Motion.div
             key={index}

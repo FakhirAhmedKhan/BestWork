@@ -4,7 +4,7 @@ import {
   SkillDivStyle,
   sectionSkills,
   fadeInUp,
-} from "../UI/styles";
+} from "../../UI/styles";
 import BubbleText from "./BubbleText";
 
 export default function SkillsSection({ skills }) {
@@ -17,12 +17,10 @@ export default function SkillsSection({ skills }) {
       <BubbleText text="I'm still learning and exploring these tools as a beginner." />
 
       <div className={SkillDivStyle}>
-        {skills.map((skill, i) => (
+        {skills.map((skill) => (
           <Motion.div
             key={skill.name}
             className="p-10 hover:scale-105"
-            custom={i}
-            {...fadeInUp(0.2)}
           >
             <skill.icon className="h-10 w-10 text-indigo-300" />
           </Motion.div>

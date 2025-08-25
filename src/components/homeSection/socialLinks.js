@@ -1,4 +1,5 @@
 import { Github, Linkedin, Twitter } from "lucide-react";
+
 export const socialLinks = [
   { url: "https://github.com/FakhirAhmedKhan", icon: Github, label: "GitHub" },
   {

@@ -4,9 +4,10 @@ import {
   SectionTitle,
   FooterStyle,
   SuccessStyle,
-} from "../UI/styles";
+  FooterMessageStyle,
+} from "../../UI/styles";
 import { CheckCircle } from "lucide-react";
-import { useFooterForm } from "../script/script";
+import { useFooterForm } from "./data";
 
 export default function Footer() {
   const { email, setEmail, status, handleSubmit } = useFooterForm();
@@ -32,7 +33,7 @@ export default function Footer() {
         )}
       </form>
 
-      <p className={`${Paragraph} mt-8 text-center text-sm text-gray-400`}>
+      <p className={FooterMessageStyle}>
         Built with 💖 using React & Tailwind CSS.
       </p>
     </footer>

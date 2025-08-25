@@ -1,16 +1,20 @@
-import { useState, lazy, Suspense } from "react";
-import HeaderSection from "./components/Header.jsx";
-import HomeSection from "./components/Home.jsx";
-import ChatBot from "./components/ChatBot";
-import Footer from "./components/Footer";
-import trainingData from "./Data/data.js";
-import projects from "./Data/project.json";
-import skills from "./Data/skills.js";
-import education from "./Data/education.json";
+import { useState, lazy } from "react";
+import HeaderSection from "./components/navSection/Header";
+import HomeSection from "./components/homeSection/Home";
+import ChatBot from "./components/footerSection/ChatBot";
+import Footer from "./components/footerSection/Footer";
+import trainingData from "./components/footerSection/data";
+import { projects } from "./components/projectSeection/projectValue.js";
+import skills from "./components/skillsSection/skills.js";
+import education from "./components/skillsSection/skills";
 
-const ProjectSection = lazy(() => import("./components/Project.jsx"));
-const SkillsSection = lazy(() => import("./components/Skill.jsx"));
-const Education = lazy(() => import("./components/Edu.jsx"));
+const ProjectSection = lazy(
+  () => import("./components/projectSeection/Project.jsx")
+);
+const SkillsSection = lazy(
+  () => import("./components/skillsSection/Skill.jsx")
+);
+const Education = lazy(() => import("./components/EduSection/Edu.jsx"));
 
 import {
   BotToggleButton,
@@ -32,41 +36,25 @@ export default function App() {
         <main className="container mx-auto px-4 pt-24 sm:px-6 lg:px-8">
           <HeaderSection />
           <HomeSection />
-          <Suspense
-            fallback={
-              <div className="py-8 text-center">Loading projects...</div>
-            }
-          >
-            <ProjectSection projectData={projects} />
-          </Suspense>
-          <Suspense
-            fallback={<div className="py-8 text-center">Loading skills...</div>}
-          >
-            <SkillsSection skills={skills} />
-          </Suspense>
-          <Suspense
-            fallback={
-              <div className="py-8 text-center">Loading education...</div>
-            }
-          >
-            <Education educationData={education} />
-          </Suspense>
+          <ProjectSection projectData={projects} />
+          <SkillsSection skills={skills} />
+          <Education educationData={education} />
           <Footer />
-        </main>
 
-        <ChatBot
-          show={isChatbotOpen}
-          onClose={() => setIsChatbotOpen(false)}
-          trainingData={trainingData}
-        />
-        <button
-          aria-label="Toggle ChatBot"
-          aria-expanded={isChatbotOpen}
-          className={BotToggleButton}
-          onClick={() => setIsChatbotOpen((prev) => !prev)}
-        >
-          <span className="text-[1.6em]">🤖</span>
-        </button>
+          <ChatBot
+            show={isChatbotOpen}
+            onClose={() => setIsChatbotOpen(false)}
+            trainingData={trainingData}
+          />
+          <button
+            aria-label="Toggle ChatBot"
+            aria-expanded={isChatbotOpen}
+            className={BotToggleButton}
+            onClick={() => setIsChatbotOpen((prev) => !prev)}
+          >
+            <span className="text-[1.6em]">🤖</span>
+          </button>
+        </main>
       </div>
     </div>
   );

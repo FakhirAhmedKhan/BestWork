@@ -1,5 +1,5 @@
 import { motion as Motion } from "framer-motion";
-import { socialLinks } from "../Data/socialLinks.js";
+import { socialLinks } from "./socialLinks.js";
 import {
   fadeInUp,
   HeadingH1,
@@ -8,7 +8,7 @@ import {
   HomeStyle,
   FakhirAhmedKhan,
   socialLinksDiv,
-} from "../UI/styles";
+} from "../../UI/styles.js";
 
 export default function HomeSection() {
   return (

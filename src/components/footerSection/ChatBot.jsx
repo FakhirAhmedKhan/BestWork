@@ -4,8 +4,8 @@ import {
   refStyle,
   botSpanStyle,
   UserMessageStyle,
-} from "../UI/styles";
-import { useChatBot } from "../script/script.js";
+} from "../../UI/styles.js";
+import { useChatBot } from "./data";
 
 export default function ChatBot({ show, trainingData }) {
   const { chatBodyRef, chatHistory, input, setInput, handleFormSubmit } =
