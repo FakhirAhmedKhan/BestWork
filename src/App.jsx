@@ -32,8 +32,8 @@ export default function App() {
         <div className={MainBGColorTertiary} />
       </div>
 
-      <div className="relative z-10">
-        <main className="container mx-auto px-4 pt-24 sm:px-6 lg:px-8">
+      <div className="">
+        <main>
           <HeaderSection />
           <HomeSection />
           <ProjectSection projectData={projects} />
