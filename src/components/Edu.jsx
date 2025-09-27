@@ -1,7 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
-import { educationData } from "./education";
-import { SectionTitle, EduCartStyle, Paragraph, H3 } from "../../UI/styles";
+import { SectionTitle, EduCartStyle, Paragraph, H3 } from "../UI/styles";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 // Motion variants
 const containerVariants = {
@@ -18,6 +19,18 @@ const itemVariants = {
 };
 
 export default function Education() {
+  const [Education, setEducation] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://raw.githubusercontent.com/FakhirAhmedKhan/DataApi-main/refs/heads/main/data.json"
+      )
+      .then((res) => {
+        setEducation(res.data.educationData || []);
+      })
+      .catch((err) => console.error("Error fetching Education:", err));
+  }, []);
   return (
     <section id="🚊" className="relative px-4 md:px-12 lg:px-24 py-16">
       {/* Title */}
@@ -40,7 +53,7 @@ export default function Education() {
         animate="show"
         className="mt-16 flex flex-col gap-16"
       >
-        {educationData.map((item, index) => {
+        {Education.map((item, index) => {
           const isLeft = index % 2 === 0;
 
           return (

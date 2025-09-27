@@ -1,6 +1,4 @@
 import { Menu, X } from "lucide-react";
-import useHeaderMenu from "./nav.js";
-import NavButtons from "./NavButtons.jsx";
 import {
   Header,
   LogoText,
@@ -9,11 +7,18 @@ import {
   DesktopNav,
   HeaderDiv,
   DivNav,
-} from "../../UI/styles.js";
+  styles,
+} from "../UI/styles.js";
+import { useState } from "react";
 
 export default function HeaderSection() {
-  const { isMenuOpen, setIsMenuOpen, scrollToSection } = useHeaderMenu();
+  const navItems = ["🏠", "👨🏻‍💻", "🛠️", "🚊", "📧"];
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const scrollToSection = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setIsMenuOpen(false);
+  };
   return (
     <header className={Header}>
       <div className={HeaderDiv}>
@@ -22,7 +27,16 @@ export default function HeaderSection() {
         </span>
 
         <span className={DivNav}>
-          <NavButtons style={DesktopNav} scrollToSection={scrollToSection} />
+          {navItems.map((item) => (
+            <button
+              key={item}
+              onClick={() => scrollToSection(item)}
+              className={styles}
+              name={item}
+            >
+              {item}
+            </button>
+          ))}{" "}
         </span>
 
         <button

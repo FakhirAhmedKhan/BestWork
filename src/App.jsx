@@ -1,20 +1,13 @@
 import { useState, lazy } from "react";
-import HeaderSection from "./components/navSection/Header";
-import HomeSection from "./components/homeSection/Home";
 import ChatBot from "./components/footerSection/ChatBot";
-import Footer from "./components/footerSection/Footer";
 import trainingData from "./components/footerSection/data";
-import { projects } from "./components/projectSeection/projectValue.js";
-import skills from "./components/skillsSection/skills.js";
-import education from "./components/skillsSection/skills";
 
-const ProjectSection = lazy(
-  () => import("./components/projectSeection/Project.jsx")
-);
-const SkillsSection = lazy(
-  () => import("./components/skillsSection/Skill.jsx")
-);
-const Education = lazy(() => import("./components/EduSection/Edu.jsx"));
+const ProjectSection = lazy(() => import("./components/Project.jsx"));
+const SkillsSection = lazy(() => import("./components/Skill.jsx"));
+const Education = lazy(() => import("./components/Edu.jsx"));
+const Footer = lazy(() => import("./components/Footer.jsx"));
+const HeaderSection = lazy(() => import("./components/Header"));
+const HomeSection = lazy(() => import("./components/Home"));
 
 import {
   BotToggleButton,
@@ -36,11 +29,10 @@ export default function App() {
         <main>
           <HeaderSection />
           <HomeSection />
-          <ProjectSection projectData={projects} />
-          <SkillsSection skills={skills} />
-          <Education educationData={education} />
+          <SkillsSection />
+          <ProjectSection />
+          <Education />
           <Footer />
-
           <ChatBot
             show={isChatbotOpen}
             onClose={() => setIsChatbotOpen(false)}
