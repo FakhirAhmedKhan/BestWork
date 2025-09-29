@@ -1,22 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
-import { SectionTitle, EduCartStyle, Paragraph, H3 } from "../UI/styles";
+import { SectionTitle, EduCartStyle, Paragraph, H3, EduitemVariants, EducontainerVariants } from "../UI/styles";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
-// Motion variants
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.3 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 50 },
-  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 60 } },
-};
 
 export default function Education() {
   const [Education, setEducation] = useState([]);
@@ -48,18 +34,17 @@ export default function Education() {
 
       {/* Timeline Cards */}
       <motion.div
-        variants={containerVariants}
+        variants={EducontainerVariants}
         initial="hidden"
         animate="show"
         className="mt-16 flex flex-col gap-16"
       >
         {Education.map((item, index) => {
           const isLeft = index % 2 === 0;
-
           return (
             <motion.div
               key={index}
-              variants={itemVariants}
+              variants={EduitemVariants}
               className={`relative flex w-full ${
                 isLeft ? "md:justify-start" : "md:justify-end"
               } justify-center`}

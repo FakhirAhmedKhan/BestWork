@@ -1,7 +1,7 @@
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Header, LogoText, HeaderDiv, DivNav, styles } from "../UI/styles.js";
+import { Header, LogoText, HeaderDiv, DivNav, styles, HeadmenuVariants, HeaditemVariants } from "../UI/styles.js";
 
 export default function HeaderSection() {
   const navItems = [
@@ -18,21 +18,6 @@ export default function HeaderSection() {
     const section = document.getElementById(id);
     if (section) section.scrollIntoView({ behavior: "smooth" });
     setIsMenuOpen(false);
-  };
-
-  // Framer Motion variants
-  const menuVariants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.3, staggerChildren: 0.05 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.2 } },
   };
 
   return (
@@ -70,7 +55,7 @@ export default function HeaderSection() {
           ) : (
             <Menu className="h-6 w-6" />
           )}
-        </button>  
+        </button>
       </div>
 
       {/* Mobile Navigation with Animation */}
@@ -81,14 +66,14 @@ export default function HeaderSection() {
             initial="hidden"
             animate="visible"
             exit="hidden"
-            variants={menuVariants}
+            variants={HeadmenuVariants}
           >
             {navItems.map((item) => (
               <motion.button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 className="py-2 px-4 w-full text-center hover:bg-gray-800 rounded-md transition"
-                variants={itemVariants}
+                variants={HeaditemVariants}
               >
                 {item.icon}
               </motion.button>

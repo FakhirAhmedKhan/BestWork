@@ -1,30 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import axios from "axios"; // <-- FIX: Added missing axios import
-
-// --- (Optional) Your local style imports ---
-// I've used standard Tailwind classes, but you can swap these back
-// if you have them defined in your project.
-// import { SectionTitle, sectionSkills, H3 } from "../UI/styles";
-
-// --- Motion Variants ---
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-};
-
-const skillItemVariants = {
-  hidden: { opacity: 0, scale: 0.8, y: 30 },
-  show: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: { type: "spring", stiffness: 200, damping: 12 },
-  },
-};
+import axios from "axios";
+import { SkillcontainerVariants, skillItemVariants } from "../UI/styles";
 
 // --- Main Component ---
 export default function SkillsSection({ text }) {
@@ -81,7 +58,7 @@ export default function SkillsSection({ text }) {
         {error && <p className="text-center text-red-500">{error}</p>}
         {!isLoading && !error && (
           <motion.div
-            variants={containerVariants}
+            variants={SkillcontainerVariants}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.2 }} // Triggers when 20% is visible
@@ -105,9 +82,6 @@ export default function SkillsSection({ text }) {
                   alt={`${skill.name} logo`}
                   className="h-16 w-16" // Increased size for better visibility
                 />
-                <p className="mt-4 font-semibold text-sm text-gray-700 dark:text-gray-300">
-                  {skill.name}
-                </p>
               </motion.div>
             ))}
           </motion.div>

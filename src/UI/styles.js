@@ -157,3 +157,47 @@ export const fadeInUp = (delay = 0) => ({
   viewport: { once: true },
   transition: { delay, duration: 0.6 },
 });
+// Motion variants
+export const EducontainerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.3 },
+  },
+};
+
+export const EduitemVariants = {
+  hidden: { opacity: 0, y: 50 },
+  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 60 } },
+};
+// Framer Motion variants
+export const HeadmenuVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.3, staggerChildren: 0.05 },
+  },
+};
+
+export const HeaditemVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.2 } },
+};
+export const SkillcontainerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 },
+  },
+};
+
+export const skillItemVariants = {
+  hidden: { opacity: 0, scale: 0.8, y: 30 },
+  show: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 200, damping: 12 },
+  },
+};

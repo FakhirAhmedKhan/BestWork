@@ -1,0 +1,210 @@
+"use client";
+import { motion } from "framer-motion";
+import { ChatBotStyle, InputBase, refStyle } from "../UI/styles.js";
+import { Send } from "lucide-react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import axios from "axios";
+
+export default function ChatBot({ show }) {
+  const [trainingData, setTrainingData] = useState([]);
+  const [chatHistory, setChatHistory] = useState([]);
+  const [input, setInput] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
+
+  const chatBodyRef = useRef(null);
+
+  // Simple cache: question -> answer
+  const responseCache = useRef(new Map());
+
+  // Prepare training text
+  const trainingText = useMemo(() => {
+    return trainingData
+      .map(
+        ({ question, answer }, i) =>
+          `Q${i + 1}: ${question}\nA${i + 1}: ${answer}`
+      )
+      .join("\n\n");
+  }, [trainingData]);
+
+  // Fetch training data from GitHub
+  useEffect(() => {
+    axios
+      .get(
+        "https://raw.githubusercontent.com/FakhirAhmedKhan/DataApi-main/refs/heads/main/data.json"
+      )
+      .then((res) => setTrainingData(res.data.trainingData || []))
+      .catch((err) => console.error("Error fetching Data:", err));
+  }, []);
+
+  // Auto-scroll to bottom on chat update
+  useEffect(() => {
+    chatBodyRef.current?.scrollTo({
+      top: chatBodyRef.current.scrollHeight,
+      behavior: "smooth",
+    });
+  }, [chatHistory, isTyping]);
+
+  // Generate bot response with caching
+  const generateBotResponse = useCallback(
+    async (history, userInput) => {
+      if (!history.length) return;
+
+      // Check cache first
+      if (responseCache.current.has(userInput)) {
+        const cachedAnswer = responseCache.current.get(userInput);
+        setChatHistory((prev) => [
+          ...prev,
+          { role: "model", text: cachedAnswer },
+        ]);
+        return;
+      }
+
+      setIsTyping(true);
+      try {
+        const res = await fetch(import.meta.env.VITE_API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contents: [
+              ...(trainingText
+                ? [{ role: "user", parts: [{ text: trainingText }] }]
+                : []),
+              ...history.map(({ role, text }) => ({
+                role,
+                parts: [{ text }],
+              })),
+            ],
+          }),
+        });
+
+        if (!res.ok) {
+          const errorData = await res.json();
+          console.error("API Error:", errorData);
+          setIsTyping(false);
+          return;
+        }
+
+        const text = (
+          await res.json()
+        )?.candidates?.[0]?.content?.parts?.[0]?.text
+          ?.replace(/<[^>]+>/g, "")
+          .trim();
+
+        if (text) {
+          // Save to cache
+          responseCache.current.set(userInput, text);
+          setChatHistory((prev) => [...prev, { role: "model", text }]);
+        }
+      } catch (error) {
+        console.error("Bot response error:", error);
+      } finally {
+        setIsTyping(false);
+      }
+    },
+    [trainingText]
+  );
+
+  // Handle user submitting input
+  const handleFormSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      const trimmedInput = input.trim();
+      if (!trimmedInput) return;
+
+      const updated = [...chatHistory, { role: "user", text: trimmedInput }];
+      setChatHistory(updated);
+      setInput("");
+
+      await generateBotResponse(updated, trimmedInput);
+    },
+    [input, chatHistory, generateBotResponse]
+  );
+
+  if (!show) return null;
+
+  return (
+    <motion.section
+      className={`${ChatBotStyle} fixed bottom-6 right-6 w-80 md:w-96 h-[500px] rounded-2xl shadow-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 flex flex-col`}
+      initial={{ opacity: 0, scale: 0.8, y: 40 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ type: "spring", stiffness: 120, damping: 15 }}
+    >
+      {/* Chat Body */}
+      <div
+        ref={chatBodyRef}
+        className={`${refStyle} flex-1 overflow-y-auto p-4 space-y-4`}
+      >
+        {/* Welcome Bot Message */}
+        {chatHistory.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="flex items-start gap-2"
+          >
+            <span className="px-4 py-2 rounded-xl bg-indigo-100 text-indigo-800 dark:bg-indigo-800 dark:text-indigo-100 shadow-sm">
+              🤖 Hi there! Welcome to my portfolio. How may I assist you today?
+            </span>
+          </motion.div>
+        )}
+
+        {/* Chat History */}
+        {chatHistory.map((message, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            className={`flex ${
+              message.role === "user" ? "justify-end" : "justify-start"
+            }`}
+          >
+            <div
+              className={`px-4 py-2 max-w-[75%] rounded-xl shadow-sm ${
+                message.role === "user"
+                  ? "bg-indigo-500 text-white rounded-br-none"
+                  : "bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-bl-none"
+              }`}
+            >
+              {message.text}
+            </div>
+          </motion.div>
+        ))}
+
+        {/* Typing indicator */}
+        {isTyping && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex justify-start gap-2"
+          >
+            <span className="px-4 py-2 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 shadow-sm animate-pulse">
+              🤖 Bot is typing...
+            </span>
+          </motion.div>
+        )}
+      </div>
+
+      {/* Input Form */}
+      <form
+        onSubmit={handleFormSubmit}
+        className="p-3 border-t border-gray-200 dark:border-gray-700 flex items-center gap-2"
+      >
+        <input
+          type="text"
+          placeholder="Type a message..."
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          className={`${InputBase} flex-1 px-4 py-2 rounded-xl`}
+          aria-label="Type your message"
+        />
+        <button
+          type="submit"
+          disabled={!input.trim() || isTyping}
+          className="p-2 rounded-full bg-indigo-500 text-white hover:bg-indigo-600 disabled:opacity-50"
+        >
+          <Send className="w-5 h-5" />
+        </button>
+      </form>
+    </motion.section>
+  );
+}

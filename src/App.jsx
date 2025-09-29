@@ -1,20 +1,17 @@
 import { useState, lazy } from "react";
-import ChatBot from "./components/footerSection/ChatBot";
-import trainingData from "./components/footerSection/data";
-
-const ProjectSection = lazy(() => import("./components/Project.jsx"));
-const SkillsSection = lazy(() => import("./components/Skill.jsx"));
-const Education = lazy(() => import("./components/Edu.jsx"));
-const Footer = lazy(() => import("./components/Footer.jsx"));
-const HeaderSection = lazy(() => import("./components/Header"));
-const HomeSection = lazy(() => import("./components/Home"));
-
 import {
   BotToggleButton,
   MainBGColor,
   MainBGColorSecondary,
   MainBGColorTertiary,
 } from "../src/UI/styles.js";
+const ProjectSection = lazy(() => import("./components/Project.jsx"));
+const SkillsSection = lazy(() => import("./components/Skill.jsx"));
+const Education = lazy(() => import("./components/Edu.jsx"));
+const Footer = lazy(() => import("./components/Footer.jsx"));
+const HeaderSection = lazy(() => import("./components/Header"));
+const HomeSection = lazy(() => import("./components/Home"));
+const ChatBot = lazy(() => import("./components/ChatBot"));
 
 export default function App() {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
@@ -36,7 +33,6 @@ export default function App() {
           <ChatBot
             show={isChatbotOpen}
             onClose={() => setIsChatbotOpen(false)}
-            trainingData={trainingData}
           />
           <button
             aria-label="Toggle ChatBot"
