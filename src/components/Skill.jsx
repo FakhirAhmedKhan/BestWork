@@ -1,43 +1,61 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
-import { SkillcontainerVariants, skillItemVariants } from "../UI/styles";
 
-export default function SkillsSection({ text }) {
+export default function SkillsSection() {
   const [skills, setSkills] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // ✅ default true
-  const [error, setError] = useState(null); // ✅ default null
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  // Motion Variants
+  const containerVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.12,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const skillVariants = {
+    hidden: { opacity: 0, y: 30 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  };
 
   useEffect(() => {
-    const storedData = localStorage.getItem("skills");
-
-    if (storedData) {
-      setSkills(JSON.parse(storedData));
-      setIsLoading(false); // ✅ stop loading
-    } else {
-      axios
-        .get(
-          "https://raw.githubusercontent.com/FakhirAhmedKhan/DataApi-main/main/Data/skillsIcons.json"
-        )
-        .then((res) => {
-          const data = res.data.skills || [];
+    const fetchSkills = async () => {
+      try {
+        const storedSkills = localStorage.getItem("skills");
+        if (storedSkills) {
+          setSkills(JSON.parse(storedSkills));
+        } else {
+          const response = await axios.get(
+            "https://raw.githubusercontent.com/FakhirAhmedKhan/DataApi-main/main/Data/skillsIcons.json"
+          );
+          const data = response.data.skills || [];
           setSkills(data);
           localStorage.setItem("skills", JSON.stringify(data));
-        })
-        .catch((err) => {
-          console.error("Error fetching Skills:", err);
-          setError("Failed to load skills. Please try again later.");
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-    }
+        }
+      } catch (err) {
+        console.error("Error fetching skills:", err);
+        setError("Failed to load skills. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSkills();
   }, []);
 
   return (
-    <section id="skills" className="px-6 md:px-16 lg:px-24 py-16">
+    <section
+      id="skills"
+      className="px-6 md:px-16 lg:px-24 py-16"
+    >
+      {/* Section Title */}
       <motion.h2
-        className="text-3xl md:text-4xl font-bold text-center text-gray-800 dark:text-white"
+        className="text-3xl md:text-4xl font-extrabold text-center text-gray-800 dark:text-white"
         initial={{ opacity: 0, y: -40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -46,48 +64,55 @@ export default function SkillsSection({ text }) {
         Skills & Toolkit
       </motion.h2>
 
-      <motion.h3
-        className="mt-4 mb-10 text-lg text-center text-gray-600 dark:text-gray-300"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.2, duration: 0.5 }}
-      >
-        {text}
-      </motion.h3>
+      {/* Loading & Error */}
+      {loading && (
+        <p className="text-center mt-8 text-gray-500 dark:text-gray-400">
+          Loading skills...
+        </p>
+      )}
+      {error && (
+        <p className="text-center mt-8 text-red-500 dark:text-red-400">
+          {error}
+        </p>
+      )}
 
       {/* Skills Grid */}
-      <div className="mt-12">
-        {isLoading && <p className="text-center">Loading Skills...</p>}
-        {error && <p className="text-center text-red-500">{error}</p>}
-        {!isLoading && !error && (
-          <motion.div
-            variants={SkillcontainerVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8"
-          >
-            {skills.map((skill, index) => (
-              <motion.div
-                key={skill.name || index} // ✅ safe key
-                variants={skillItemVariants}
-                whileHover={{
-                  scale: 1.1,
-                  transition: { duration: 0.3 },
-                }}
-                className="flex flex-col items-center justify-center text-center p-4 rounded-xl shadow-md bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all"
-              >
-                <img
-                  src={skill.icon}
-                  alt={`${skill.name} logo`}
-                  className="h-16 w-16"
-                />
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
-      </div>
+      {!loading && !error && (
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8"
+        >
+          {skills.map((skill, index) => (
+            <motion.div
+              key={skill.name || index}
+              variants={skillVariants}
+              whileHover={{
+                scale: 1.15,
+                rotate: 5, // subtle rotation
+                transition: { duration: 0.4, ease: "easeOut" },
+              }}
+              className="relative flex flex-col items-center justify-center text-center p-4 rounded-xl bg-white dark:bg-gray-800 shadow-md hover:shadow-2xl transition-all group"
+            >
+              {/* Gradient Glow */}
+              <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-400 via-pink-500 to-indigo-500 opacity-0 group-hover:opacity-30 transition-all duration-500 blur-xl z-0"></span>
+
+              {/* Icon */}
+              <img
+                src={skill.icon}
+                alt={`${skill.name} logo`}
+                className="h-16 w-16 mb-2 relative z-10"
+              />
+              {/* Skill Name */}
+              <span className="mt-2 text-gray-700 dark:text-gray-200 font-medium text-sm relative z-10">
+                {skill.name}
+              </span>
+            </motion.div>
+          ))}
+        </motion.div>
+      )}
     </section>
   );
 }
