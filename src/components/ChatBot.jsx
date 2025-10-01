@@ -10,13 +10,8 @@ export default function ChatBot({ show }) {
   const [chatHistory, setChatHistory] = useState([]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-
   const chatBodyRef = useRef(null);
-
-  // Simple cache: question -> answer
   const responseCache = useRef(new Map());
-
-  // Prepare training text
   const trainingText = useMemo(() => {
     return trainingData
       .map(
@@ -26,17 +21,24 @@ export default function ChatBot({ show }) {
       .join("\n\n");
   }, [trainingData]);
 
-  // Fetch training data from GitHub
   useEffect(() => {
-    axios
-      .get(
-        "https://raw.githubusercontent.com/FakhirAhmedKhan/DataApi-main/refs/heads/main/data.json"
-      )
-      .then((res) => setTrainingData(res.data.trainingData || []))
-      .catch((err) => console.error("Error fetching Data:", err));
+    const storedData = localStorage.getItem("trainingData");
+    if (storedData) {
+      setTrainingData(JSON.parse(storedData));
+    } else {
+      axios
+        .get(
+          "https://raw.githubusercontent.com/FakhirAhmedKhan/DataApi-main/refs/heads/main/Data/trainingData.json"
+        )
+        .then((res) => {
+          const data = res.data.trainingData || [];
+          setTrainingData(data);
+          localStorage.setItem("trainingData", JSON.stringify(data));
+        })
+        .catch((err) => console.error("Error fetching Data:", err));
+    }
   }, []);
 
-  // Auto-scroll to bottom on chat update
   useEffect(() => {
     chatBodyRef.current?.scrollTo({
       top: chatBodyRef.current.scrollHeight,
@@ -44,12 +46,10 @@ export default function ChatBot({ show }) {
     });
   }, [chatHistory, isTyping]);
 
-  // Generate bot response with caching
   const generateBotResponse = useCallback(
     async (history, userInput) => {
       if (!history.length) return;
 
-      // Check cache first
       if (responseCache.current.has(userInput)) {
         const cachedAnswer = responseCache.current.get(userInput);
         setChatHistory((prev) => [
@@ -91,7 +91,6 @@ export default function ChatBot({ show }) {
           .trim();
 
         if (text) {
-          // Save to cache
           responseCache.current.set(userInput, text);
           setChatHistory((prev) => [...prev, { role: "model", text }]);
         }
@@ -104,7 +103,6 @@ export default function ChatBot({ show }) {
     [trainingText]
   );
 
-  // Handle user submitting input
   const handleFormSubmit = useCallback(
     async (e) => {
       e.preventDefault();
@@ -129,12 +127,10 @@ export default function ChatBot({ show }) {
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ type: "spring", stiffness: 120, damping: 15 }}
     >
-      {/* Chat Body */}
       <div
         ref={chatBodyRef}
         className={`${refStyle} flex-1 overflow-y-auto p-4 space-y-4`}
       >
-        {/* Welcome Bot Message */}
         {chatHistory.length === 0 && (
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -147,7 +143,6 @@ export default function ChatBot({ show }) {
           </motion.div>
         )}
 
-        {/* Chat History */}
         {chatHistory.map((message, index) => (
           <motion.div
             key={index}
@@ -170,7 +165,6 @@ export default function ChatBot({ show }) {
           </motion.div>
         ))}
 
-        {/* Typing indicator */}
         {isTyping && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -184,7 +178,6 @@ export default function ChatBot({ show }) {
         )}
       </div>
 
-      {/* Input Form */}
       <form
         onSubmit={handleFormSubmit}
         className="p-3 border-t border-gray-200 dark:border-gray-700 flex items-center gap-2"

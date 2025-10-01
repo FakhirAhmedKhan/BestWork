@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { motion } from "framer-motion";
 import {
   fadeInUp,
@@ -9,27 +11,29 @@ import {
   socialLinksDiv,
 } from "../UI/styles.js";
 
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-
 export default function HomeSection() {
-  
   const [socialLinks, setSocialLinks] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(
-        "https://raw.githubusercontent.com/FakhirAhmedKhan/DataApi-main/refs/heads/main/data.json"
-      )
-      .then((res) => {
-        setSocialLinks(res.data.socialLinks || []);
-      })
-      .catch((err) => console.error("Error fetching socialLinks:", err));
+    const storedData = localStorage.getItem("socialLinks");
+    if (storedData) {
+      setSocialLinks(JSON.parse(storedData));
+    } else {
+      axios
+        .get(
+          "https://raw.githubusercontent.com/FakhirAhmedKhan/DataApi-main/refs/heads/main/Data/socialLinks.json"
+        )
+        .then((res) => {
+          const data = res.data.socialLinks || [];
+          setSocialLinks(data);
+          localStorage.setItem("socialLinks", JSON.stringify(data));
+        })
+        .catch((err) => console.error("Error fetching socialLinks:", err));
+    }
   }, []);
 
-
   return (
-    <section id="🏠" className={HomeStyle}>
+    <section id="home" className={HomeStyle}>
       <motion.div className="space-y-6" {...fadeInUp(0.2)}>
         <h1 className={HeadingH1}>
           <span className="block">Hello, I'm</span>

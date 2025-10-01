@@ -1,25 +1,39 @@
-"use client";
-import { motion } from "framer-motion";
-import { SectionTitle, EduCartStyle, Paragraph, H3, EduitemVariants, EducontainerVariants } from "../UI/styles";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import axios from "axios";
+import {
+  SectionTitle,
+  EduCartStyle,
+  Paragraph,
+  H3,
+  EduitemVariants,
+  EducontainerVariants,
+} from "../UI/styles";
 
 export default function Education() {
   const [Education, setEducation] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(
-        "https://raw.githubusercontent.com/FakhirAhmedKhan/DataApi-main/refs/heads/main/data.json"
-      )
-      .then((res) => {
-        setEducation(res.data.educationData || []);
-      })
-      .catch((err) => console.error("Error fetching Education:", err));
+    const storedData = localStorage.getItem("educationData");
+
+    if (storedData) {
+      setEducation(JSON.parse(storedData));
+    } else {
+      axios
+        .get(
+          "https://raw.githubusercontent.com/FakhirAhmedKhan/DataApi-main/refs/heads/main/Data/educationData.json"
+        )
+        .then((res) => {
+          const data = res.data.educationData || [];
+          setEducation(data);
+          localStorage.setItem("educationData", JSON.stringify(data));
+        })
+        .catch((err) => console.error("Error fetching Education:", err));
+    }
   }, []);
+
   return (
-    <section id="🚊" className="relative px-4 md:px-12 lg:px-24 py-16">
-      {/* Title */}
+    <section id="about" className="relative px-4 md:px-12 lg:px-24 py-16">
       <motion.h2
         className={`${SectionTitle} text-center`}
         initial={{ opacity: 0, y: -40 }}
@@ -29,10 +43,8 @@ export default function Education() {
         My Journey
       </motion.h2>
 
-      {/* Timeline Line */}
       <div className="absolute left-1/2 top-24 bottom-0  md:block w-[4px] bg-gradient-to-b from-indigo-500 via-purple-500 to-pink-500 transform -translate-x-1/2 rounded-full" />
 
-      {/* Timeline Cards */}
       <motion.div
         variants={EducontainerVariants}
         initial="hidden"
@@ -49,10 +61,8 @@ export default function Education() {
                 isLeft ? "md:justify-start" : "md:justify-end"
               } justify-center`}
             >
-              {/* Connector Dot */}
               <span className="hidden md:block absolute top-6 left-1/2 w-6 h-6 rounded-full bg-gradient-to-r from-indigo-500 to-pink-500 border-4 border-white shadow-md transform -translate-x-1/2 z-10" />
 
-              {/* Card */}
               <div
                 className={`${EduCartStyle} max-w-[90%] md:max-w-[45%] shadow-lg rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 p-6`}
               >

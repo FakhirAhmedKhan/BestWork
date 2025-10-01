@@ -1,14 +1,22 @@
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Header, LogoText, HeaderDiv, DivNav, styles, HeadmenuVariants, HeaditemVariants } from "../UI/styles.js";
+import {
+  Header,
+  LogoText,
+  HeaderDiv,
+  DivNav,
+  styles,
+  HeadmenuVariants,
+  HeaditemVariants,
+} from "../UI/styles.js";
 
 export default function HeaderSection() {
   const navItems = [
     { id: "home", icon: "🏠" },
-    { id: "about", icon: "👨🏻‍💻" },
+    { id: "about", icon: "🚊" },
     { id: "skills", icon: "🛠️" },
-    { id: "projects", icon: "🚊" },
+    { id: "projects", icon: "👨🏻‍💻" },
     { id: "contact", icon: "📧" },
   ];
 
@@ -23,12 +31,10 @@ export default function HeaderSection() {
   return (
     <header className={Header}>
       <div className={HeaderDiv}>
-        {/* Logo */}
         <div className={LogoText}>
           <a href="#">Simple.Dev</a>
         </div>
 
-        {/* Desktop Navigation */}
         <nav className={`${DivNav} hidden md:flex gap-4`}>
           {navItems.map((item) => (
             <motion.button
@@ -44,7 +50,6 @@ export default function HeaderSection() {
           ))}
         </nav>
 
-        {/* Mobile Menu Toggle */}
         <button
           onClick={() => setIsMenuOpen((prev) => !prev)}
           className="ml-4 p-2 md:hidden"
@@ -58,7 +63,6 @@ export default function HeaderSection() {
         </button>
       </div>
 
-      {/* Mobile Navigation with Animation */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.nav

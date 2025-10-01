@@ -30,7 +30,7 @@ export default function Footer() {
   }, [status]);
 
   return (
-    <footer id="📧" className={FooterStyle}>
+    <footer id="contact" className={FooterStyle}>
       <form onSubmit={handleSubmit}>
         <h2 className={SectionTitle}>Get In Touch</h2>
         <input
