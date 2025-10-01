@@ -19,7 +19,7 @@ const StyleGuide = {
       "mx-auto max-w-2xl text-lg text-neutral-700 md:text-xl dark:text-neutral-400",
     logo: "bg-gradient-to-r from-fuchsia-400 to-pink-500 bg-clip-text text-2xl font-bold tracking-tighter text-transparent",
     anchor:
-      "text-neutral-500 hover:text-fuchsia-500 transition-colors dark:text-neutral-400 dark:hover:text-pink-400",
+      "text-neutral-500 hover:text-fuchsia-500 transition-colors dark:text-neutral-400 dark:hover:text-pink-400 z-50",
   },
 
   // A collection of button styles for different variants.
@@ -59,7 +59,7 @@ const StyleGuide = {
     home: "flex min-h-screen items-center justify-center px-4 text-center space-y-6",
     footer: "flex min-h-screen items-center justify-center flex-col px-6 py-12",
     filterButtons: "mb-12 flex flex-wrap justify-center gap-3 md:gap-4",
-    socialLinks: "flex justify-center space-x-6",
+    socialLinks: "flex justify-center space-x-6 ",
     skillGrid:
       "mx-auto grid max-w-2xl grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4",
     projectGrid: "grid gap-8 md:grid-cols-2 lg:grid-cols-3",
