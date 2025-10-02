@@ -1,6 +1,0 @@
-import{r as c,j as e}from"./index-uOabPLHs.js";import{F as n,S as u,g as m,h as d,i as h}from"./styles-CzSGpsQ5.js";import{c as p}from"./createLucideIcon-BubKoly7.js";/**
- * @license lucide-react v0.539.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */const f=[["path",{d:"M21.801 10A10 10 0 1 1 17 3.335",key:"yps3ct"}],["path",{d:"m9 11 3 3L22 4",key:"1pflzl"}]],S=p("circle-check-big",f);function y(){const[i,o]=c.useState(""),[a,t]=c.useState("idle"),r=async s=>{if(s.preventDefault(),!i.includes("@"))return t("error");t("loading"),await new Promise(l=>setTimeout(l,1e3)),t("success"),o("")};return c.useEffect(()=>{if(a==="success"){const s=setTimeout(()=>t("idle"),3e3);return()=>clearTimeout(s)}},[a]),e.jsxs("footer",{id:"contact",className:n,children:[e.jsxs("form",{onSubmit:r,children:[e.jsx("h2",{className:u,children:"Get In Touch"}),e.jsx("input",{type:"email",value:i,onChange:s=>o(s.target.value),placeholder:"Your email address",className:m,id:"footer-email",name:"footer-email"}),a==="success"&&e.jsx("div",{className:d,children:e.jsx(S,{className:"h-6 w-6"})})]}),e.jsx("p",{className:h,children:"Built with 💖 using React & Tailwind CSS."})]})}export{y as default};
