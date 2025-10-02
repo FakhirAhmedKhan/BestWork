@@ -15,8 +15,7 @@ const StyleGuide = {
     h3: "mb-2 text-xl font-bold text-neutral-900 dark:text-neutral-100",
     sectionTitle:
       "text-center text-3xl sm:text-4xl font-bold tracking-tight mb-6 text-neutral-900 dark:text-neutral-100",
-    paragraph:
-      "mx-auto max-w-2xl text-lg text-neutral-700 md:text-xl dark:text-neutral-400",
+    paragraph:"",
     logo: "bg-gradient-to-r from-fuchsia-400 to-pink-500 bg-clip-text text-2xl font-bold tracking-tighter text-transparent",
     anchor:
       "text-neutral-500 hover:text-fuchsia-500 transition-colors dark:text-neutral-400 dark:hover:text-pink-400 z-50",
@@ -45,11 +44,6 @@ const StyleGuide = {
       "fixed right-5 bottom-2 flex w-[300px] max-w-md flex-col rounded-lg border border-white/10 bg-white/30 shadow-2xl backdrop-blur-md",
   },
 
-  // Common styles for form inputs.
-  forms: {
-    inputBase:
-      "w-full rounded-lg border border-neutral-600 bg-neutral-900/80 px-4 py-4 text-lg text-white placeholder-neutral-400 focus:ring-2 focus:ring-fuchsia-400 focus:outline-none",
-  },
 
   // Layout and container styles for structuring pages and components.
   layout: {
@@ -78,8 +72,7 @@ const StyleGuide = {
   components: {
     image:
       "h-48 w-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-105",
-    successMessage:
-      "flex items-center justify-center gap-2 py-4 text-lg font-medium text-green-400",
+    successMessage:"",
     bubbleText:
       "inline-block cursor-pointer rounded px-0.5 transition-transform duration-300 hover:scale-125 hover:text-fuchsia-100 hover:drop-shadow-[0_0_15px_rgba(217,70,239,0.9)]",
     chatHistory:
@@ -144,7 +137,6 @@ export const DivNav = StyleGuide.navigation.desktopContainer;
 // Miscellaneous & Component-specific
 export const ImgStyle = StyleGuide.components.image;
 export const SuccessStyle = StyleGuide.components.successMessage;
-export const InputBase = StyleGuide.forms.inputBase;
 export const BubbleBase = StyleGuide.components.bubbleText;
 export const refStyle = StyleGuide.components.chatHistory;
 export const botSpanStyle = StyleGuide.components.chatHeader;

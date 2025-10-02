@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { ChatBotStyle, InputBase, refStyle } from "../UI/styles.js";
-import { Send } from "lucide-react";
+import { ChatBotStyle, refStyle } from "../UI/styles.js";
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import axios from "axios";
 
@@ -187,16 +186,10 @@ export default function ChatBot({ show }) {
           placeholder="Type a message..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          className={`${InputBase} flex-1 px-4 py-2 rounded-xl`}
+          className={`flex-1 px-4 py-2 rounded-xl`}
           aria-label="Type your message"
         />
-        <button
-          type="submit"
-          disabled={!input.trim() || isTyping}
-          className="p-2 rounded-full bg-indigo-500 text-white hover:bg-indigo-600 disabled:opacity-50"
-        >
-          <Send className="w-5 h-5" />
-        </button>
+
       </form>
     </motion.section>
   );
