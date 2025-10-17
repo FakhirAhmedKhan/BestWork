@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useMemo, useState, useEffect } from "react";
-import { ExternalLink, Github, Eye } from "lucide-react";
+import { ExternalLink, Github, Eye, Code2 } from "lucide-react";
+import { AnimatedText } from "./Amina";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -83,7 +84,19 @@ export default function ProjectSection() {
         />
       </div>
 
-      <div className="relative max-w-7xl mx-auto">
+      <div className="relative max-w-7xl mx-auto text-center">
+        <motion.div
+          initial={{ scale: 0 }}
+          whileInView={{ scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
+          className="inline-flex items-center  gap-2  px-4 py-2 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-fuchsia-200 dark:border-fuchsia-800 shadow-lg mb-6"
+        >
+          <Code2 className="w-4 h-4 text-fuchsia-600 dark:text-fuchsia-400" />
+          <span className="text-sm font-semibold bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent">
+            Bro Work
+          </span>
+        </motion.div>
         {/* Header */}
         <motion.div className="text-center mb-16" {...fadeInUp}>
           <motion.div
@@ -97,9 +110,8 @@ export default function ProjectSection() {
             My Creations
           </h2>
 
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Explore my latest projects showcasing creativity, innovation, and
-            technical expertise
+          <p className="text-2xl text-gray-600 dark:text-gray-400  mx-auto">
+            <AnimatedText text="Explore my latest projects showcasing creativity innovation and technical expertise"/> 
           </p>
         </motion.div>
 
@@ -117,11 +129,10 @@ export default function ProjectSection() {
                   setActiveCategory(cat);
                   setVisibleCount(6);
                 }}
-                className={`relative px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-                  isActive
-                    ? "text-white shadow-xl scale-105"
-                    : "text-gray-700 dark:text-gray-300 hover:scale-105 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700"
-                }`}
+                className={`relative px-6 py-3 rounded-full font-semibold transition-all duration-300 ${isActive
+                  ? "text-white shadow-xl scale-105"
+                  : "text-gray-700 dark:text-gray-300 hover:scale-105 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700"
+                  }`}
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >

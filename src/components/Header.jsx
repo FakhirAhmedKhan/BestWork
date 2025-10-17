@@ -39,7 +39,7 @@ export default function HeaderSection() {
     { id: "skills", label: "Skills", icon: Code },
     { id: "projects", label: "Projects", icon: Briefcase },
     { id: "about", label: "Journey", icon: User },
-    { id: "contact", label: "Contact", icon: Mail },
+    // { id: "contact", label: "Contact", icon: Mail },
   ];
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);

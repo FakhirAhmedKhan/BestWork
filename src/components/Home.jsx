@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ReactTyped } from "react-typed";
 import { Github, Linkedin, Mail, ArrowDown, Sparkles } from "lucide-react";
+import { AnimatedText } from "./Amina";
 
 export default function HomeSection() {
   const [socialLinks, setSocialLinks] = useState([]);
@@ -35,7 +36,7 @@ export default function HomeSection() {
   return (
     <section
       id="home"
-      className="relative flex flex-col min-h-screen items-center justify-center px-4 overflow-hidden"
+      className="relative flex flex-col items-center justify-center px-4 overflow-hidden"
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -82,13 +83,13 @@ export default function HomeSection() {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 max-w-5xl mx-auto text-center space-y-8">
+      <div className="relative z-10 max-w-5xl mx-auto text-center space-y-13">
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-fuchsia-200 dark:border-fuchsia-800 shadow-lg"
+          className="inline-flex items-center gap-2 mt-29 px-4 py-2 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-fuchsia-200 dark:border-fuchsia-800 shadow-lg"
         >
           <Sparkles className="w-4 h-4 text-fuchsia-600 dark:text-fuchsia-400" />
           <span className="text-sm font-semibold bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent">
@@ -129,20 +130,41 @@ export default function HomeSection() {
           </h1>
         </motion.div>
 
-        {/* Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mx-auto max-w-3xl text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 leading-relaxed font-light"
-        >
-          A passionate{" "}
-          <span className="font-semibold text-fuchsia-600 dark:text-fuchsia-400">
-            web developer intern
-          </span>{" "}
-          on a mission to build beautiful, functional, and futuristic web
-          experiences. Welcome to my playground.
-        </motion.p>
+        <div className="mx-auto max-w-4xl text-center">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 leading-relaxed font-light"
+          >
+            A passionate
+            <span
+              className="font-semibold text-fuchsia-600 dark:text-fuchsia-400 inline-block"
+              style={{ minWidth: "18ch" }} // reserve width for the longest string
+            >
+              <ReactTyped
+                strings={[
+                  "Web Developer",
+                  "Frontend Developer",
+                  "Backend Developer",
+                  "Theme Designer",
+                ]}
+                typeSpeed={80}
+                backSpeed={40}
+                loop
+                backDelay={1500}
+                showCursor
+                cursorChar="|"
+              />
+            </span>
+            <span>
+about building
+            <AnimatedText text=" best experiences that are visually stunning, highly functional, and futuristic."/>
+            </span>
+            
+          </motion.p>
+        </div>
+
 
         {/* CTA Buttons */}
         <motion.div

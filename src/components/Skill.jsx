@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, Code2, Zap } from "lucide-react";
+import { AnimatedText } from "./Amina";
 
 export default function SkillsSection() {
   const [skills, setSkills] = useState([]);
@@ -109,7 +110,7 @@ export default function SkillsSection() {
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-fuchsia-200 dark:border-fuchsia-800 shadow-lg mb-6"
+            className="inline-flex items-center gap-2 mt-12 px-4 py-2 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-fuchsia-200 dark:border-fuchsia-800 shadow-lg mb-6"
           >
             <Code2 className="w-4 h-4 text-fuchsia-600 dark:text-fuchsia-400" />
             <span className="text-sm font-semibold bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent">
@@ -123,9 +124,10 @@ export default function SkillsSection() {
           </h2>
 
           {/* Subtitle */}
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Technologies and tools I use to bring ideas to life
+          <p className="text-2xl text-gray-600 dark:text-gray-400 mx-auto">
+            <AnimatedText text="These are the technologies and tools I use to bring my ideas to life. I’m not an expert yet I am just learning and exploring new things as a hobby." />
           </p>
+
 
           {/* Stats */}
           <motion.div
@@ -197,9 +199,9 @@ export default function SkillsSection() {
                   animate={
                     hoveredIndex === index
                       ? {
-                          rotate: [0, -10, 10, -10, 0],
-                          scale: [1, 1.1, 1.1, 1.1, 1],
-                        }
+                        rotate: [0, -10, 10, -10, 0],
+                        scale: [1, 1.1, 1.1, 1.1, 1],
+                      }
                       : {}
                   }
                   transition={{ duration: 0.5 }}

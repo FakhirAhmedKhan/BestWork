@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
+import { AnimatedText } from "./Amina";
+
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -70,11 +72,11 @@ export default function Education() {
           <h2 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-fuchsia-400 to-pink-500  bg-clip-text text-transparent mb-4">
             My Journey
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            A timeline of my educational milestones and achievements
-          </p>
+          <p className="text-2xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <AnimatedText text="A timeline of my educational milestones and achievements"/>          </p>
         </motion.div>
-
+        
+        {/* </div> */}
         {/* Timeline */}
         <div className="relative">
           {/* Vertical line - hidden on mobile */}
@@ -93,9 +95,8 @@ export default function Education() {
                 <motion.div
                   key={index}
                   variants={itemVariants}
-                  className={`relative flex ${
-                    isLeft ? "md:flex-row" : "md:flex-row-reverse"
-                  } items-center justify-center md:justify-between gap-8`}
+                  className={`relative flex ${isLeft ? "md:flex-row" : "md:flex-row-reverse"
+                    } items-center justify-center md:justify-between gap-8`}
                 >
                   {/* Timeline dot */}
                   <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
