@@ -16,29 +16,34 @@ export default function ProjectSection() {
   const [projects, setProjects] = useState([]);
   const [activeCategory, setActiveCategory] = useState("All");
   const [visibleCount, setVisibleCount] = useState(3);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const cachedData = localStorage.getItem("projectsData");
+
     if (cachedData) {
       setProjects(JSON.parse(cachedData));
+      setLoading(false);
     } else {
       axios
         .get(
-          "https://raw.githubusercontent.com/FakhirAhmedKhan/DataApi-main/refs/heads/main/Data/trainingData.json"
+          "https://raw.githubusercontent.com/FakhirAhmedKhan/DataApi-main/refs/heads/main/Data/projectsData.json"
         )
         .then((res) => {
-          const data = res.data.projectsData || [];
+          const data = res.data.projects || []; // use 'projects' key
           setProjects(data);
           localStorage.setItem("projectsData", JSON.stringify(data));
         })
         .catch((err) => {
           console.error("Error fetching projectsData:", err);
-        });
+        })
+        .finally(() => setLoading(false));
     }
   }, []);
 
   // Categories
   const categories = useMemo(() => {
+    if (!projects.length) return ["All"];
     const cats = Array.from(new Set(projects.map((p) => p.category)));
     return ["All", ...cats];
   }, [projects]);
@@ -50,10 +55,26 @@ export default function ProjectSection() {
       : projects.filter((p) => p.category === activeCategory);
   }, [projects, activeCategory]);
 
-  // Visible projects (show limited count)
+  // Visible projects
   const visibleProjects = useMemo(() => {
     return filteredProjects.slice(0, visibleCount);
   }, [filteredProjects, visibleCount]);
+
+  if (loading) {
+    return (
+      <section id="projects" className="relative min-h-screen py-20 px-4 text-center">
+        <p className="text-gray-700 dark:text-gray-300">Loading projects...</p>
+      </section>
+    );
+  }
+
+  if (!projects.length) {
+    return (
+      <section id="projects" className="relative min-h-screen py-20 px-4 text-center">
+        <p className="text-gray-700 dark:text-gray-300">No projects available.</p>
+      </section>
+    );
+  }
 
   return (
     <section id="projects" className="relative min-h-screen py-20 px-4 overflow-hidden">
@@ -100,7 +121,7 @@ export default function ProjectSection() {
         {/* Project Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {visibleProjects.map((project) => (
-            <Card type="project" data={project} key={project.title} />
+            <Card type="project" data={project} key={project.id || project.title} />
           ))}
         </div>
 
