@@ -125,7 +125,7 @@ export default function HomeSection() {
         </motion.div>
 
         <div className="mx-auto max-w-4xl text-center">
-          <motion.p
+          <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -156,7 +156,7 @@ export default function HomeSection() {
               <AnimatedText text=" best experiences that are visually stunning, highly functional, and futuristic." />
             </span>
 
-          </motion.p>
+          </motion.span>
         </div>
 
 

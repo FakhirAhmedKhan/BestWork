@@ -21,8 +21,8 @@ export const Header = ({ Tittle, Pragaphic }) => {
         {Tittle}
       </h2>
 
-      <p className="text-2xl text-gray-600 dark:text-gray-400  mx-auto">
+      <span className="text-2xl text-gray-600 dark:text-gray-400  mx-auto">
         <AnimatedText text={Pragaphic} />
-      </p>
+      </span>
     </motion.div>)
 }
