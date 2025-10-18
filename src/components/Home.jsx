@@ -158,10 +158,10 @@ export default function HomeSection() {
               />
             </span>
             <span>
-about building
-            <AnimatedText text=" best experiences that are visually stunning, highly functional, and futuristic."/>
+              about building
+              <AnimatedText text=" best experiences that are visually stunning, highly functional, and futuristic." />
             </span>
-            
+
           </motion.p>
         </div>
 

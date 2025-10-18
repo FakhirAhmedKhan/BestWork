@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, Code2, Zap } from "lucide-react";
-import { AnimatedText } from "./Amina";
+import { Header } from "../UI/components/Header";
 
 export default function SkillsSection() {
   const [skills, setSkills] = useState([]);
@@ -118,17 +118,9 @@ export default function SkillsSection() {
             </span>
           </motion.div>
 
-          {/* Title */}
-          <h2 className="text-5xl sm:text-7xl font-bold bg-gradient-to-r from-fuchsia-600 via-pink-600 to-violet-600 bg-clip-text text-transparent mb-6">
-            Skills & Toolkit
-          </h2>
-
-          {/* Subtitle */}
-          <p className="text-2xl text-gray-600 dark:text-gray-400 mx-auto">
-            <AnimatedText text="These are the technologies and tools I use to bring my ideas to life. I’m not an expert yet I am just learning and exploring new things as a hobby." />
-          </p>
-
-
+          <Header
+            Tittle="Skills & Toolkit"
+            Pragaphic="These are the technologies and tools I use to bring my ideas to life. I’m not an expert yet I am just learning and exploring new things as a hobby." />
           {/* Stats */}
           <motion.div
             className="flex flex-wrap justify-center gap-6 mt-8"
