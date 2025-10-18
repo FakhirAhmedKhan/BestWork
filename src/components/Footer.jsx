@@ -1,21 +1,23 @@
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, Send, AlertCircle } from "lucide-react";
 import { useEffect, useState } from "react";
+import { AnimatedText } from "./Amina";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("idle");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!email.includes("@")) return setStatus("error");
     setStatus("loading");
-    await new Promise((r) => setTimeout(r, 1000));
-    setStatus("success");
-    setEmail("");
+    setTimeout(() => {
+      setStatus("success");
+      setEmail("");
+    }, 1000);
   };
 
   useEffect(() => {
-    if (status === "success") {
+    if (status === "success" || status === "error") {
       const t = setTimeout(() => setStatus("idle"), 3000);
       return () => clearTimeout(t);
     }
@@ -24,32 +26,99 @@ export default function Footer() {
   return (
     <footer
       id="contact"
-      className="flex flex-col min-h-screen items-center justify-center px-4 text-center space-y-6"
+      className="flex flex-col min-h-screen items-center justify-center px-4 py-20 text-center"
     >
-      <form onSubmit={handleSubmit}>
-        <h2 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-fuchsia-400 to-pink-500  bg-clip-text text-transparent mb-4">
-          Get In Touch
-        </h2>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Your email address"
-          className="w-full rounded-lg border border-neutral-600 bg-neutral-900/80 px-4 py-4 text-lg text-white placeholder-neutral-400 focus:ring-2 focus:ring-fuchsia-400 focus:outline-none"
-          id="footer-email"
-          name="footer-email"
-        />
+      <div className="max-w-2xl w-full space-y-8">
+        {/* Header */}
+        <div className="space-y-3">
+          <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold bg-gradient-to-r from-fuchsia-400 via-pink-500 to-purple-500 bg-clip-text text-transparent">
+            Get In Touch
+          </h2>
+          <span className="text-lg sm:text-xl text-neutral-600 dark:text-neutral-400 max-w-xl mx-auto">
+            < AnimatedText text="Drop your email and let's create something amazing together" />
+          </span>
+        </div>
 
-        {status === "success" && (
-          <div className="flex items-center justify-center gap-2 py-4 text-lg font-medium text-green-400">
-            <CheckCircle className="h-6 w-6" />
+        {/* Form */}
+        <div className="space-y-4">
+          <div className="relative group">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleSubmit(e)}
+              placeholder="your.email@example.com"
+              disabled={status === "loading"}
+              className="w-full rounded-xl border-2 border-neutral-700 bg-neutral-900/50 backdrop-blur-sm px-6 py-5 text-lg text-white placeholder-neutral-500 
+              focus:border-fuchsia-400 focus:ring-4 focus:ring-fuchsia-400/20 focus:outline-none
+              transition-all duration-300 
+              disabled:opacity-50 disabled:cursor-not-allowed
+              group-hover:border-neutral-600"
+              id="footer-email"
+              name="footer-email"
+            />
+            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-fuchsia-400/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
           </div>
-        )}
-      </form>
 
-      <p className="mx-auto max-w-2xl text-lg text-neutral-700 md:text-xl dark:text-neutral-400">
-        Built with 💖 using React & Tailwind CSS.
-      </p>
+          <button
+            type="button"
+            onClick={handleSubmit}
+            disabled={status === "loading" || !email}
+            className="w-full rounded-xl bg-gradient-to-r from-fuchsia-500 to-pink-500 px-8 py-5 text-lg font-semibold text-white 
+            shadow-lg shadow-fuchsia-500/30
+            hover:shadow-xl hover:shadow-fuchsia-500/40 hover:scale-[1.02]
+            active:scale-[0.98]
+            disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
+            transition-all duration-300 
+            flex items-center justify-center gap-2"
+          >
+            {status === "loading" ? (
+              <>
+                <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                Sending...
+              </>
+            ) : (
+              <>
+                Send Message
+                <Send className="h-5 w-5" />
+              </>
+            )}
+          </button>
+        </div>
+
+        {/* Status Messages */}
+        <div className="min-h-[60px] flex items-center justify-center">
+          {status === "success" && (
+            <div className="flex items-center gap-3 py-4 px-6 rounded-lg bg-green-500/10 border border-green-500/30">
+              <CheckCircle className="h-6 w-6 text-green-400" />
+              <span className="text-lg font-medium text-green-400">
+                Thanks! We'll be in touch soon
+              </span>
+            </div>
+          )}
+
+          {status === "error" && (
+            <div className="flex items-center gap-3 py-4 px-6 rounded-lg bg-red-500/10 border border-red-500/30">
+              <AlertCircle className="h-6 w-6 text-red-400" />
+              <span className="text-lg font-medium text-red-400">
+                Please enter a valid email address
+              </span>
+            </div>
+          )}
+        </div>
+
+        {/* Footer Text */}
+        <div className="pt-8 space-y-2">
+          <p className="text-neutral-600 dark:text-neutral-500 text-sm">
+            Built with 💖 using React & Tailwind CSS
+          </p>
+          <div className="flex items-center justify-center gap-4 text-xs text-neutral-700 dark:text-neutral-600">
+            <span>© 2025</span>
+            <span>•</span>
+            <span>All rights reserved</span>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 }
