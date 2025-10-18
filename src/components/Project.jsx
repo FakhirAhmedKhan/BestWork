@@ -3,6 +3,7 @@ import { useMemo, useState, useEffect } from "react";
 import { ExternalLink, Github, Eye, Code2 } from "lucide-react";
 import { Header } from "../UI/components/Head";
 import { Card } from "../UI/components/Card";
+import { Badge } from "../UI/components/Badge";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -86,22 +87,13 @@ export default function ProjectSection() {
       </div>
 
       <div className="relative max-w-7xl mx-auto text-center">
-        <motion.div
-          initial={{ scale: 0 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-          className="inline-flex items-center  gap-2  px-4 py-2 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-fuchsia-200 dark:border-fuchsia-800 shadow-lg mb-6"
-        >
-          <Code2 className="w-4 h-4 text-fuchsia-600 dark:text-fuchsia-400" />
-          <span className="text-sm font-semibold bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent">
-            Bro Work
-          </span>
-        </motion.div>
 
+
+        <Badge Icon={Code2} BageName="Tech Work" />;
         <Header
           Tittle="My Creations"
           Pragaphic="Explore my latest projects showcasing creativity innovation and technical expertise" />
+        
 
         {/* Category Filters */}
         <motion.div

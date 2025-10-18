@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, Code2, Zap } from "lucide-react";
 import { Header } from "../UI/components/Head";
+import { Badge } from "../UI/components/Badge";
 
 export default function SkillsSection() {
   const [skills, setSkills] = useState([]);
@@ -104,44 +105,17 @@ export default function SkillsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          {/* Badge */}
-          <motion.div
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-            className="inline-flex items-center gap-2 mt-12 px-4 py-2 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-fuchsia-200 dark:border-fuchsia-800 shadow-lg mb-6"
-          >
-            <Code2 className="w-4 h-4 text-fuchsia-600 dark:text-fuchsia-400" />
-            <span className="text-sm font-semibold bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent">
-              Tech Stack
-            </span>
-          </motion.div>
+
+          <Badge Icon={Code2} BageName="Tech Stack" />;
 
           <Header
             Tittle="Skills & Toolkit"
             Pragaphic="These are the technologies and tools I use to bring my ideas to life. I’m not an expert yet I am just learning and exploring new things as a hobby." />
           {/* Stats */}
-          <motion.div
-            className="flex flex-wrap justify-center gap-6 mt-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-          >
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700">
-              <Sparkles className="w-4 h-4 text-fuchsia-600 dark:text-fuchsia-400" />
-              <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-                {skills.length}+ Skills
-              </span>
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700">
-              <Zap className="w-4 h-4 text-violet-600 dark:text-violet-400" />
-              <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-                Always Learning
-              </span>
-            </div>
-          </motion.div>
+
+          <Badge Icon={Sparkles} BageName="Skills" count={skills.length} />
+          <Badge Icon={Zap} BageName="Always Learning" />
+
         </motion.div>
 
         {/* Skills Grid */}
