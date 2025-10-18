@@ -1,54 +1,29 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { Header } from "../UI/components/Head";
 import { Card } from "../UI/components/Card";
-
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: {
-    opacity: 0,
-    y: 50,
-    scale: 0.9,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 15,
-    },
-  },
-};
 
 export default function Education() {
   const [education, setEducation] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(
-        "https://raw.githubusercontent.com/FakhirAhmedKhan/DataApi-main/refs/heads/main/Data/educationData.json"
-      )
-      .then((res) => {
-        const data = res.data.educationData || [];
-        setEducation(data);
-      })
-      .catch((err) => {
-        console.error("Error fetching Education:", err);
-      });
+    const cachedData = localStorage.getItem("educationData");
+    if (cachedData) {
+      setEducation(JSON.parse(cachedData));
+    } else {
+      axios
+        .get(
+          "https://raw.githubusercontent.com/FakhirAhmedKhan/DataApi-main/refs/heads/main/Data/educationData.json"
+        )
+        .then((res) => {
+          const data = res.data.educationData || [];
+          setEducation(data);
+          localStorage.setItem("educationData", JSON.stringify(data));
+        })
+        .catch((err) => {
+          console.error("Error fetching Education:", err);
+        });
+    }
   }, []);
 
   return (

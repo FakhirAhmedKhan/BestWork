@@ -4,27 +4,30 @@ import { ReactTyped } from "react-typed";
 import { Github, Linkedin, Mail, ArrowDown, Sparkles } from "lucide-react";
 import { AnimatedText } from "./Amina";
 import { Badge } from "../UI/components/Badge";
+import axios from "axios";
 
 export default function HomeSection() {
   const [socialLinks, setSocialLinks] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(
-      "https://raw.githubusercontent.com/FakhirAhmedKhan/DataApi-main/refs/heads/main/Data/socialLinks.json"
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        const links = data.socialLinks || [];
-        setSocialLinks(links);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching socialLinks:", err);
-        setLoading(false);
-      });
+    const cachedData = localStorage.getItem("socialLinks");
+    if (cachedData) {
+      setSocialLinks(JSON.parse(cachedData));
+    } else {
+      axios
+        .get(
+          "https://raw.githubusercontent.com/FakhirAhmedKhan/DataApi-main/refs/heads/main/Data/socialLinks.json"
+        )
+        .then((res) => {
+          const data = res.data.socialLinks || [];
+          setSocialLinks(data);
+          localStorage.setItem("socialLinks", JSON.stringify(data));
+        })
+        .catch((err) => {
+          console.error("Error fetching Data:", err);
+        });
+    }
   }, []);
-
   const pulseAnimation = {
     scale: [1, 1.05, 1],
     transition: {
@@ -194,7 +197,7 @@ export default function HomeSection() {
         </motion.div>
 
         {/* Social Links */}
-        {!loading && socialLinks.length > 0 && (
+        {socialLinks.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

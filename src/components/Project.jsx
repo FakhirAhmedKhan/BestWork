@@ -1,9 +1,10 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useMemo, useState, useEffect } from "react";
-import { ExternalLink, Github, Eye, Code2 } from "lucide-react";
+import { Code2 } from "lucide-react";
 import { Header } from "../UI/components/Head";
 import { Card } from "../UI/components/Card";
 import { Badge } from "../UI/components/Badge";
+import axios from "axios";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -11,95 +12,62 @@ const fadeInUp = {
   transition: { duration: 0.6 },
 };
 
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 50, scale: 0.9 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 15,
-    },
-  },
-  exit: { opacity: 0, scale: 0.9, transition: { duration: 0.3 } },
-};
-
 export default function ProjectSection() {
   const [projects, setProjects] = useState([]);
   const [activeCategory, setActiveCategory] = useState("All");
-  const [visibleCount, setVisibleCount] = useState(6);
+  const [visibleCount, setVisibleCount] = useState(3);
 
   useEffect(() => {
-    fetch(
-      "https://raw.githubusercontent.com/FakhirAhmedKhan/DataApi-main/main/Data/projectsData.json"
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        const projectData = data.projects || [];
-        setProjects(projectData);
-      })
-      .catch((err) => {
-        console.error("Error fetching projects:", err);
-      });
+    const cachedData = localStorage.getItem("projectsData");
+    if (cachedData) {
+      setProjects(JSON.parse(cachedData));
+    } else {
+      axios
+        .get(
+          "https://raw.githubusercontent.com/FakhirAhmedKhan/DataApi-main/refs/heads/main/Data/trainingData.json"
+        )
+        .then((res) => {
+          const data = res.data.projectsData || [];
+          setProjects(data);
+          localStorage.setItem("projectsData", JSON.stringify(data));
+        })
+        .catch((err) => {
+          console.error("Error fetching projectsData:", err);
+        });
+    }
   }, []);
 
+  // Categories
   const categories = useMemo(() => {
     const cats = Array.from(new Set(projects.map((p) => p.category)));
     return ["All", ...cats];
   }, [projects]);
 
+  // Filtered projects
   const filteredProjects = useMemo(() => {
     return activeCategory === "All"
       ? projects
       : projects.filter((p) => p.category === activeCategory);
   }, [projects, activeCategory]);
 
+  // Visible projects (show limited count)
   const visibleProjects = useMemo(() => {
     return filteredProjects.slice(0, visibleCount);
   }, [filteredProjects, visibleCount]);
 
   return (
-    <section
-      id="projects"
-      className="relative min-h-screen py-20 px-4 overflow-hidden"
-    >
-      {/* Animated background orbs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-10 w-96 h-96 bg-fuchsia-300/20 dark:bg-fuchsia-600/10 rounded-full blur-3xl animate-pulse" />
-        <div
-          className="absolute bottom-1/4 right-10 w-96 h-96 bg-violet-300/20 dark:bg-violet-600/10 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "1s" }}
-        />
-        <div
-          className="absolute top-1/2 left-1/2 w-96 h-96 bg-pink-300/20 dark:bg-pink-600/10 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "2s" }}
-        />
-      </div>
-
+    <section id="projects" className="relative min-h-screen py-20 px-4 overflow-hidden">
       <div className="relative max-w-7xl mx-auto text-center">
 
-
-        <Badge Icon={Code2} BageName="Tech Work" />;
+        {/* Section Header */}
+        <Badge Icon={Code2} BageName="Tech Work" />
         <Header
           Tittle="My Creations"
-          Pragaphic="Explore my latest projects showcasing creativity innovation and technical expertise" />
-        
+          Pragaphic="Explore my latest projects showcasing creativity, innovation, and technical expertise."
+        />
 
-        {/* Category Filters */}
-        <motion.div
-          {...fadeInUp}
-          className="flex flex-wrap justify-center gap-3 mb-16"
-        >
+        {/* Category Filter */}
+        <motion.div {...fadeInUp} className="flex flex-wrap justify-center gap-3 mb-16">
           {categories.map((cat) => {
             const isActive = activeCategory === cat;
             return (
@@ -107,7 +75,7 @@ export default function ProjectSection() {
                 key={cat}
                 onClick={() => {
                   setActiveCategory(cat);
-                  setVisibleCount(6);
+                  setVisibleCount(3);
                 }}
                 className={`relative px-6 py-3 rounded-full font-semibold transition-all duration-300 ${isActive
                   ? "text-white shadow-xl scale-105"
@@ -129,9 +97,9 @@ export default function ProjectSection() {
           })}
         </motion.div>
 
-
+        {/* Project Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
+          {visibleProjects.map((project) => (
             <Card type="project" data={project} key={project.title} />
           ))}
         </div>
@@ -139,13 +107,13 @@ export default function ProjectSection() {
         {/* Load More Button */}
         {visibleCount < filteredProjects.length && (
           <motion.div
-            className="flex justify-center"
+            className="flex justify-center mt-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
           >
             <motion.button
-              onClick={() => setVisibleCount((prev) => prev + 6)}
+              onClick={() => setVisibleCount((prev) => prev + 3)}
               className="group relative px-8 py-4 rounded-full font-bold text-white overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

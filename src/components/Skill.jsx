@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Sparkles, Code2, Zap } from "lucide-react";
 import { Header } from "../UI/components/Head";
 import { Badge } from "../UI/components/Badge";
+import axios from "axios";
 
 export default function SkillsSection() {
   const [skills, setSkills] = useState([]);
@@ -34,17 +35,23 @@ export default function SkillsSection() {
   };
 
   useEffect(() => {
-    fetch(
-      "https://raw.githubusercontent.com/FakhirAhmedKhan/DataApi-main/main/Data/skillsIcons.json"
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        const skillsData = data.skills || [];
-        setSkills(skillsData);
-      })
-      .catch((err) => {
-        console.error("Error fetching skills:", err);
-      });
+    const cachedData = localStorage.getItem("skillsIcons");
+    if (cachedData) {
+      setSkills(JSON.parse(cachedData));
+    } else {
+      axios
+        .get(
+          "https://raw.githubusercontent.com/FakhirAhmedKhan/DataApi-main/main/Data/skillsIcons.json"
+        )
+        .then((res) => {
+          const data = res.data.skills || [];
+          setSkills(data);
+          localStorage.setItem("skillsIcons", JSON.stringify(data));
+        })
+        .catch((err) => {
+          console.error("Error fetching Data:", err);
+        });
+    }
   }, []);
 
   return (
