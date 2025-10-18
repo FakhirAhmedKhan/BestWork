@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, Code2, Zap } from "lucide-react";
-import { Header } from "../UI/components/Header";
+import { Header } from "../UI/components/Head";
 
 export default function SkillsSection() {
   const [skills, setSkills] = useState([]);
