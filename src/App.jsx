@@ -1,13 +1,13 @@
 import React, { useState, useMemo, Suspense, lazy } from "react";
 import { Animated } from "./UI/components/Animated.jsx";
 
-const ProjectSection = lazy(() => import("./components/Project.jsx"));
-const SkillsSection = lazy(() => import("./components/Skill.jsx"));
-const Education = lazy(() => import("./components/Edu.jsx"));
-const Footer = lazy(() => import("./components/Footer.jsx"));
-const HeaderSection = lazy(() => import("./components/Header"));
-const HomeSection = lazy(() => import("./components/Home"));
-const ChatBot = lazy(() => import("./components/ChatBot"));
+const ProjectSection = lazy(() => import("./pages/Project.jsx"));
+const SkillsSection = lazy(() => import("./pages/Skill.jsx"));
+const Education = lazy(() => import("./pages/Edu.jsx"));
+const Footer = lazy(() => import("./pages/Footer.jsx"));
+const HeaderSection = lazy(() => import("./pages/Header"));
+const HomeSection = lazy(() => import("./pages/Home"));
+const ChatBot = lazy(() => import("./pages/ChatBot"));
 
 const BotToggleButton =
   "fixed bottom-5 right-5 z-30 h-16 w-16 rounded-full bg-gradient-to-br from-pink-500 via-fuchsia-500 to-purple-600 text-white shadow-2xl flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 hover:shadow-pink-500/50 transition-all duration-300 hover:scale-110 backdrop-blur-sm";
