@@ -1,159 +1,29 @@
-import { motion } from "framer-motion";
-import { useMemo, useState, useEffect } from "react";
 import { Code2 } from "lucide-react";
 import { HeadIng } from "../UI/components/Head";
-import { Card } from "../UI/components/Card";
 import { Badge } from "../UI/components/Badge";
-import axios from "axios";
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 60 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 },
-};
+import { CategoryFilter } from "../Components/projects/CategoryFilter";
+import { ProjectView } from "../Components/projects/ProjectView";
+import { LoardProject } from "../Components/projects/Loard";
+import { useProjects } from "../../Hooks/useProjects";
 
 export default function ProjectSection() {
-  const [projects, setProjects] = useState([]);
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [visibleCount, setVisibleCount] = useState(3);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const cachedData = localStorage.getItem("projectsData");
-
-    if (cachedData) {
-      setProjects(JSON.parse(cachedData));
-      setLoading(false);
-    } else {
-      axios
-        .get(
-          "https://raw.githubusercontent.com/FakhirAhmedKhan/DataApi-main/refs/heads/main/Data/projectsData.json"
-        )
-        .then((res) => {
-          const data = res.data.projects || []; // use 'projects' key
-          setProjects(data);
-          localStorage.setItem("projectsData", JSON.stringify(data));
-        })
-        .catch((err) => {
-          console.error("Error fetching projectsData:", err);
-        })
-        .finally(() => setLoading(false));
-    }
-  }, []);
-
-  // Categories
-  const categories = useMemo(() => {
-    if (!projects.length) return ["All"];
-    const cats = Array.from(new Set(projects.map((p) => p.category)));
-    return ["All", ...cats];
-  }, [projects]);
-
-  // Filtered projects
-  const filteredProjects = useMemo(() => {
-    return activeCategory === "All"
-      ? projects
-      : projects.filter((p) => p.category === activeCategory);
-  }, [projects, activeCategory]);
-
-  // Visible projects
-  const visibleProjects = useMemo(() => {
-    return filteredProjects.slice(0, visibleCount);
-  }, [filteredProjects, visibleCount]);
-
-  if (loading) {
-    return (
-      <section id="projects" className="relative min-h-screen py-20 px-4 text-center">
-        <p className="text-gray-700 dark:text-gray-300">Loading projects...</p>
-      </section>
-    );
-  }
-
-  if (!projects.length) {
-    return (
-      <section id="projects" className="relative min-h-screen py-20 px-4 text-center">
-        <p className="text-gray-700 dark:text-gray-300">No projects available.</p>
-      </section>
-    );
-  }
+  const { visibleProjects, categories, activeCategory, showMore, changeCategory, filteredProjects } = useProjects();
 
   return (
-    <section id="projects" className="relative min-h-screen py-20 px-4 overflow-hidden">
-      <div className="relative max-w-7xl mx-auto text-center">
+    <section id="projects" className="relative min-h-screen py-20 px-4 overflow-hidden max-w-7xl mx-auto text-center">
+      <Badge Icon={Code2} BageName="Tech Work" />
 
-        {/* Section Header */}
-        <Badge Icon={Code2} BageName="Tech Work" />
-        <HeadIng
-          Tittle="My Creations"
-          Pragaphic="Explore my latest projects showcasing creativity, innovation, and technical expertise."
-        />
+      <HeadIng
+        Pragaphic="Explore my latest projects showcasing creativity, innovation, and technical expertise." Tittle="My Creations" />
 
-        {/* Category Filter */}
-        <motion.div {...fadeInUp} className="flex flex-wrap justify-center gap-3 mb-16">
-          {categories.map((cat) => {
-            const isActive = activeCategory === cat;
-            return (
-              <motion.button
-                key={cat}
-                onClick={() => {
-                  setActiveCategory(cat);
-                  setVisibleCount(3);
-                }}
-                className={`relative px-6 py-3 rounded-full font-semibold transition-all duration-300 ${isActive
-                  ? "text-white shadow-xl scale-105"
-                  : "text-gray-700 dark:text-gray-300 hover:scale-105 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700"
-                  }`}
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {isActive && (
-                  <motion.div
-                    layoutId="activeCategory"
-                    className="absolute inset-0 bg-gradient-to-r from-fuchsia-500 via-pink-500 to-violet-500 rounded-full"
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  />
-                )}
-                <span className="relative z-10">{cat}</span>
-              </motion.button>
-            );
-          })}
-        </motion.div>
+      <CategoryFilter categories={categories} activeCategory={activeCategory} onCategoryChange={changeCategory} />
 
-        {/* Project Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {visibleProjects.map((project) => (
-            <Card type="project" data={project} key={project.id || project.title} />
-          ))}
-        </div>
+      <ProjectView visibleProjects={visibleProjects} />
 
-        {/* Load More Button */}
-        {visibleCount < filteredProjects.length && (
-          <motion.div
-            className="flex justify-center mt-10"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-          >
-            <motion.button
-              onClick={() => setVisibleCount((prev) => prev + 3)}
-              className="group relative px-8 py-4 rounded-full font-bold text-white overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-fuchsia-500 via-pink-500 to-violet-500" />
-              <div className="absolute inset-0 bg-gradient-to-r from-violet-500 via-pink-500 to-fuchsia-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <span className="relative flex items-center gap-2">
-                Load More Projects
-                <motion.span
-                  animate={{ y: [0, 3, 0] }}
-                  transition={{ repeat: Infinity, duration: 1.5 }}
-                >
-                  ↓
-                </motion.span>
-              </span>
-            </motion.button>
-          </motion.div>
-        )}
-      </div>
-    </section>
+      <LoardProject
+        onLoadMore={showMore}
+        filteredProjects={filteredProjects} // from useProjects hook
+        visibleProjects={visibleProjects}   // from useProjects hook
+      />    </section>
   );
 }

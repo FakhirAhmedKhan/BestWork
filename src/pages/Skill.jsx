@@ -4,7 +4,6 @@ import { Badge } from "../UI/components/Badge";
 import { Card } from "../Components/Skills/Card";
 import { useSkills } from "../../Hooks/useSkills";
 
-
 export default function SkillsSection() {
   const { skills, hoveredIndex, setHoveredIndex } = useSkills();
 
