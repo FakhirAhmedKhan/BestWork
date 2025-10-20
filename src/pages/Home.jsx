@@ -14,8 +14,9 @@ export default function HomeSection() {
       id="home"
       className="relative flex flex-col items-center justify-center px-4 overflow-hidden z-10 max-w-5xl mx-auto text-center space-y-19"
     >
-
-      <Badge Icon={Sparkles} BageName="Welcome to my digital space" className=" bg-red mt-20 mb-0 text-center" />
+      <div className="mt-20 mb-0 text-center">
+        <Badge Icon={Sparkles} BageName="Welcome to my digital space" />
+      </div>
 
       <TypingEffect />
 
