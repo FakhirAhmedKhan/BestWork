@@ -1,13 +1,4 @@
-import {
-  Menu,
-  X,
-  Home,
-  User,
-  Code,
-  Briefcase,
-  Mail,
-  Sparkles,
-} from "lucide-react";
+import { Menu, X, Home, User, Code, Briefcase, Mail, Sparkles } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -78,11 +69,10 @@ export default function HeaderSection() {
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
           ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg shadow-lg"
           : "bg-transparent"
-      }`}
+        }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -126,11 +116,10 @@ export default function HeaderSection() {
                 <motion.button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`relative px-4 py-2 rounded-full font-medium transition-all duration-300 ${
-                    isActive
+                  className={`relative px-4 py-2 rounded-full font-medium transition-all duration-300 ${isActive
                       ? "text-white"
                       : "text-gray-700 dark:text-gray-300 hover:text-fuchsia-600 dark:hover:text-fuchsia-400"
-                  }`}
+                    }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   aria-label={`Go to ${item.label}`}
@@ -223,11 +212,10 @@ export default function HeaderSection() {
                   <motion.button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all ${
-                      isActive
+                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all ${isActive
                         ? "bg-gradient-to-r from-fuchsia-600 to-violet-600 text-white shadow-lg"
                         : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                    }`}
+                      }`}
                     variants={itemVariants}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -261,17 +249,6 @@ export default function HeaderSection() {
           </motion.nav>
         )}
       </AnimatePresence>
-
-      {/* Progress Bar */}
-      <motion.div
-        className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-fuchsia-600 via-pink-600 to-violet-600"
-        style={{
-          width: `${(window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100}%`,
-        }}
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 0.3 }}
-      />
     </motion.header>
   );
 }

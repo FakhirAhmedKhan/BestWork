@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { AnimatedText } from '../../components/Amina';
+import { AnimatedText } from '../../UI/components/AnimatedText';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -7,7 +7,7 @@ const fadeInUp = {
   transition: { duration: 0.6 },
 };
 
-export const Header = ({ Tittle, Pragaphic }) => {
+export const HeadIng = ({ Tittle, Pragaphic }) => {
   return (
     <motion.div className="text-center mb-16" {...fadeInUp}>
       <motion.div

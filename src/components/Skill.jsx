@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, Code2, Zap } from "lucide-react";
-import { Header } from "../UI/components/Head";
+import { HeadIng } from "../UI/components/Head";
 import { Badge } from "../UI/components/Badge";
 import axios from "axios";
 
@@ -57,75 +57,20 @@ export default function SkillsSection() {
   return (
     <section
       id="skills"
-      className="relative min-h-screen py-20 px-4 overflow-hidden"
+      className="relative min-h-screen py-15 overflow-hidden"
     >
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute top-20 left-10 w-96 h-96 bg-fuchsia-300/20 dark:bg-fuchsia-600/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            x: [0, 50, 0],
-          }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-violet-300/20 dark:bg-violet-600/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            x: [0, -50, 0],
-          }}
-          transition={{ duration: 10, repeat: Infinity }}
-        />
 
-        {/* Floating code symbols */}
-        {[...Array(15)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute text-fuchsia-400/20 dark:text-fuchsia-600/20 font-mono text-2xl font-bold"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              opacity: [0.1, 0.3, 0.1],
-              rotate: [0, 360],
-            }}
-            transition={{
-              duration: 5 + Math.random() * 3,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          >
-            {["<>", "{}", "[]", "/>", "()"][Math.floor(Math.random() * 5)]}
-          </motion.div>
-        ))}
-      </div>
+      <div className="relative max-w-6xl mx-auto">
 
-      <div className="relative max-w-7xl mx-auto">
-        {/* Header Section */}
-        <motion.div
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: -40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-
-          <Badge Icon={Code2} BageName="Tech Stack" />;
-
-          <Header
-            Tittle="Skills & Toolkit"
-            Pragaphic="These are the technologies and tools I use to bring my ideas to life. I’m not an expert yet I am just learning and exploring new things as a hobby." />
-          {/* Stats */}
-
+        <HeadIng
+          Tittle="Skills & Toolkit"
+          Pragaphic="These are the technologies and tools I use to bring my ideas to life. I’m not an expert yet I am just learning and exploring new things as a hobby." />
+        <div className="mt-20 mb-4 text-center">
+          <Badge Icon={Code2} BageName="Tech Stack" />
           <Badge Icon={Sparkles} BageName="Skills" count={skills.length} />
           <Badge Icon={Zap} BageName="Always Learning" />
+        </div>
 
-        </motion.div>
-
-        {/* Skills Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -143,7 +88,7 @@ export default function SkillsSection() {
             >
               {/* Card */}
               <motion.div
-                className="relative flex flex-col items-center justify-center p-6 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg overflow-hidden"
+                className="relative flex flex-col items-center justify-center p-2 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg overflow-hidden"
                 whileHover={{
                   y: -8,
                   transition: { type: "spring", stiffness: 300 },
@@ -168,7 +113,7 @@ export default function SkillsSection() {
 
                 {/* Icon container */}
                 <motion.div
-                  className="relative z-10 mb-3"
+                  className="relative z-10 m-2"
                   animate={
                     hoveredIndex === index
                       ? {
@@ -236,17 +181,6 @@ export default function SkillsSection() {
               )}
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* Bottom decoration */}
-        <motion.div
-          className="mt-20 flex justify-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.8, duration: 1 }}
-        >
-          <div className="h-1 w-32 bg-gradient-to-r from-fuchsia-500 via-pink-500 to-violet-500 rounded-full" />
         </motion.div>
       </div>
     </section>

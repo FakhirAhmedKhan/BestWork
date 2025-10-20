@@ -1,6 +1,5 @@
 "use client";
 import { motion } from "framer-motion";
-import { ChatBotStyle, refStyle } from "../UI/styles.js";
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import axios from "axios";
 
@@ -121,14 +120,14 @@ export default function ChatBot({ show }) {
 
   return (
     <motion.section
-      className={`${ChatBotStyle} fixed bottom-6 right-6 w-80 md:w-96 h-[500px] rounded-2xl shadow-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 flex flex-col`}
+      className={`fixed bottom-6 right-6 w-80 md:w-96 h-[500px] rounded-2xl shadow-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 flex flex-col`}
       initial={{ opacity: 0, scale: 0.8, y: 40 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ type: "spring", stiffness: 120, damping: 15 }}
     >
       <div
         ref={chatBodyRef}
-        className={`${refStyle} flex-1 overflow-y-auto p-4 space-y-4`}
+        className={`flex-1 overflow-y-auto p-4 space-y-4`}
       >
         {chatHistory.length === 0 && (
           <motion.div

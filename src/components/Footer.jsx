@@ -1,6 +1,6 @@
 import { CheckCircle, Send, AlertCircle } from "lucide-react";
 import { useEffect, useState } from "react";
-import { AnimatedText } from "./Amina";
+import {HeadIng} from "../UI/components/Head";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -29,17 +29,11 @@ export default function Footer() {
       className="flex flex-col min-h-screen items-center justify-center px-4 py-20 text-center"
     >
       <div className="max-w-2xl w-full space-y-8">
-        {/* Header */}
-        <div className="space-y-3">
-          <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold bg-gradient-to-r from-fuchsia-400 via-pink-500 to-purple-500 bg-clip-text text-transparent">
-            Get In Touch
-          </h2>
-          <span className="text-lg sm:text-xl text-neutral-600 dark:text-neutral-400 max-w-xl mx-auto">
-            < AnimatedText text="Drop your email and let's create something amazing together" />
-          </span>
-        </div>
 
-        {/* Form */}
+        <HeadIng
+          Tittle="Get In Touch"
+          Pragaphic="Drop your email and let's create something amazing together" />
+
         <div className="space-y-4">
           <div className="relative group">
             <input

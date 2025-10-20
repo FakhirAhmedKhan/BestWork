@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useMemo, useState, useEffect } from "react";
 import { Code2 } from "lucide-react";
-import { Header } from "../UI/components/Head";
+import { HeadIng } from "../UI/components/Head";
 import { Card } from "../UI/components/Card";
 import { Badge } from "../UI/components/Badge";
 import axios from "axios";
@@ -82,7 +82,7 @@ export default function ProjectSection() {
 
         {/* Section Header */}
         <Badge Icon={Code2} BageName="Tech Work" />
-        <Header
+        <HeadIng
           Tittle="My Creations"
           Pragaphic="Explore my latest projects showcasing creativity, innovation, and technical expertise."
         />
