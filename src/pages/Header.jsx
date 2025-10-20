@@ -7,22 +7,13 @@ import { MobileNav } from "../Components/Header/MobileNav";
 import { useScrollSections } from "../../Hooks/useScrollSections";
 
 export default function HeaderSection() {
-  const {
-    navItems,
-    activeSection,
-    isMenuOpen,
-    setIsMenuOpen,
-    scrolled,
-    scrollToSection,
-  } = useScrollSections();
 
+  const { navItems, activeSection, isMenuOpen, setIsMenuOpen, scrolled, scrollToSection } = useScrollSections();
 
   return (
     <motion.header
-      className={`fixed bg-transparen top-0 left-0 right-0 z-50 transition-all duration-300 flex items-center justify-between h-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+      className="fixed bg-transparen top-0 left-0 right-0 z-50 transition-all duration-300 flex items-center justify-between h-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.5 }}
     >
 
       <Logo scrollToSection={scrollToSection} />
