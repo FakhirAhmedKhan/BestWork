@@ -7,7 +7,7 @@ export const ProjectView = ({ visibleProjects }) => {
       {visibleProjects.map((project) => (
         <div
           key={project.id}
-          className="w-full bg-white rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-purple-500/50 flex flex-col"
+          className="w-full bg-blur rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-purple-500/50 flex flex-col"
         >
           {/* Image Container - Fixed Height */}
           <div className="relative overflow-hidden group h-56 flex-shrink-0">

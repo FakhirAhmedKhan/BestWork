@@ -16,7 +16,7 @@ export const Badge = ({ Icon, BageName, count, className }) => {
         y: -2
       }}
       whileTap={{ scale: 0.98 }}
-      className={`group  relative inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border border-fuchsia-200/50 dark:border-fuchsia-800/50 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer${className}`}
+      className={`group  relative inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-blur dark:bg-gray-900/90 backdrop-blur-md border border-fuchsia-200/50 dark:border-fuchsia-800/50 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer${className}`}
     >
       {/* Animated Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-r from-fuchsia-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-fuchsia-500/10 group-hover:via-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500" />

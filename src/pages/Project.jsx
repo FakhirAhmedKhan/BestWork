@@ -20,10 +20,7 @@ export default function ProjectSection() {
 
       <ProjectView visibleProjects={visibleProjects} />
 
-      <LoardProject
-        onLoadMore={showMore}
-        filteredProjects={filteredProjects} // from useProjects hook
-        visibleProjects={visibleProjects}   // from useProjects hook
-      />    </section>
+      <LoardProject onLoadMore={showMore} filteredProjects={filteredProjects} visibleProjects={visibleProjects} />
+    </section>
   );
 }

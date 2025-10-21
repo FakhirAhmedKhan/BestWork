@@ -20,7 +20,7 @@ export const Card = ({ setHoveredIndex, hoveredIndex, skills }) => {
         >
           {/* Card */}
           <motion.div
-            className="relative flex flex-col items-center justify-center p-6 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg overflow-hidden"
+            className="relative flex flex-col items-center justify-center p-6 rounded-2xl bg-blur dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg overflow-hidden"
             whileHover={{
               y: -8,
               transition: { type: "spring", stiffness: 300 },
