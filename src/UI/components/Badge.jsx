@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-export const Badge = ({ Icon, BageName, count, className }) => {
+export const Badge = ({ Icon, BageName, count, className = "" }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: -20, scale: 0.9 }}
@@ -16,7 +16,9 @@ export const Badge = ({ Icon, BageName, count, className }) => {
         y: -2
       }}
       whileTap={{ scale: 0.98 }}
-      className={`group  relative inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-blur dark:bg-gray-900/90 backdrop-blur-md border border-fuchsia-200/50 dark:border-fuchsia-800/50 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer${className}`}
+      className={`flex justify-center items-center group relative inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-blur dark:bg-gray-900/90 backdrop-blur-md border border-fuchsia-200/50 dark:border-fuchsia-800/50 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer ${className || ''}`}
+
+
     >
       {/* Animated Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-r from-fuchsia-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-fuchsia-500/10 group-hover:via-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500" />
@@ -48,12 +50,6 @@ export const Badge = ({ Icon, BageName, count, className }) => {
 
       {/* Border Glow on Hover */}
       <div className="absolute inset-0 rounded-full border-2 border-transparent group-hover:border-fuchsia-400/30 transition-all duration-300" />
-
-      {count !== undefined && (
-        <span className="text-xs font-bold text-fuchsia-600 dark:text-fuchsia-400 bg-fuchsia-100 dark:bg-fuchsia-900/40 px-2 py-0.5 rounded-full">
-          {count}
-        </span>
-      )}
     </motion.div>
   );
 };

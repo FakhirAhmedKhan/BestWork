@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import { containerVariants, skillVariants } from '../../UI/components/motionConfige'
+import { useSkills } from "../../../Hooks/useSkills";
 
-export const Card = ({ setHoveredIndex, hoveredIndex, skills }) => {
+export const Card = () => {
+  const { skills, hoveredIndex, setHoveredIndex } = useSkills();
+
   return (
     <motion.div
       variants={containerVariants}

@@ -1,23 +1,19 @@
 import { HeadIng } from "../UI/components/Head";
+import { SectionSTyle } from "../UI/components/motionConfige";
 import EducationTimeline from "../UI/components/TimelineCard";
 
 export default function Education() {
 
   return (
-    <section
-      id="about"
-      className="relative min-h-screen py-20 px-4 overflow-hidden"
-    >
-      <div className="relative max-w-6xl mx-auto">
+    <section id="about" className={SectionSTyle}>
 
-        <HeadIng
-          Tittle="My Journey"
-          Pragaphic="A timeline of my educational milestones and achievements"
-        />
+      <HeadIng
+        Tittle="My Journey"
+        Pragaphic="A timeline of my educational milestones and achievements"
+      />
 
-        <EducationTimeline />  
+      <EducationTimeline />
 
-      </div>
     </section>
   );
 }

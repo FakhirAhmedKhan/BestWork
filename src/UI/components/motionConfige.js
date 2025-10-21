@@ -58,3 +58,5 @@ export const fadeInUp = {
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.6 },
 };
+
+export const SectionSTyle = "relative flex flex-col items-center justify-center px-4 py-16 overflow-hidden z-10 max-w-5xl mx-auto text-center space-y-10"

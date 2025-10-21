@@ -5,12 +5,13 @@ import { CategoryFilter } from "../Components/projects/CategoryFilter";
 import { ProjectView } from "../Components/projects/ProjectView";
 import { LoardProject } from "../Components/projects/Loard";
 import { useProjects } from "../../Hooks/useProjects";
+import { SectionSTyle } from "../UI/components/motionConfige";
 
 export default function ProjectSection() {
   const { visibleProjects, categories, activeCategory, showMore, changeCategory, filteredProjects } = useProjects();
 
   return (
-    <section id="projects" className="relative min-h-screen py-20 px-4 overflow-hidden max-w-7xl mx-auto text-center">
+    <section id="projects" className={SectionSTyle}>
       <Badge Icon={Code2} BageName="Tech Work" />
 
       <HeadIng
