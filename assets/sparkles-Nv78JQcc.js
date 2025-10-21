@@ -1,4 +1,4 @@
-import{c as a}from"./createLucideIcon-D_wusFCl.js";/**
+import{c as a}from"./motionConfige-B4VE67xA.js";/**
  * @license lucide-react v0.539.0 - ISC
  *
  * This source code is licensed under the ISC license.
