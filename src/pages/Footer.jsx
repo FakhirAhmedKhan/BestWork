@@ -10,10 +10,7 @@ export default function Footer() {
   const { email, setEmail, status, handleSubmit } = useEmailForm();
 
   return (
-    <footer
-      id="contact"
-      className={SectionSTyle}
-    >
+    <footer id="contact" className={SectionSTyle}>
       <HeadIng
         Tittle="Get In Touch"
         Pragaphic="Drop your email and let's create something amazing together" />

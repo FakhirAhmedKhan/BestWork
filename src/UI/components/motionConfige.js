@@ -60,3 +60,6 @@ export const fadeInUp = {
 };
 
 export const SectionSTyle = "relative flex flex-col items-center justify-center px-4 py-16 overflow-hidden z-10 max-w-5xl mx-auto text-center space-y-10"
+
+export const BotToggleButton =
+  "fixed bottom-5 right-5 z-30 h-16 w-16 rounded-full bg-gradient-to-br from-pink-500 via-fuchsia-500 to-purple-600 text-white shadow-2xl flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 hover:shadow-pink-500/50 transition-all duration-300 hover:scale-110 backdrop-blur-sm";

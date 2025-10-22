@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { GraduationCap, BookOpen, Code, Sparkles } from 'lucide-react';
 import { useEducationData } from '../../../Hooks/useEducationData';
 
@@ -10,9 +10,9 @@ const iconMap = {
   Sparkles
 };
 
-const EducationTimeline = () => {
+export const EducationTimeline = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
-  const { education } = useEducationData(); 
+  const { education } = useEducationData();
   return (
     <div className="min-h-screen py-16 px-4">
       <div className="max-w-6xl mx-auto">
@@ -93,5 +93,3 @@ const EducationTimeline = () => {
     </div>
   );
 };
-
-export default EducationTimeline;
