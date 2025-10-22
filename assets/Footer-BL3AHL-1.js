@@ -1,4 +1,4 @@
-import{r as l,j as e}from"./index-CcqloXzJ.js";import{H as c}from"./Head-2sfTr6l_.js";import{c as o,S as d}from"./motionConfige-B4VE67xA.js";import"./AnimatedText-DLMHMTSd.js";/**
+import{r as l,j as e,S as c}from"./index-Bn9067wW.js";import{H as d}from"./Head-B_qvNDfB.js";import{c as o}from"./createLucideIcon-r7DT8w4m.js";import"./AnimatedText-0SHSt53M.js";/**
  * @license lucide-react v0.539.0 - ISC
  *
  * This source code is licensed under the ISC license.
@@ -23,4 +23,4 @@ import{r as l,j as e}from"./index-CcqloXzJ.js";import{H as c}from"./Head-2sfTr6l
             active:scale-[0.98]\r
             disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100\r
             transition-all duration-300 \r
-            flex items-center justify-center gap-2`,children:t==="loading"?e.jsxs(e.Fragment,{children:[e.jsx("div",{className:"h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin"}),"Sending..."]}):e.jsxs(e.Fragment,{children:["Send Message",e.jsx(g,{className:"h-5 w-5"})]})})]});function S(){const{email:t,setEmail:a,status:r,handleSubmit:s}=f();return e.jsxs("footer",{id:"contact",className:d,children:[e.jsx(c,{Tittle:"Get In Touch",Pragaphic:"Drop your email and let's create something amazing together"}),e.jsx(b,{status:r,setEmail:a,handleSubmit:s,email:t}),e.jsx(j,{status:r}),e.jsx(y,{})]})}export{S as default};
+            flex items-center justify-center gap-2`,children:t==="loading"?e.jsxs(e.Fragment,{children:[e.jsx("div",{className:"h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin"}),"Sending..."]}):e.jsxs(e.Fragment,{children:["Send Message",e.jsx(g,{className:"h-5 w-5"})]})})]});function S(){const{email:t,setEmail:a,status:r,handleSubmit:s}=f();return e.jsxs("footer",{id:"contact",className:c,children:[e.jsx(d,{Tittle:"Get In Touch",Pragaphic:"Drop your email and let's create something amazing together"}),e.jsx(b,{status:r,setEmail:a,handleSubmit:s,email:t}),e.jsx(j,{status:r}),e.jsx(y,{})]})}export{S as default};
