@@ -1,4 +1,4 @@
-import { Sparkles, Code2, Zap } from "lucide-react";
+import { Zap } from "lucide-react";
 import { HeadIng } from "../UI/components/Head";
 import { Badge } from "../UI/components/Badge";
 import { Card } from "../Components/Skills/Card";
@@ -12,11 +12,7 @@ export default function SkillsSection() {
         Tittle="Skills & Toolkit"
       />
 
-      <div className="flex flex-col items-center gap-6 my-8">
-        <Badge Icon={Code2} BageName="Tech Stack" />
-        <Badge Icon={Sparkles} BageName="Skills" count={18} />
-        <Badge Icon={Zap} BageName="Always Learning" />
-      </div>
+      <Badge Icon={Zap} BageName="Always Learning" className="mb-4 " />
 
       <Card />
     </section>

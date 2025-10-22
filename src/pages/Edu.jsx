@@ -1,6 +1,6 @@
 import { HeadIng } from "../UI/components/Head";
 import { SectionSTyle } from "../UI/components/motionConfige";
-import{EducationTimeline} from '../UI/components/TimelineCard'
+import EducationTimeline from '../UI/components/TimelineCard'
 export default function Education() {
 
   return (
