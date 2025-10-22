@@ -12,8 +12,11 @@ export default function HeaderSection() {
 
   return (
     <motion.header
-      className="fixed bg-transparen top-0 left-0 right-0 z-50 transition-all duration-300 flex items-center justify-between h-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-      initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.5 }}
+      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between h-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-colors duration-300 ${scrolled ? "shadow-md" : "bg-transparent"
+        }`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
     >
 
       <Logo scrollToSection={scrollToSection} />
