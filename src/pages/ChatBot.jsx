@@ -1,7 +1,7 @@
 "use client";
+import axios from "axios";
 import { motion } from "framer-motion";
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
-import axios from "axios";
 
 export default function ChatBot({ show }) {
   const [trainingData, setTrainingData] = useState([]);

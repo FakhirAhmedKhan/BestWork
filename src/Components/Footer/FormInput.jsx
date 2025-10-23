@@ -1,6 +1,9 @@
 import { Send } from 'lucide-react'
+import { useEmailForm } from './useEmailForm';
 
-export const FormInput = ({ status, setEmail, handleSubmit, email }) => {
+export const FormInput = () => {
+  const { email, setEmail, status, handleSubmit } = useEmailForm();
+
   return (
     <div className="">
       <div className="space-y-4 relative group">

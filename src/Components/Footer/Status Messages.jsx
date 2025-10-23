@@ -1,6 +1,9 @@
+import { useEmailForm } from './useEmailForm';
 import { AlertCircle, CheckCircle } from 'lucide-react'
 
-export const StatusMessages = ({ status }) => {
+export const StatusMessages = () => {
+  const { status } = useEmailForm();
+
   return (
     <div className="min-h-[60px] flex items-center justify-center">
       {status === "success" && (

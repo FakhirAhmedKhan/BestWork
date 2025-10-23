@@ -1,7 +1,9 @@
-import { ExternalLink } from "lucide-react";
 import { BsGithub } from "react-icons/bs";
+import { ExternalLink } from "lucide-react";
+import { useAppContext } from "../../../Hooks/useAppLogic";
 
-export const ProjectView = ({ visibleProjects }) => {
+export const ProjectView = () => {
+  const { visibleProjects } = useAppContext();
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {visibleProjects.map((project) => (

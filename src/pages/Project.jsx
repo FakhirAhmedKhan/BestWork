@@ -4,11 +4,9 @@ import { Badge } from "../UI/components/Badge";
 import { CategoryFilter } from "../Components/projects/CategoryFilter";
 import { ProjectView } from "../Components/projects/ProjectView";
 import { LoardProject } from "../Components/projects/Loard";
-import { useProjects } from "../../Hooks/useProjects";
 import { SectionSTyle } from "../UI/components/motionConfige";
 
 export default function ProjectSection() {
-  const { visibleProjects, categories, activeCategory, showMore, changeCategory, filteredProjects } = useProjects();
 
   return (
     <section id="projects" className={SectionSTyle}>
@@ -16,11 +14,11 @@ export default function ProjectSection() {
 
       <HeadIng Pragaphic="Explore my latest projects showcasing creativity, innovation, and technical expertise." Tittle="My Creations" />
 
-      <CategoryFilter categories={categories} activeCategory={activeCategory} onCategoryChange={changeCategory} />
+      <CategoryFilter />
 
-      <ProjectView visibleProjects={visibleProjects} />
+      <ProjectView />
 
-      <LoardProject onLoadMore={showMore} filteredProjects={filteredProjects} visibleProjects={visibleProjects} />
+      <LoardProject />
     </section>
   );
 }

@@ -1,8 +1,12 @@
-import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
+import { motion } from "framer-motion";
+import { useAppContext } from "../../../Hooks/useAppLogic";
 import { itemVariants, menuVariants } from "../../UI/components/motionConfige";
 
-export const MobileNav = ({ scrollToSection, navItems, activeSection, isMenuOpen }) => {
+export const MobileNav = () => {
+
+  const { navItems, activeSection, isMenuOpen, scrollToSection } = useAppContext();
+
   return (
     <>
       {isMenuOpen && (

@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
+import { useAppContext } from "../../../Hooks/useAppLogic";
 
-export const DeskTopNav = ({ navItems, activeSection, scrollToSection }) => {
+export const DeskTopNav = () => {
+
+  const { navItems, activeSection, scrollToSection } = useAppContext();
   return (
     <nav className="hidden md:flex items-center gap-2">
       {navItems.map((item) => {

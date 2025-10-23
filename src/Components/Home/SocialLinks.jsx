@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
-import { useSocialLinks } from "../../../Hooks/useSocialLinks";
+import { useAppContext } from "../../../Hooks/useAppLogic";
+
 export const SocialLinks = () => {
-  const { socialLinks } = useSocialLinks();
+
+  const { socialLinks } = useAppContext();
+
   return (
     <>{socialLinks.length > 0 && (
       <motion.div

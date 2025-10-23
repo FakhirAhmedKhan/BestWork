@@ -1,4 +1,8 @@
-export const CategoryFilter = ({ categories, activeCategory, onCategoryChange }) => {
+import { useAppContext } from "../../../Hooks/useAppLogic";
+
+export const CategoryFilter = () => {
+
+  const { categories, activeCategory, changeCategory } = useAppContext();
   return (
     <div className="flex flex-wrap justify-center gap-4 mb-16">
       {categories.map((cat) => {
@@ -6,7 +10,7 @@ export const CategoryFilter = ({ categories, activeCategory, onCategoryChange })
         return (
           <button
             key={cat}
-            onClick={() => onCategoryChange(cat)}
+            onClick={() => changeCategory(cat)}
             className={`group relative px-8 py-3.5 rounded-full font-semibold text-sm tracking-wide transition-all duration-300 overflow-hidden ${isActive
               ? "text-white scale-105 shadow-2xl"
               : "text-gray-700 dark:text-gray-300 hover:scale-105 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50 hover:border-purple-400/50 dark:hover:border-purple-500/50 shadow-lg hover:shadow-xl"

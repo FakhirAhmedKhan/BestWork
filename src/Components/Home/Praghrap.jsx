@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { AnimatedText } from "../../UI/components/AnimatedText";
 import { ReactTyped } from "react-typed";
+import { AnimatedText } from "../../UI/components/AnimatedText";
 
 export const Praghrap = () => {
   return (

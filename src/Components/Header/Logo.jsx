@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
+import { useAppContext } from "../../../Hooks/useAppLogic";
 
 
-export const Logo = ({ scrollToSection }) => {
+export const Logo = () => {
+  const { scrollToSection } = useAppContext();
+
   return (
     <motion.div
       className="flex items-center gap-2"

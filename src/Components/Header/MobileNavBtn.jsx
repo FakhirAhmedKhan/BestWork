@@ -1,7 +1,9 @@
-import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useAppContext } from "../../../Hooks/useAppLogic";
 
-export const MobileNavBtn = ({ setIsMenuOpen, isMenuOpen }) => {
+export const MobileNavBtn = () => {
+  const { isMenuOpen, setIsMenuOpen } = useAppContext();
   return (
     < motion.button
       onClick={() => setIsMenuOpen((prev) => !prev)}

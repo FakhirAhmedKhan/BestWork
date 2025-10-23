@@ -1,10 +1,8 @@
-import { useState } from 'react';
+import { useAppContext } from "../../../Hooks/useAppLogic";
 import { GraduationCap, BookOpen, Code, Sparkles } from 'lucide-react';
-import { useEducationData } from '../../../Hooks/useEducationData';
 
 const EducationTimeline = () => {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-  const { education } = useEducationData();
+  const { education, setHoveredIndex , hoveredIndex } = useAppContext();
   const iconMap = {
     GraduationCap,
     BookOpen,
@@ -12,12 +10,9 @@ const EducationTimeline = () => {
     Sparkles
   };
 
-
   return (
     <div className="min-h-screen py-16 px-4">
       <div className="max-w-6xl mx-auto">
-
-
         {/* Timeline */}
         <div className="relative">
           {/* Central Line */}

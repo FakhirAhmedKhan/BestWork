@@ -1,7 +1,9 @@
-import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
+import { motion } from "framer-motion";
+import { useAppContext } from "../../../Hooks/useAppLogic";
 
-export const CTABtnDesk = ({ scrollToSection }) => {
+export const CTABtnDesk = () => {
+  const { scrollToSection } = useAppContext();
   return (
     <motion.a
       href="#contact"

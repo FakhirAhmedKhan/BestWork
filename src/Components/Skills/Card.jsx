@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
+import { useAppContext } from "../../../Hooks/useAppLogic";
 import { containerVariants, skillVariants } from '../../UI/components/motionConfige'
-import { useSkills } from "../../../Hooks/useSkills";
 
 export const Card = () => {
-  const { skills, hoveredIndex, setHoveredIndex } = useSkills();
+  
+  const { skills, hoveredIndex, setHoveredIndex } = useAppContext();
 
   return (
     <motion.div

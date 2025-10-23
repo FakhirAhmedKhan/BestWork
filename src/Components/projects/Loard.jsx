@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
+import { useAppContext } from "../../../Hooks/useAppLogic";
 
-export const LoardProject = ({ onLoadMore, filteredProjects, visibleProjects }) => {
-  // Show button only if there are more projects hidden
+export const LoardProject = () => {
+  const { visibleProjects, filteredProjects } = useAppContext();
+
   const hasMore = visibleProjects.length < filteredProjects.length;
 
   if (!hasMore) return null;
@@ -34,4 +36,3 @@ export const LoardProject = ({ onLoadMore, filteredProjects, visibleProjects }) 
     </motion.div>
   );
 };
- 
