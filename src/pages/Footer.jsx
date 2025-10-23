@@ -11,9 +11,7 @@ export default function Footer() {
 
   return (
     <footer id="contact" className={SectionSTyle}>
-      <HeadIng
-        Tittle="Get In Touch"
-        Pragaphic="Drop your email and let's create something amazing together" />
+      <HeadIng Tittle="Get In Touch" Pragaphic="Drop your email and let's create something amazing together" />
 
       <FormInput status={status} setEmail={setEmail} handleSubmit={handleSubmit} email={email} />
       <StatusMessages status={status} />

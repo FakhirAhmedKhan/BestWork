@@ -1,6 +1,7 @@
 import { useState, useEffect, Suspense, lazy } from "react";
 import { Animated } from "./UI/components/Animated.jsx";
 import { BotToggleButton } from "./UI/components/motionConfige.js";
+import { ThemeToggle } from "./UI/components/ThemeToggle.jsx";
 
 // Lazy imports
 const ProjectSection = lazy(() => import("./pages/Project.jsx"));
@@ -62,10 +63,11 @@ export default function App() {
   }, [countdown, hasPreloaded]);
 
   return (
-    <div className="bg-neutral-50 font-sans text-neutral-800 transition-colors duration-500 dark:bg-[#0a0a1a] dark:text-neutral-300 relative overflow-hidden">
+    <div className=" font-sans text-neutral-800 transition-colors duration-500 dark:bg-[#0a0a1a] dark:text-neutral-300 relative overflow-hidden">
       <Animated />
 
       <main className="relative z-10">
+        <ThemeToggle />
         {/* Step 1: Countdown */}
         {countdown > 0 && (
           <div className="flex items-center justify-center min-h-screen">

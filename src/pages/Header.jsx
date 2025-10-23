@@ -5,6 +5,7 @@ import { CTABtnDesk } from "../Components/Header/CTAButtonDesktop";
 import { MobileNavBtn } from "../Components/Header/MobileNavBtn";
 import { MobileNav } from "../Components/Header/MobileNav";
 import { useScrollSections } from "../../Hooks/useScrollSections";
+import { ThemeToggle } from "../UI/components/ThemeToggle";
 
 export default function HeaderSection() {
 
@@ -20,6 +21,7 @@ export default function HeaderSection() {
     >
 
       <Logo scrollToSection={scrollToSection} />
+      <ThemeToggle />
 
       <DeskTopNav navItems={navItems} activeSection={activeSection} scrollToSection={scrollToSection} />
 

@@ -8,7 +8,6 @@ import { SectionSTyle } from "../UI/components/motionConfige";
 
 export default function HomeSection() {
 
-
   return (
     <section id="home" className={SectionSTyle}>
       <Badge Icon={Sparkles} BageName="Welcome to my digital space" />
@@ -20,7 +19,6 @@ export default function HomeSection() {
       <CTAButtons />
 
       <SocialLinks />
-
     </section>
   );
 }

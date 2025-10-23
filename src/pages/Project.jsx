@@ -14,8 +14,7 @@ export default function ProjectSection() {
     <section id="projects" className={SectionSTyle}>
       <Badge Icon={Code2} BageName="Tech Work" />
 
-      <HeadIng
-        Pragaphic="Explore my latest projects showcasing creativity, innovation, and technical expertise." Tittle="My Creations" />
+      <HeadIng Pragaphic="Explore my latest projects showcasing creativity, innovation, and technical expertise." Tittle="My Creations" />
 
       <CategoryFilter categories={categories} activeCategory={activeCategory} onCategoryChange={changeCategory} />
 

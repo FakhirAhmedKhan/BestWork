@@ -1,15 +1,12 @@
 import { HeadIng } from "../UI/components/Head";
 import { SectionSTyle } from "../UI/components/motionConfige";
-import EducationTimeline from '../UI/components/TimelineCard'
+import EducationTimeline from '../Components/EDU/TimelineCard'
 export default function Education() {
 
   return (
     <section id="about" className={SectionSTyle}>
 
-      <HeadIng
-        Tittle="My Journey"
-        Pragaphic="A timeline of my educational milestones and achievements"
-      />
+      <HeadIng Tittle="My Journey" Pragaphic="A timeline of my educational milestones and achievements" />
 
       <EducationTimeline />
 
