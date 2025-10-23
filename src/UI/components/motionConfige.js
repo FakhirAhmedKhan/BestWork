@@ -18,6 +18,43 @@ export const itemVariants = {
   hidden: { opacity: 0, x: -20 },
   visible: { opacity: 1, x: 0 },
 };
+export const container = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.03,
+    },
+  },
+};
+
+export const child = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      damping: 12,
+      stiffness: 100,
+    },
+  },
+};
+
+export const hover = {
+  y: -10,
+  scale: 1.2,
+  color: '#60a5fa',
+  textShadow: '0 0 20px rgba(96, 165, 250, 0.8)',
+  transition: {
+    type: 'spring',
+    damping: 10,
+    stiffness: 300,
+  },
+};
 
 export const pulseAnimation = {
   scale: [1, 1.05, 1],

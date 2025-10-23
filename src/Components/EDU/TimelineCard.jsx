@@ -1,14 +1,8 @@
 import { useAppContext } from "../../../Hooks/useAppLogic";
-import { GraduationCap, BookOpen, Code, Sparkles } from 'lucide-react';
 
 const EducationTimeline = () => {
-  const { education, setHoveredIndex , hoveredIndex } = useAppContext();
-  const iconMap = {
-    GraduationCap,
-    BookOpen,
-    Code,
-    Sparkles
-  };
+  const { education, setHoveredIndex, hoveredIndex, iconMap } = useAppContext();
+
 
   return (
     <div className="min-h-screen py-16 px-4">

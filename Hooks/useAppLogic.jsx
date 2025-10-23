@@ -1,6 +1,6 @@
-import { useState, useEffect, useMemo, useCallback, createContext, useContext } from "react";
 import axios from "axios";
-import { Home, Code, Briefcase, User } from "lucide-react";
+import { useState, useEffect, useMemo, useCallback, createContext, useContext } from "react";
+import { GraduationCap, BookOpen, Sparkles, Home, Code, Briefcase, User } from "lucide-react";
 
 // ------------------------------
 // 🌐 NAVIGATION ITEMS
@@ -156,7 +156,12 @@ export const AppProvider = ({ children }) => {
     setActiveCategory(category);
     setVisibleCount(3);
   };
-
+  const iconMap = {
+    GraduationCap,
+    BookOpen,
+    Code,
+    Sparkles
+  };
   // ==========================================================
   // 🧩 COMBINED CONTEXT VALUE
   // ==========================================================
@@ -167,6 +172,7 @@ export const AppProvider = ({ children }) => {
       loading,
       hoveredIndex,
       setHoveredIndex,
+      iconMap,
 
       // ✅ Project filtering
       activeCategory,
