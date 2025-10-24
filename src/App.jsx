@@ -63,25 +63,28 @@ export default function App() {
   }, [countdown, hasPreloaded]);
 
   return (
-    <div className=" font-sans text-neutral-800 transition-colors duration-500 dark:bg-[#0a0a1a] dark:text-neutral-300 relative overflow-hidden">
+    <div className="font-sans text-neutral-800 transition-colors duration-500 dark:bg-[#0a0a1a] dark:text-neutral-300 relative min-h-screen">
+      {/* 🌌 Animated global background */}
       <Animated />
 
-      <main className="relative z-10">
+      {/* 🌟 Main content overlay */}
+      <main className="relative z-20">
         <ThemeToggle />
+
         {/* Step 1: Countdown */}
         {countdown > 0 && (
           <div className="flex items-center justify-center min-h-screen">
-            <p className="text-6xl font-bold text-pink-500 animate-pulse transform transition-all duration-500 scale-110">
+            <p className="text-6xl font-bold text-pink-500 animate-pulse">
               {countdown}
             </p>
           </div>
         )}
 
-        {/* Step 2: Loading Text */}
+        {/* Step 2: Loading */}
         {countdown === 0 && !isContentLoaded && (
           <div className="flex items-center justify-center min-h-screen">
             <div className="text-center">
-              <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-pink-500 border-r-transparent mb-4"></div>
+              <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-pink-500 border-r-transparent mb-4"></div>
               <p className="text-lg font-medium">
                 Loading amazing content{loadingDots}
               </p>
@@ -91,29 +94,18 @@ export default function App() {
 
         {/* Step 3: Actual Content */}
         {isContentLoaded && (
-          <Suspense
-            fallback={
-              <div className="flex items-center justify-center min-h-screen">
-                <p className="text-lg font-medium text-pink-500">
-                  Final touches{loadingDots}
-                </p>
-              </div>
-            }
-          >
+          <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
             <HeaderSection />
             <HomeSection />
             <SkillsSection />
             <ProjectSection />
             <Education />
             <Footer />
-            <ChatBot
-              show={isChatbotOpen}
-              onClose={() => setIsChatbotOpen(false)}
-            />
+            <ChatBot show={isChatbotOpen} onClose={() => setIsChatbotOpen(false)} />
           </Suspense>
         )}
 
-        {/* ChatBot toggle only after full load */}
+        {/* Chatbot toggle */}
         {isContentLoaded && (
           <button
             aria-label="Toggle ChatBot"
