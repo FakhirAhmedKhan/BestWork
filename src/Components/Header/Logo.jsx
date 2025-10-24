@@ -1,10 +1,8 @@
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
-import { useAppContext } from "../../../Hooks/useAppLogic";
+import { NavLink } from "react-router-dom";
 
-
-export const Logo = () => {
-  const { scrollToSection } = useAppContext();
+export const LogoHeader = () => {
 
   return (
     <motion.div
@@ -12,14 +10,7 @@ export const Logo = () => {
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
     >
-      <a
-        href="#home"
-        onClick={(e) => {
-          e.preventDefault();
-          scrollToSection("home");
-        }}
-        className="flex items-center gap-2 group"
-      >
+      <NavLink to="/" className="flex items-center gap-3">
         <motion.div
           className="w-10 h-10 rounded-xl bg-gradient-to-br from-fuchsia-600 to-violet-600 flex items-center justify-center shadow-lg"
           whileHover={{ rotate: 180 }}
@@ -30,7 +21,7 @@ export const Logo = () => {
         <span className="text-2xl font-bold bg-gradient-to-r from-fuchsia-600 via-pink-600 to-violet-600 bg-clip-text text-transparent">
           Simple.Dev
         </span>
-      </a>
+      </NavLink>
     </motion.div>
 
   )

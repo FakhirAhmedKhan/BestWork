@@ -53,18 +53,6 @@ export const animationStyles = `
     100% { background-position: 200% 0; }
   }
 
-  @keyframes orbit {
-    0% { transform: rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg); }
-    100% { transform: rotate(360deg) translateX(var(--orbit-radius)) rotate(-360deg); }
-  }
-
-  @keyframes wave {
-    0%, 100% { transform: translateY(0) translateX(0); }
-    25% { transform: translateY(-20px) translateX(15px); }
-    50% { transform: translateY(-8px) translateX(-10px); }
-    75% { transform: translateY(25px) translateX(20px); }
-  }
-
   .gradient-mesh {
     background: 
       radial-gradient(circle at 25% 30%, rgba(236, 72, 153, 0.18) 0%, transparent 60%),
@@ -105,6 +93,101 @@ const createParticle = (id, type) => {
   };
 };
 
+// Orbital particle component with customizable orbits
+const OrbitParticle = ({ radius, duration, delay, color, size = 2, blur = 1 }) => {
+  return (
+    <motion.div
+      className="absolute left-1/2 top-1/2"
+      style={{
+        width: `${size}px`,
+        height: `${size}px`,
+      }}
+      animate={{
+        rotate: 360,
+      }}
+      transition={{
+        duration,
+        repeat: Infinity,
+        ease: "linear",
+        delay,
+      }}
+    >
+      <div
+        className={`absolute rounded-full ${color}`}
+        style={{
+          width: `${size}px`,
+          height: `${size}px`,
+          left: `${radius}px`,
+          filter: `blur(${blur}px)`,
+          boxShadow: `0 0 ${size * 6}px ${size * 2}px currentColor`,
+        }}
+      />
+    </motion.div>
+  );
+};
+
+// Reusable orbit container that wraps content
+export const OrbitContainer = ({ children, className = "" }) => {
+  const orbits = useMemo(() => [
+    // Inner orbit - fast, small particles
+    ...Array.from({ length: 6 }, (_, i) => ({
+      id: `inner-${i}`,
+      radius: 180,
+      duration: 12,
+      delay: i * 2,
+      color: "text-pink-400/60 dark:text-pink-500/60",
+      size: 2,
+      blur: 0.8,
+    })),
+    // Middle orbit - medium speed
+    ...Array.from({ length: 8 }, (_, i) => ({
+      id: `middle-${i}`,
+      radius: 260,
+      duration: 18,
+      delay: i * 2.25,
+      color: "text-fuchsia-400/50 dark:text-fuchsia-500/50",
+      size: 3,
+      blur: 1.2,
+    })),
+    // Outer orbit - slow, larger particles
+    ...Array.from({ length: 10 }, (_, i) => ({
+      id: `outer-${i}`,
+      radius: 340,
+      duration: 24,
+      delay: i * 2.4,
+      color: "text-purple-400/40 dark:text-purple-500/40",
+      size: 4,
+      blur: 1.5,
+    })),
+    // Extra outer orbit - very slow
+    ...Array.from({ length: 12 }, (_, i) => ({
+      id: `extra-${i}`,
+      radius: 420,
+      duration: 30,
+      delay: i * 2.5,
+      color: "text-violet-400/30 dark:text-violet-500/30",
+      size: 2.5,
+      blur: 1,
+    })),
+  ], []);
+
+  return (
+    <div className={`relative ${className}`}>
+      {/* Orbital particles */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          {orbits.map((orbit) => (
+            <OrbitParticle key={orbit.id} {...orbit} />
+          ))}
+        </div>
+      </div>
+
+      {/* Content */}
+      {children}
+    </div>
+  );
+};
+
 export const Animated = () => {
   const particles = useMemo(() => {
     const list = [];
@@ -115,7 +198,7 @@ export const Animated = () => {
   }, []);
 
   return (
-    <div className="absolute inset-0 pointer-events-none">
+    <div className="absolute inset-0 pointer-events-none overflow-hidden">
       <style>{animationStyles}</style>
 
       {/* 🌈 Gradient Base Layer */}
@@ -127,15 +210,17 @@ export const Animated = () => {
           <div key={p.id} className={p.className} style={p.style} />
         ))}
       </div>
+
       {/* Animated background elements */}
-      <div className="absolute inset-0  pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-indigo-300/20 dark:bg-indigo-600/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-300/20 dark:bg-purple-600/10 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-300/20 dark:bg-purple-600/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
-      <div className="absolute inset-0  pointer-events-none">
+
+      <div className="absolute inset-0 pointer-events-none">
         {/* Large gradient orbs */}
         <motion.div
-          className="absolute -top-40 -left-40 w-96 h-96 rounded-full blur-3xl"
+          className="absolute -top-40 -left-40 w-96 h-96 bg-pink-400/10 dark:bg-pink-600/10 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             x: [0, 50, 0],
@@ -144,7 +229,7 @@ export const Animated = () => {
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full blur-3xl"
+          className="absolute -bottom-40 -right-40 w-96 h-96 bg-purple-400/10 dark:bg-purple-600/10 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.3, 1],
             x: [0, -50, 0],
@@ -156,7 +241,7 @@ export const Animated = () => {
         {/* Floating particles */}
         {[...Array(20)].map((_, i) => (
           <motion.div
-            key={i}
+            key={`float-${i}`}
             className="absolute w-2 h-2 bg-fuchsia-400/40 dark:bg-fuchsia-600/40 rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
@@ -174,10 +259,11 @@ export const Animated = () => {
           />
         ))}
       </div>
+
       {/* 💫 Floating Code Symbols */}
       {[...Array(12)].map((_, i) => (
         <motion.div
-          key={i}
+          key={`symbol-${i}`}
           className="absolute text-fuchsia-400/20 dark:text-fuchsia-600/30 font-mono text-3xl font-bold"
           style={{
             left: `${Math.random() * 100}%`,
@@ -198,7 +284,7 @@ export const Animated = () => {
         </motion.div>
       ))}
 
-      {/* 🔮 Floating Orbs */}
+      {/* 🔮 Additional Floating Orbs */}
       <motion.div
         className="absolute top-20 left-10 w-80 h-80 bg-pink-400/10 dark:bg-pink-700/10 rounded-full blur-3xl"
         animate={{ scale: [1, 1.2, 1], x: [0, 40, 0] }}
@@ -209,6 +295,35 @@ export const Animated = () => {
         animate={{ scale: [1, 1.25, 1], x: [0, -40, 0] }}
         transition={{ duration: 10, repeat: Infinity }}
       />
+
+      {/* Global orbit particles around the entire viewport */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          {/* Large viewport orbits */}
+          {Array.from({ length: 8 }, (_, i) => (
+            <OrbitParticle
+              key={`global-orbit-1-${i}`}
+              radius={Math.min(window.innerWidth, window.innerHeight) * 0.35}
+              duration={20}
+              delay={i * 2.5}
+              color="text-pink-400/40 dark:text-pink-500/40"
+              size={3}
+              blur={1.5}
+            />
+          ))}
+          {Array.from({ length: 10 }, (_, i) => (
+            <OrbitParticle
+              key={`global-orbit-2-${i}`}
+              radius={Math.min(window.innerWidth, window.innerHeight) * 0.42}
+              duration={28}
+              delay={i * 2.8}
+              color="text-fuchsia-400/30 dark:text-fuchsia-500/30"
+              size={2.5}
+              blur={1.2}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

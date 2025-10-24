@@ -1,22 +1,15 @@
 import { Mail } from "lucide-react";
-import { motion } from "framer-motion";
-import { useAppContext } from "../../../Hooks/useAppLogic";
+import { NavLink } from "react-router-dom";
 
 export const CTABtnDesk = () => {
-  const { scrollToSection } = useAppContext();
   return (
-    <motion.a
-      href="#contact"
-      onClick={(e) => {
-        e.preventDefault();
-        scrollToSection("contact");
-      }}
+    <NavLink href="#contact"
       className="hidden md:flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-fuchsia-600 to-violet-600 text-white font-semibold shadow-lg hover:shadow-xl transition-shadow"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
     >
       <Mail className="w-4 h-4" />
       <span>Let's Talk</span>
-    </motion.a>
+    </NavLink>
   )
 }

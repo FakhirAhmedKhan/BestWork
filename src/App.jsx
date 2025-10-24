@@ -1,7 +1,10 @@
+// App.jsx - Main Router Setup
 import { useState, useEffect, Suspense, lazy } from "react";
-import { Animated } from "./UI/components/Animated.jsx";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { Animated, OrbitContainer } from "./UI/components/Animated.jsx";
 import { BotToggleButton } from "./UI/components/motionConfige.js";
 import { ThemeToggle } from "./UI/components/ThemeToggle.jsx";
+import { motion } from "framer-motion";
 
 // Lazy imports
 const ProjectSection = lazy(() => import("./pages/Project.jsx"));
@@ -11,6 +14,111 @@ const Footer = lazy(() => import("./pages/Footer.jsx"));
 const HeaderSection = lazy(() => import("./pages/Header"));
 const HomeSection = lazy(() => import("./pages/Home"));
 const ChatBot = lazy(() => import("./pages/ChatBot"));
+
+// Loading Screen Component
+function LoadingScreen({ countdown, loadingDots, isContentLoaded }) {
+  if (isContentLoaded) return null;
+
+  return (
+    <div className="relative z-10 flex items-center justify-center min-h-screen">
+      <OrbitContainer>
+        {countdown > 0 ? (
+          <motion.div
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="bg-slate-900/50 backdrop-blur-xl border border-white/10 rounded-3xl p-20 shadow-2xl"
+          >
+            <p className="text-8xl font-bold bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 bg-clip-text text-transparent animate-pulse">
+              {countdown}
+            </p>
+          </motion.div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center bg-slate-900/50 backdrop-blur-xl border border-white/10 rounded-3xl p-12 shadow-2xl"
+          >
+            <div className="inline-block h-16 w-16 animate-spin rounded-full border-4 border-pink-500 border-r-transparent mb-6"></div>
+            <p className="text-xl font-medium text-slate-300">
+              Loading amazing content{loadingDots}
+            </p>
+          </motion.div>
+        )}
+      </OrbitContainer>
+    </div>
+  );
+}
+
+// Layout Component with Header and ChatBot
+function Layout({ children, isChatbotOpen, setIsChatbotOpen }) {
+  return (
+    <>
+      <Suspense fallback={<div className="min-h-20" />}>
+        <HeaderSection />
+      </Suspense>
+
+      <OrbitContainer>{children}</OrbitContainer>
+
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
+
+      <Suspense fallback={null}>
+        <ChatBot show={isChatbotOpen} onClose={() => setIsChatbotOpen(false)} />
+      </Suspense>
+
+      <button
+        aria-label="Toggle ChatBot"
+        aria-expanded={isChatbotOpen}
+        className={BotToggleButton}
+        onClick={() => setIsChatbotOpen((prev) => !prev)}
+      >
+        <span className="text-[1.6em]">{isChatbotOpen ? "✕" : "🤖"}</span>
+      </button>
+    </>
+  );
+}
+
+// Page Components with Suspense
+function HomePage() {
+  return (
+    <Suspense fallback={<PageLoader />}>
+      <HomeSection />
+    </Suspense>
+  );
+}
+
+function SkillsPage() {
+  return (
+    <Suspense fallback={<PageLoader />}>
+      <SkillsSection />
+    </Suspense>
+  );
+}
+
+function ProjectsPage() {
+  return (
+    <Suspense fallback={<PageLoader />}>
+      <ProjectSection />
+    </Suspense>
+  );
+}
+
+function EducationPage() {
+  return (
+    <Suspense fallback={<PageLoader />}>
+      <Education />
+    </Suspense>
+  );
+}
+
+function PageLoader() {
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-pink-500 border-r-transparent"></div>
+    </div>
+  );
+}
 
 export default function App() {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
@@ -63,60 +171,70 @@ export default function App() {
   }, [countdown, hasPreloaded]);
 
   return (
-    <div className="font-sans text-neutral-800 transition-colors duration-500 dark:bg-[#0a0a1a] dark:text-neutral-300 relative min-h-screen">
-      {/* 🌌 Animated global background */}
-      <Animated />
+    <Router>
+      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 text-white">
+        {/* Global animated background */}
+        <Animated />
 
-      {/* 🌟 Main content overlay */}
-      <main className="relative z-20">
-        <ThemeToggle />
+        <motion.div
+          className="fixed top-6 right-6 z-50 cursor-grab active:cursor-grabbing"
+          drag
+          dragMomentum={false}
+          whileDrag={{ scale: 1.05 }}
+        >
+          <ThemeToggle />
+        </motion.div>
 
-        {/* Step 1: Countdown */}
-        {countdown > 0 && (
-          <div className="flex items-center justify-center min-h-screen">
-            <p className="text-6xl font-bold text-pink-500 animate-pulse">
-              {countdown}
-            </p>
+
+        {/* Loading Screen */}
+        <LoadingScreen
+          countdown={countdown}
+          loadingDots={loadingDots}
+          isContentLoaded={isContentLoaded}
+        />
+
+        {/* Main Content with Routes */}
+        {isContentLoaded && (
+          <div className="relative z-10">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Layout isChatbotOpen={isChatbotOpen} setIsChatbotOpen={setIsChatbotOpen}>
+                    <HomePage />
+                  </Layout>
+                }
+              />
+              <Route
+                path="/skills"
+                element={
+                  <Layout isChatbotOpen={isChatbotOpen} setIsChatbotOpen={setIsChatbotOpen}>
+                    <SkillsPage />
+                  </Layout>
+                }
+              />
+              <Route
+                path="/projects"
+                element={
+                  <Layout isChatbotOpen={isChatbotOpen} setIsChatbotOpen={setIsChatbotOpen}>
+                    <ProjectsPage />
+                  </Layout>
+                }
+              />
+              <Route
+                path="/education"
+                element={
+                  <Layout isChatbotOpen={isChatbotOpen} setIsChatbotOpen={setIsChatbotOpen}>
+                    <EducationPage />
+                  </Layout>
+                }
+              />
+              {/* Redirect unknown routes to home */}
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
           </div>
         )}
-
-        {/* Step 2: Loading */}
-        {countdown === 0 && !isContentLoaded && (
-          <div className="flex items-center justify-center min-h-screen">
-            <div className="text-center">
-              <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-pink-500 border-r-transparent mb-4"></div>
-              <p className="text-lg font-medium">
-                Loading amazing content{loadingDots}
-              </p>
-            </div>
-          </div>
-        )}
-
-        {/* Step 3: Actual Content */}
-        {isContentLoaded && (
-          <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
-            <HeaderSection />
-            <HomeSection />
-            <SkillsSection />
-            <ProjectSection />
-            <Education />
-            <Footer />
-            <ChatBot show={isChatbotOpen} onClose={() => setIsChatbotOpen(false)} />
-          </Suspense>
-        )}
-
-        {/* Chatbot toggle */}
-        {isContentLoaded && (
-          <button
-            aria-label="Toggle ChatBot"
-            aria-expanded={isChatbotOpen}
-            className={BotToggleButton}
-            onClick={() => setIsChatbotOpen((prev) => !prev)}
-          >
-            <span className="text-[1.6em]">{isChatbotOpen ? "✕" : "🤖"}</span>
-          </button>
-        )}
-      </main>
-    </div>
+      </div>
+    </Router>
   );
 }
