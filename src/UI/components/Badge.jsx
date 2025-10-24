@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-export const Badge = ({ Icon, BageName, count, className = "" }) => {
+export const Badge = ({ Icon, BageName,  className = "" }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: -20, scale: 0.9 }}
@@ -16,7 +16,7 @@ export const Badge = ({ Icon, BageName, count, className = "" }) => {
         y: -2
       }}
       whileTap={{ scale: 0.98 }}
-      className={`flex justify-center flex-row items-center group relative inline-flex gap-2.5 px-5 py-2.5 rounded-full bg-blur dark:bg-gray-900/90 backdrop-blur-md border border-fuchsia-200/50 dark:border-fuchsia-800/50 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer ${className || ''} mt-20 mb-0 text-center`}
+      className={`justify-center flex-row items-center group relative inline-flex gap-2.5 px-5 py-2.5 rounded-full bg-blur dark:bg-gray-900/90 backdrop-blur-md border border-fuchsia-200/50 dark:border-fuchsia-800/50 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer ${className || ''} mt-20 mb-0 text-center`}
 
 
     >

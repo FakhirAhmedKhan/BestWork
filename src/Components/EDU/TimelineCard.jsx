@@ -45,7 +45,7 @@ const EducationTimeline = () => {
 
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">
-                          <span className={`px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${item.color} text-black`}>
+                          <span className={`px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${item.color}`}>
                             {item.year}
                           </span>
                         </div>

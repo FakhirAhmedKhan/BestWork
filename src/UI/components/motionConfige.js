@@ -95,9 +95,14 @@ export const fadeInUp = {
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.6 },
 };
-
+export const headerMotion = {
+  initial: { y: -100 },
+  animate: { y: 0 },
+  transition: { duration: 0.5, ease: "easeOut" }
+};
 export const SectionSTyle = "relative flex flex-col items-center justify-center text-center px-6 sm:px-8 lg:px-12 py-24 sm:py-28 lg:py-32 overflow-hidden z-10 max-w-7xl mx-auto space-y-12"
 
+export const headerStyle = "fixed top-0 left-0 right-0 z-50 flex items-center justify-between h-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-colors duration-300"
 
 export const BotToggleButton =
   "fixed bottom-5 right-5 z-30 h-16 w-16 rounded-full bg-gradient-to-br from-pink-500 via-fuchsia-500 to-purple-600 text-white shadow-2xl flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 hover:shadow-pink-500/50 transition-all duration-300 hover:scale-110 backdrop-blur-sm";
